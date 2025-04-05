@@ -21,9 +21,6 @@ mono_crash.*.json
 *.blend1
 .vscode
 
-# Ignore addons
-addons/
-
 # Ignore export folder contents
 export/linux/*
 export/mac/*
