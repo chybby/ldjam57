@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdlc32ufvi3ef"]
+
+[ext_resource type="Script" uid="uid://d2yrf7cx3ig0w" path="res://interactable.gd" id="1_wh154"]
+
+[node name="Interactable" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_wh154")
