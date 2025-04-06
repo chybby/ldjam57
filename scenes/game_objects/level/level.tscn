@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=47 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
 [ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="2_78e8x"]
 [ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="3_ltutm"]
 [ext_resource type="PackedScene" uid="uid://c51gq1dbqkgk8" path="res://trigger.tscn" id="5_llh75"]
+[ext_resource type="Script" uid="uid://d0xy42ycsao2k" path="res://scenes/game_objects/level/warninglight.gd" id="6_ltutm"]
 [ext_resource type="Texture2D" uid="uid://cxigk52ttl8hh" path="res://assets/metal-rusted-background.png" id="7_2ptmb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
@@ -42,8 +43,6 @@ size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1d51"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_tswho"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbbif"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_78e8x"]
@@ -57,8 +56,20 @@ size = Vector3(2.1, 0.3, 2.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tswho"]
 size = Vector3(4.5, 1.15, 2.45)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jghyl"]
+size = Vector3(2.00867, 2.6, 2.4382)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_78e8x"]
-size = Vector3(1.5, 2.6, 2)
+size = Vector3(17.8452, 2.6, 10.7821)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wlxdm"]
+size = Vector3(4.36548, 2.6, 6.23627)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xki4i"]
+size = Vector3(2.14575, 2.02903, 2.39047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbiv7"]
+size = Vector3(2.14575, 2.02903, 2.39047)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tswho"]
 data = PackedVector3Array(0.707107, 0.15, -0.707107, 0.382684, 0.15, -0.923879, 0.382684, -0.15, -0.923879, 1.19249e-08, -0.15, -1, 0.382684, -0.15, -0.923879, 0.382684, 0.15, -0.923879, 0.707107, -0.15, -0.707107, 0.382684, -0.15, -0.923879, 1, -0.15, 0, 0.92388, -0.15, -0.382683, 0.707107, -0.15, -0.707107, 1, -0.15, 0, 0.382684, -0.15, -0.923879, 0.707107, -0.15, -0.707107, 0.707107, 0.15, -0.707107, 0.707107, -0.15, -0.707107, 0.92388, -0.15, -0.382683, 0.92388, 0.15, -0.382683, 0.92388, -0.15, -0.382683, 1, -0.15, 0, 1, 0.15, 0, -0.382683, -0.15, 0.92388, -4.37114e-08, -0.15, 1, 1, -0.15, 0, -4.37114e-08, -0.15, 1, 0.382683, -0.15, 0.92388, 1, -0.15, 0, 0.382683, -0.15, 0.92388, -4.37114e-08, -0.15, 1, -4.37114e-08, 0.15, 1, 0.707107, -0.15, 0.707107, 0.382683, -0.15, 0.92388, 0.382683, 0.15, 0.92388, 0.707107, -0.15, 0.707107, 0.92388, -0.15, 0.382683, 1, -0.15, 0, 0.382683, -0.15, 0.92388, 0.707107, -0.15, 0.707107, 1, -0.15, 0, 1, -0.15, 0, 0.92388, -0.15, 0.382683, 0.92388, 0.15, 0.382683, 0.92388, -0.15, 0.382683, 0.707107, -0.15, 0.707107, 0.707107, 0.15, 0.707107, 0.382684, 0.15, -0.923879, 1.19249e-08, 0.15, -1, 1.19249e-08, -0.15, -1, 0.382684, -0.15, -0.923879, 1.19249e-08, -0.15, -1, 1, -0.15, 0, 1.19249e-08, 0.15, -1, 0.382684, 0.15, -0.923879, 0, 0.15, 0, 0.382684, 0.15, -0.923879, 0.707107, 0.15, -0.707107, 0, 0.15, 0, 0.92388, 0.15, -0.382683, 0.707107, 0.15, -0.707107, 0.707107, -0.15, -0.707107, 1, 0.15, 0, 0.92388, 0.15, -0.382683, 0.92388, -0.15, -0.382683, 0.707107, 0.15, -0.707107, 0.92388, 0.15, -0.382683, 0, 0.15, 0, 0.92388, 0.15, -0.382683, 1, 0.15, 0, 0, 0.15, 0, -4.37114e-08, 0.15, 1, 0.382683, 0.15, 0.92388, 0.382683, -0.15, 0.92388, 0.382683, 0.15, 0.92388, -4.37114e-08, 0.15, 1, 0, 0.15, 0, 0.707107, 0.15, 0.707107, 0.382683, 0.15, 0.92388, 0, 0.15, 0, 0.92388, 0.15, 0.382683, 1, 0.15, 0, 1, -0.15, 0, 0.707107, 0.15, 0.707107, 0.92388, 0.15, 0.382683, 0.92388, -0.15, 0.382683, 0.382683, 0.15, 0.92388, 0.707107, 0.15, 0.707107, 0.707107, -0.15, 0.707107, 1, 0.15, 0, 0.92388, 0.15, 0.382683, 0, 0.15, 0, 0.92388, 0.15, 0.382683, 0.707107, 0.15, 0.707107, 0, 0.15, 0, -0.92388, 0.15, -0.382683, -1, 0.15, -8.74228e-08, -1, -0.15, -8.74228e-08, -1, -0.15, -8.74228e-08, -0.92388, -0.15, -0.382683, -0.92388, 0.15, -0.382683, -0.382684, -0.15, -0.92388, -0.707107, -0.15, -0.707107, 1, -0.15, 0, -0.92388, -0.15, -0.382683, -1, -0.15, -8.74228e-08, 1, -0.15, 0, -0.707107, -0.15, -0.707107, -0.92388, -0.15, -0.382683, 1, -0.15, 0, -0.707107, -0.15, -0.707107, -0.382684, -0.15, -0.92388, -0.382684, 0.15, -0.92388, -0.382684, -0.15, -0.92388, 1.19249e-08, -0.15, -1, 1.19249e-08, 0.15, -1, -0.92388, -0.15, 0.382683, -1, -0.15, -8.74228e-08, -1, 0.15, -8.74228e-08, -0.707107, -0.15, 0.707107, -0.92388, -0.15, 0.382683, -0.92388, 0.15, 0.382683, -0.382683, -0.15, 0.92388, -0.707107, -0.15, 0.707107, -0.707107, 0.15, 0.707107, -1, -0.15, -8.74228e-08, -0.92388, -0.15, 0.382683, 1, -0.15, 0, -0.92388, -0.15, 0.382683, -0.707107, -0.15, 0.707107, 1, -0.15, 0, -0.707107, -0.15, 0.707107, -0.382683, -0.15, 0.92388, 1, -0.15, 0, -4.37114e-08, -0.15, 1, -0.382683, -0.15, 0.92388, -0.382683, 0.15, 0.92388, -0.382684, 0.15, -0.92388, -0.707107, 0.15, -0.707107, -0.707107, -0.15, -0.707107, -0.707107, 0.15, -0.707107, -0.92388, 0.15, -0.382683, -0.92388, -0.15, -0.382683, -0.92388, -0.15, -0.382683, -0.707107, -0.15, -0.707107, -0.707107, 0.15, -0.707107, -0.92388, 0.15, -0.382683, -0.707107, 0.15, -0.707107, 0, 0.15, 0, -1, 0.15, -8.74228e-08, -0.92388, 0.15, -0.382683, 0, 0.15, 0, 1.19249e-08, 0.15, -1, -0.382684, 0.15, -0.92388, -0.382684, -0.15, -0.92388, -0.707107, 0.15, -0.707107, -0.382684, 0.15, -0.92388, 0, 0.15, 0, -0.382684, 0.15, -0.92388, 1.19249e-08, 0.15, -1, 0, 0.15, 0, -1, 0.15, -8.74228e-08, -0.92388, 0.15, 0.382683, -0.92388, -0.15, 0.382683, -0.92388, 0.15, 0.382683, -0.707107, 0.15, 0.707107, -0.707107, -0.15, 0.707107, -0.92388, 0.15, 0.382683, -1, 0.15, -8.74228e-08, 0, 0.15, 0, -0.707107, 0.15, 0.707107, -0.92388, 0.15, 0.382683, 0, 0.15, 0, -0.707107, 0.15, 0.707107, -0.382683, 0.15, 0.92388, -0.382683, -0.15, 0.92388, -0.382683, 0.15, 0.92388, -4.37114e-08, 0.15, 1, -4.37114e-08, -0.15, 1, -0.382683, 0.15, 0.92388, -0.707107, 0.15, 0.707107, 0, 0.15, 0, -4.37114e-08, 0.15, 1, -0.382683, 0.15, 0.92388, 0, 0.15, 0, 1.19249e-08, -0.15, -1, -0.382684, -0.15, -0.92388, 1, -0.15, 0)
@@ -340,20 +351,16 @@ mesh = SubResource("PlaneMesh_2ptmb")
 
 [node name="ScubaInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -42.2567, 12.1396, 6.09566)
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -46.4644, 10.2094, -1.58756)
 label = "Scuba"
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ScubaInteractable"]
 shape = SubResource("BoxShape3D_h1d51")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ScubaInteractable"]
-mesh = SubResource("BoxMesh_tswho")
-skeleton = NodePath("")
-
 [node name="GlassBreakerInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -39.8993, 12.1396, 5.01498)
+transform = Transform3D(1, 7.35137e-08, 2.82228e-15, -1.72043e-09, 0.0234027, 0.999726, 7.34936e-08, -0.999726, 0.0234027, -26.4671, 12.1637, -0.687416)
 label = "Glass Breaker"
 oneshot = true
 
@@ -403,8 +410,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, 11)
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnteredCentralDeckTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3, -2.8, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6642, -2.8, -1.43004)
+shape = SubResource("BoxShape3D_jghyl")
+
+[node name="FellOffPipe" parent="." instance=ExtResource("5_llh75")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4026, -7.08351, 8.32331)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FellOffPipe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2861, -2.8, -2.86481)
 shape = SubResource("BoxShape3D_78e8x")
+
+[node name="FinishedPipeSection" parent="." instance=ExtResource("5_llh75")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.634, 4.16781, 8.32331)
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishedPipeSection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54622, -2.8, -0.591888)
+shape = SubResource("BoxShape3D_wlxdm")
+
+[node name="FirstSeeWater" parent="." instance=ExtResource("5_llh75")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4504, 15.2806, -2.45411)
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstSeeWater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22395, -2.92611, 1.33101)
+shape = SubResource("BoxShape3D_xki4i")
+
+[node name="ThroughThePipe" parent="." instance=ExtResource("5_llh75")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4504, 13.2543, -2.45411)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThroughThePipe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22395, -2.92611, 1.33101)
+shape = SubResource("BoxShape3D_lbiv7")
 
 [node name="StopSpinningInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -638,9 +679,9 @@ operation = 2
 size = Vector3(1.5, 1, 2.25)
 
 [node name="Wall3" type="CSGBox3D" parent="Geometry/CommandDeck"]
-transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -42, 11.25, 0)
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -42, 11.3252, -6.67868e-17)
 use_collision = true
-size = Vector3(28, 0.2, 2.5)
+size = Vector3(28, 0.2, 2.65039)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="Door4" type="CSGBox3D" parent="Geometry/CommandDeck"]
@@ -654,7 +695,7 @@ operation = 2
 size = Vector3(1.5, 1, 2.25)
 
 [node name="Wall4" type="CSGBox3D" parent="Geometry/CommandDeck"]
-transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -44.1004, 11.25, 8)
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -44.0927, 11.2621, 8.03514)
 use_collision = true
 size = Vector3(12, 0.2, 2.5)
 material = SubResource("StandardMaterial3D_llh75")
@@ -802,6 +843,145 @@ transform = Transform3D(1, 7.54979e-08, 6.9711e-15, -2.68222e-22, -4.37114e-08, 
 use_collision = true
 size = Vector3(0.5, 2, 2)
 material = SubResource("StandardMaterial3D_llh75")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.2749, 12.1705, -5.83879)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3187, 12.1705, -2.08428)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7387, 3.43275, 5.46432)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D13" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3147, 9.70247, 4.02744)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3187, 14.5186, -2.83722)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3889, -5.27784, -0.743278)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5545, 11.9085, 1.84027)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D14" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.1883, 12.1705, -0.972704)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D15" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.769, 12.1705, -8.05279)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6149, 12.011, -1.71631)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="ExitLight" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8564, 12.1705, 1.28113)
+light_color = Color(0.412974, 0.7403, 0.878113, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+exit_light = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6821, 14.9758, -1.73497)
+light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5288, 10.5506, -3.58274)
+light_color = Color(0.744757, 0.654545, 0.421907, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4487, -0.142873, 10.6899)
+light_color = Color(0.744757, 0.654545, 0.421907, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
+[node name="GreenLight" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(0.999789, 0, 0.0205585, 0, 1, 0, -0.0205585, 0, 0.999789, -31.2097, 11.2067, 0.654569)
+light_color = Color(0, 0.41, 0.142959, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
+[node name="GreenLight2" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(0.999789, 0, 0.0205585, 0, 1, 0, -0.0205585, 0, 0.999789, 48.1449, -5.71487, 3.22398)
+light_color = Color(0, 0.41, 0.142959, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6115, 10.4492, 1.6564)
+light_color = Color(0.802138, 0.660776, 0.484303, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8408, 12.8952, 1.70199)
+light_color = Color(0.802138, 0.660776, 0.484303, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
 
 [node name="EngineRoomDeck" type="CSGCombiner3D" parent="Geometry"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -16.6771, 17.038, -3.16489)
@@ -1181,3 +1361,7 @@ material = SubResource("StandardMaterial3D_78e8x")
 libraries = {
 &"": SubResource("AnimationLibrary_tswho")
 }
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0

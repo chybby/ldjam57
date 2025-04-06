@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=19 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
@@ -9,6 +9,8 @@
 [ext_resource type="StyleBox" uid="uid://b84455x2yqgny" path="res://resources/hud_item_panel.tres" id="7_b1x3f"]
 [ext_resource type="Texture2D" uid="uid://xpg85tarwfpe" path="res://assets/hammer.png" id="7_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://bw0cbygxgthwr" path="res://assets/scuba.png" id="8_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://dqdghib36qcfw" path="res://scenes/monologueSystem/monologue.tscn" id="10_a8run"]
+[ext_resource type="Script" uid="uid://b3fxjr68xip05" path="res://scenes/main/fade_layer.gd" id="10_ouso4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,9 +23,12 @@ sky_material = SubResource("ProceduralSkyMaterial_iuonh")
 background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
+tonemap_white = 0.5
 glow_enabled = true
 fog_enabled = true
-fog_density = 0.025
+fog_density = 0.03
+fog_height = -1.0
+fog_height_density = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 shader = ExtResource("4_l3cfh")
@@ -33,6 +38,43 @@ shader_parameter/spread = 0.03
 shader_parameter/enable_dithering = true
 shader_parameter/colors = 64
 shader_parameter/dither_size = 2
+
+[sub_resource type="Animation" id="Animation_a8run"]
+resource_name = "fadeout"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.8, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ouso4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_blune"]
+_data = {
+&"RESET": SubResource("Animation_ouso4"),
+&"fadeout": SubResource("Animation_a8run")
+}
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jcq7f")
@@ -48,10 +90,11 @@ environment = SubResource("Environment_l3cfh")
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PostProcessing" type="CanvasLayer" parent="."]
+layer = 10
 script = ExtResource("4_6q06x")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="PostProcessing"]
 material = SubResource("ShaderMaterial_l3cfh")
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,3 +140,26 @@ theme_override_styles/panel = ExtResource("7_b1x3f")
 [node name="TextureRect2" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer/ScubaIcon"]
 layout_mode = 2
 texture = ExtResource("8_b1x3f")
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+layer = 15
+script = ExtResource("10_ouso4")
+
+[node name="FadeRect" type="ColorRect" parent="FadeLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="FadeAnimator" type="AnimationPlayer" parent="FadeLayer"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_blune")
+}
+
+[node name="Monologue" type="CanvasLayer" parent="."]
+
+[node name="MonologueSystem" parent="Monologue" instance=ExtResource("10_a8run")]
