@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwav8ma78d78y"]
+[gd_scene load_steps=11 format=3 uid="uid://cwav8ma78d78y"]
 
 [ext_resource type="Script" uid="uid://cbrfiao50xcnv" path="res://scenes/game_objects/player/player.gd" id="1_k7pqn"]
 
@@ -13,6 +13,9 @@ height = 1.2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2l2k"]
 radius = 0.3
 height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v2l2k"]
+radius = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tuuoe"]
 radius = 0.3
@@ -85,6 +88,14 @@ target_position = Vector3(0, 0, -2)
 collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="CameraSubmerged" type="Area3D" parent="CameraPivot"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/CameraSubmerged"]
+shape = SubResource("SphereShape3D_v2l2k")
 
 [node name="WaterCollider" type="Area3D" parent="."]
 collision_layer = 0

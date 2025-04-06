@@ -19,6 +19,7 @@ class_name Player
 @onready var crouching_collision_shape_3d: CollisionShape3D = $CrouchingCollisionShape3D
 @onready var swimming_collision_shape_3d: CollisionShape3D = $SwimmingCollisionShape3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var camera_submerged_collider: Area3D = $CameraPivot/CameraSubmerged
 
 var mouse_movement: Vector2 = Vector2.ZERO
 var jumped: bool = false
@@ -27,7 +28,7 @@ var focused_interactable: Interactable = null
 var swimming: bool = false
 var wants_to_crouch: bool = false
 var crouching: bool = false
-
+var is_underwater = false
 
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -83,12 +84,19 @@ func _physics_process(delta: float) -> void:
         # Simulate surface tension.
         velocity.y = -1.2
         swimming = true
+        
     elif not water_collider.has_overlapping_areas() and swimming:
         print('exited water')
         swimming = false
+    
+    if camera_submerged_collider.has_overlapping_areas() and not is_underwater:
+        is_underwater = true
+    elif not camera_submerged_collider.has_overlapping_areas() and is_underwater:
+        is_underwater = false
 
     if swimming:
         motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+                        
         if jumped:
             velocity.y = water_jump_strength
         if wants_to_crouch:
@@ -128,8 +136,7 @@ func set_crouching(new_crouching: bool) -> void:
         animation_player.play("crouch")
     else:
         animation_player.play_backwards("crouch")
-    crouching = new_crouching
-
-
+    crouching = new_crouching    
+    
 func get_movement_vector() -> Vector2:
     return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")

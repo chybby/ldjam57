@@ -2,10 +2,15 @@ extends Node3D
 
 @onready var player: Player = $Player
 @onready var level: Level = $Level
+@onready var waterLayer = $WaterLayer
+
 @onready var scuba_interactable: Interactable = $Level/ScubaInteractable
 @onready var scuba_icon: PanelContainer = %ScubaIcon
 @onready var glass_breaker_interactable: Interactable = $Level/GlassBreakerInteractable
 @onready var glass_breaker_icon: PanelContainer = %GlassBreakerIcon
+
+var is_underwater = false
+
 
 func _ready() -> void:
     level.respawn_player.connect(_on_respawn_player)
@@ -14,6 +19,9 @@ func _ready() -> void:
 
     # TODO: comment for debugging
     respawn_player()
+    
+func _process(delta: float) -> void:
+    waterLayer.visible = player.is_underwater
 
 func _on_respawn_player() -> void:
     respawn_player()

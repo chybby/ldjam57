@@ -4,6 +4,7 @@ class_name Level
 signal respawn_player
 
 @export var rotation_speed: float = 0.0
+@export var water_surface_y: float = 0.0
 
 @onready var after_sleep_spawn_point: Marker3D = $AfterSleepSpawnPoint
 @onready var respawn_point: Marker3D = $InitialSpawnPoint
@@ -224,3 +225,5 @@ func panic() -> void:
     GameEvents.emit_signal("trigger_monologue", "Ok that's not normal better find something to hold onto")
     GameEvents.emit_signal("trigger_monologue", "Just gotta get to the top and we'll be free...")
     
+func get_water_surface_level() -> float:
+    return water.position.y
