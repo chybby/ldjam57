@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=12 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
 [ext_resource type="PackedScene" uid="uid://b8ic6wdu3t8ql" path="res://scenes/game_objects/level/level.tscn" id="3_k2fmo"]
-[ext_resource type="AudioStream" uid="uid://cfmvp6qtpnbrf" path="res://resources/bgmusic.mp3" id="4_l3cfh"]
+[ext_resource type="Script" uid="uid://dg5ti4ep33k6y" path="res://scenes/main/postprocessing.gd" id="4_6q06x"]
+[ext_resource type="Shader" uid="uid://cb0mfmpkehdnp" path="res://scenes/main/main.gdshader" id="4_l3cfh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2fmo"]
 transparency = 1
@@ -26,6 +27,17 @@ background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_density = 0.025
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
+shader = ExtResource("4_l3cfh")
+shader_parameter/enable_aberration = true
+shader_parameter/levels = 5
+shader_parameter/spread = 0.03
+shader_parameter/enable_dithering = true
+shader_parameter/colors = 64
+shader_parameter/dither_size = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jcq7f")
@@ -43,5 +55,15 @@ mesh = SubResource("PlaneMesh_k2fmo")
 environment = SubResource("Environment_l3cfh")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_l3cfh")
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_6q06x")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_l3cfh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

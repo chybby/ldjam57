@@ -1,9 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=29 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
+[ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="2_78e8x"]
 [ext_resource type="Script" uid="uid://bfnh2q4aptvfb" path="res://scenes/game_objects/level/bed.gd" id="2_qx8j2"]
+[ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="3_ltutm"]
 [ext_resource type="Script" uid="uid://djl2ilb3t2wow" path="res://scenes/game_objects/level/bilge_controls.gd" id="4_vw1pa"]
+[ext_resource type="Texture2D" uid="uid://cxigk52ttl8hh" path="res://assets/metal-rusted-background.png" id="7_2ptmb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -35,7 +38,8 @@ size = Vector2(50, 50)
 albedo_color = Color(0, 0.517802, 0.768486, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i0lj"]
-albedo_color = Color(0, 0.517802, 0.768486, 1)
+albedo_texture = ExtResource("2_78e8x")
+uv1_scale = Vector3(25, 6.175, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx8j2"]
 albedo_color = Color(0, 0.517802, 0.768486, 1)
@@ -45,6 +49,8 @@ albedo_color = Color(0, 0.517802, 0.768486, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llh75"]
 albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
+albedo_texture = ExtResource("3_ltutm")
+uv1_scale = Vector3(10, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qx8j2"]
 size = Vector3(1.6, 2.6, 0.4)
@@ -53,7 +59,7 @@ size = Vector3(1.6, 2.6, 0.4)
 size = Vector3(4.5, 1.15, 2.45)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78e8x"]
-albedo_color = Color(0.765127, 0, 0.336076, 1)
+albedo_texture = ExtResource("7_2ptmb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tswho"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
