@@ -28,7 +28,6 @@ glow_enabled = true
 fog_enabled = true
 fog_density = 0.0085
 fog_height = -1.0
-fog_height_density = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 shader = ExtResource("4_l3cfh")
@@ -37,7 +36,7 @@ shader_parameter/levels = 5
 shader_parameter/spread = 0.01
 shader_parameter/enable_dithering = true
 shader_parameter/colors = 64
-shader_parameter/dither_size = 4
+shader_parameter/dither_size = 2
 
 [sub_resource type="Animation" id="Animation_ouso4"]
 length = 0.001
