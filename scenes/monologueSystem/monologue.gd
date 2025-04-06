@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var text_box = $Textbox
-@onready var text_label = $Textbox/TextField
+@onready var text_box = %Textbox
+@onready var text_label = %Textbox/TextField
 @onready var timer = $Timer
 
 var current_text = ""

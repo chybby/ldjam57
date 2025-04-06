@@ -15,25 +15,28 @@ mouse_filter = 2
 layer = 17
 script = ExtResource("1_3var0")
 
-[node name="Textbox" type="Panel" parent="Monologue"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
+[node name="MarginContainer" type="MarginContainer" parent="Monologue"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -125.0
-offset_top = -70.255
+offset_top = -50.0
 offset_right = 125.0
-offset_bottom = -20.255
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_bottom = 16
+
+[node name="Textbox" type="Panel" parent="Monologue/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TextField" type="RichTextLabel" parent="Monologue/Textbox"]
+[node name="TextField" type="RichTextLabel" parent="Monologue/MarginContainer/Textbox"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
