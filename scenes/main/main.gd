@@ -6,6 +6,7 @@ extends Node3D
 
 func _ready() -> void:
     level.respawn_player.connect(_on_respawn_player)
+
     # TODO: comment for debugging
     respawn_player()
 

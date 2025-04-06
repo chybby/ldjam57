@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=31 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
-[ext_resource type="Script" uid="uid://bfnh2q4aptvfb" path="res://scenes/game_objects/level/bed.gd" id="2_qx8j2"]
-[ext_resource type="Script" uid="uid://djl2ilb3t2wow" path="res://scenes/game_objects/level/bilge_controls.gd" id="4_vw1pa"]
+[ext_resource type="PackedScene" uid="uid://c51gq1dbqkgk8" path="res://trigger.tscn" id="5_llh75"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -31,6 +30,25 @@ size = Vector2(25, 6)
 material = SubResource("StandardMaterial3D_2ptmb")
 size = Vector2(50, 50)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltutm"]
+size = Vector3(33, 31, 78.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ptmb"]
+material = SubResource("StandardMaterial3D_2ptmb")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qx8j2"]
+size = Vector3(1.6, 2.6, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ptmb"]
+size = Vector3(2.1, 0.3, 2.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tswho"]
+size = Vector3(4.5, 1.15, 2.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78e8x"]
+size = Vector3(1.5, 2.6, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pt7sd"]
 albedo_color = Color(0, 0.517802, 0.768486, 1)
 
@@ -46,11 +64,9 @@ albedo_color = Color(0, 0.517802, 0.768486, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llh75"]
 albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qx8j2"]
-size = Vector3(1.6, 2.6, 0.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tswho"]
-size = Vector3(4.5, 1.15, 2.45)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vghux"]
+transparency = 1
+albedo_color = Color(0.643137, 0.643137, 0.643137, 0.501961)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78e8x"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
@@ -115,11 +131,100 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TheSequelToWater:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(41, 10.5, -3.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TheSequelToWater:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TheSequelToWater:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qx8j2"]
+resource_name = "go_to_surface"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheSequelToWater:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(15, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(41, 10.5, -3.3), Vector3(-37, 10.5, -3.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TheSequelToWater:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TheSequelToWater:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tswho"]
 _data = {
 &"RESET": SubResource("Animation_llh75"),
-&"bilge": SubResource("Animation_vw1pa")
+&"bilge": SubResource("Animation_vw1pa"),
+&"go_to_surface": SubResource("Animation_qx8j2")
 }
 
 [node name="Level" type="AnimatableBody3D"]
@@ -168,6 +273,96 @@ mesh = SubResource("PlaneMesh_qx8j2")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 74.15, -15.2, 0.95)
 mesh = SubResource("PlaneMesh_tswho")
 skeleton = NodePath("")
+
+[node name="TheSequelToWater" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 41, 10.5, -3.3)
+visible = false
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+monitorable = false
+gravity = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheSequelToWater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55, -10.7, -49.95)
+shape = SubResource("BoxShape3D_ltutm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheSequelToWater"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.25, -19.7, -10.7)
+mesh = SubResource("PlaneMesh_2ptmb")
+
+[node name="BedInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -44.9, 11.7, 3.4856)
+label = "Sleep"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BedInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999994)
+shape = SubResource("BoxShape3D_qx8j2")
+
+[node name="StartBilgeMainConsoleInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+process_mode = 4
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 9.65, -1.25708)
+label = "Start Bilge Pump"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartBilgeMainConsoleInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, 1, 0.449999, 0.425)
+shape = SubResource("BoxShape3D_2ptmb")
+
+[node name="BilgeManualOverrideInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 1.39091e-08, -7.10543e-15, 7.10543e-15, -4.37114e-08, 1, 1.39091e-08, 1, 4.37114e-08, 46.3068, -7.32502, 3.89292)
+label = "Bilge Controls"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BilgeManualOverrideInteractable"]
+transform = Transform3D(1, 0, 3.17637e-22, 0, 1, 0, -1.74912e-19, 0, 1, -0.0499992, -0.075, 0.0250001)
+shape = SubResource("BoxShape3D_tswho")
+
+[node name="EnteredCentralDeckTrigger" parent="." instance=ExtResource("5_llh75")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, 11)
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnteredCentralDeckTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3, -2.8, -1.5)
+shape = SubResource("BoxShape3D_78e8x")
+
+[node name="StopSpinningInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+process_mode = 4
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 9.65, -1.25708)
+label = "Stop Spin"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StopSpinningInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, 1, 0.449999, 0.425)
+shape = SubResource("BoxShape3D_2ptmb")
+
+[node name="GoToSurfaceInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+process_mode = 4
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 9.65, -1.25708)
+label = "Go To Surface"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoToSurfaceInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, 1, 0.449999, 0.425)
+shape = SubResource("BoxShape3D_2ptmb")
+
+[node name="EmergencyExitInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+process_mode = 4
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -49.3932, 9.65, -0.90708)
+label = "Escape"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EmergencyExitInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, 0.95, 0.449997, 0.55)
+shape = SubResource("BoxShape3D_2ptmb")
 
 [node name="Geometry" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -253,20 +448,10 @@ size = Vector3(11.5, 0.2, 3)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="Bed" type="CSGBox3D" parent="Geometry/BedroomsDeck"]
-unique_name_in_owner = true
 transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -44.9, 10.25, 3.4856)
 use_collision = true
 size = Vector3(1.5, 2.5, 0.5)
 material = SubResource("StandardMaterial3D_llh75")
-script = ExtResource("2_qx8j2")
-
-[node name="Interactable" parent="Geometry/BedroomsDeck/Bed" instance=ExtResource("2_1i0lj")]
-label = "Bed"
-oneshot = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/BedroomsDeck/Bed/Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999994)
-shape = SubResource("BoxShape3D_qx8j2")
 
 [node name="Wall7" type="CSGBox3D" parent="Geometry/BedroomsDeck"]
 transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -40.75, 11.5, -7.7213)
@@ -341,7 +526,12 @@ size = Vector3(7.5, 0.2, 2.5)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="Door" type="CSGBox3D" parent="Geometry/CommandDeck"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -43.25, 11.2284, -2)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -47.75, 11.2284, -2)
+operation = 2
+size = Vector3(1.5, 1, 2.25)
+
+[node name="LadderHole" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -47.55, 10.2284, 3.25)
 operation = 2
 size = Vector3(1.5, 1, 2.25)
 
@@ -384,6 +574,12 @@ use_collision = true
 size = Vector3(5.18398, 0.2, 2.5)
 material = SubResource("StandardMaterial3D_llh75")
 
+[node name="Ladder" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1.51421e-07, -8.74228e-08, 1, 1, 0, -1.51421e-07, 0, 1, 8.74227e-08, -47.5285, 6.57697, 2.09843)
+use_collision = true
+size = Vector3(11.5, 0.2, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
 [node name="Wall6" type="CSGBox3D" parent="Geometry/CommandDeck"]
 transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 11.25, 0.0128174)
 use_collision = true
@@ -395,13 +591,76 @@ transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 
 operation = 2
 size = Vector3(4.7, 1, 1.7)
 
-[node name="CommandConsole" type="CSGBox3D" parent="Geometry/CommandDeck"]
-transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 10.55, -1.25708)
+[node name="MainCommandConsole" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 10.8, -1.25708)
 use_collision = true
-size = Vector3(5, 1, 1)
+size = Vector3(5, 1, 1.5)
 material = SubResource("StandardMaterial3D_llh75")
 
-[node name="CommandConsole4" type="CSGBox3D" parent="Geometry/CommandDeck"]
+[node name="CommandConsole7" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -30.8932, 10.8, -4.25708)
+use_collision = true
+size = Vector3(1, 1, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole8" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -32.8932, 10.55, -2.25708)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="SlantedCeilingConsole" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, -0.5, -2.18557e-08, -35.7182, 12.05, -6.57)
+use_collision = true
+size = Vector3(5.8, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole11" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -38.5682, 10.55, -8.72359)
+use_collision = true
+size = Vector3(1, 5.5, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole14" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -39.8182, 10.55, -6.47359)
+use_collision = true
+size = Vector3(1.5, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole12" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -42.7682, 10.8, -2.82359)
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole15" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(0.866025, 0.5, 2.18557e-08, 8.57914e-16, -4.37114e-08, 1, 0.5, -0.866025, -3.78552e-08, -46.3182, 10.55, -2.27359)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Couch" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -44.5682, 10.55, -6.02359)
+use_collision = true
+size = Vector3(1, 4.5, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Couch2" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -45.5682, 10.55, -7.77359)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="TV" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -48.5682, 10.8, -6.02359)
+use_collision = true
+size = Vector3(1, 2.5, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="SlantedCeilingConsole2" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(-0.866025, 0.5, 2.18557e-08, 0, -4.37114e-08, 1, 0.5, 0.866025, 3.78552e-08, -35.9512, 12.05, 6.02641)
+use_collision = true
+size = Vector3(6, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="MiddleTable" type="CSGBox3D" parent="Geometry/CommandDeck"]
 transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -36.1932, 10.55, -0.25708)
 use_collision = true
 size = Vector3(4.5, 3.5, 1)
@@ -413,15 +672,33 @@ use_collision = true
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="CommandConsole3" type="CSGBox3D" parent="Geometry/CommandDeck"]
-transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -29.3932, 12, -2.75708)
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -29.3932, 12, -3.50708)
 use_collision = true
-size = Vector3(5, 1, 1)
+size = Vector3(6.5, 1, 1)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="CommandConsole2" type="CSGBox3D" parent="Geometry/CommandDeck"]
 transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -26.4932, 10.8, -2.25708)
 use_collision = true
 size = Vector3(1.5, 1, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole6" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -27.9932, 10.55, -4.25708)
+use_collision = true
+size = Vector3(1.5, 3, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Scuba Gear" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(-1.19209e-07, 1, 4.37114e-08, -2.68222e-22, -4.37114e-08, 1, 1, 1.19209e-07, 8.88178e-15, -46.4932, 11.35, -1.62359)
+use_collision = true
+size = Vector3(0.75, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Emergency Exit" type="CSGBox3D" parent="Geometry/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, -2.68222e-22, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -49.1182, 11.35, 0.0264137)
+use_collision = true
+size = Vector3(0.5, 2, 2)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="EngineRoomDeck" type="CSGCombiner3D" parent="Geometry"]
@@ -437,12 +714,6 @@ material = SubResource("StandardMaterial3D_llh75")
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -46.8771, 18.688, 11.6649)
 use_collision = true
 size = Vector3(36, 0.2, 2)
-material = SubResource("StandardMaterial3D_llh75")
-
-[node name="Floor11" type="CSGBox3D" parent="Geometry/EngineRoomDeck"]
-transform = Transform3D(4.37114e-08, -8.74228e-08, 1, 3.28406e-15, -1, -8.74228e-08, 1, 0, -4.37114e-08, -27.3771, 18.688, 3.16489)
-use_collision = true
-size = Vector3(22, 0.2, 3)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="Floor7" type="CSGBox3D" parent="Geometry/EngineRoomDeck"]
@@ -515,11 +786,6 @@ transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08,
 operation = 2
 size = Vector3(2.5, 1, 1.5)
 
-[node name="Door2" type="CSGBox3D" parent="Geometry/EngineRoomDeck"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -29.0213, 17.429, -6.35)
-operation = 2
-size = Vector3(1.5, 1, 2.25)
-
 [node name="Door3" type="CSGBox3D" parent="Geometry/EngineRoomDeck"]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -29.0213, 17.429, 12.65)
 operation = 2
@@ -561,15 +827,6 @@ transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08
 use_collision = true
 size = Vector3(4.5, 1, 2.5)
 material = SubResource("StandardMaterial3D_llh75")
-script = ExtResource("4_vw1pa")
-
-[node name="Interactable" parent="Geometry/EngineRoomDeck/Bilge Controls" instance=ExtResource("2_1i0lj")]
-label = "Bilge Controls"
-oneshot = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/EngineRoomDeck/Bilge Controls/Interactable"]
-transform = Transform3D(1, 0, 3.17637e-22, 0, 1, 0, -1.74912e-19, 0, 1, -0.0499992, -0.075, 0.0250001)
-shape = SubResource("BoxShape3D_tswho")
 
 [node name="Wall10" type="CSGBox3D" parent="Geometry/EngineRoomDeck"]
 transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -64.1589, 24.113, 7.65781)
@@ -606,6 +863,64 @@ transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08,
 radius = 2.0
 height = 10.0
 sides = 32
+
+[node name="CentralDeck" type="CSGCombiner3D" parent="Geometry"]
+
+[node name="Floor11" type="CSGBox3D" parent="Geometry/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, 10.7, -1.65, -9.53674e-07)
+use_collision = true
+size = Vector3(22, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor12" type="CSGBox3D" parent="Geometry/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, -26.75, -0.250002, 7.25)
+use_collision = true
+size = Vector3(7.5, 0.2, 3.1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall7" type="CSGBox3D" parent="Geometry/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, -1, -2.98023e-08, -4.37114e-08, -2.98023e-08, 1, 1.39091e-08, -8.04317, -4.96728, -0.0241164)
+use_collision = true
+size = Vector3(27.5, 0.2, 40.4)
+material = SubResource("StandardMaterial3D_vghux")
+
+[node name="Floor" type="CSGBox3D" parent="Geometry/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, 1.39091e-08, 1, 1.39091e-08, 1, -1.39091e-08, 4.37114e-08, -8.04317, 8.68272, -1.52412)
+use_collision = true
+size = Vector3(34.5, 0.2, 40.4)
+material = SubResource("StandardMaterial3D_vghux")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, 1.39091e-08, 1, 1.39091e-08, 1, -1.39091e-08, 4.37114e-08, -24.1932, 8.73272, -3.27412)
+operation = 2
+radius = 1.15
+height = 0.5
+sides = 16
+
+[node name="BasementDeck" type="CSGCombiner3D" parent="Geometry"]
+
+[node name="Floor13" type="CSGBox3D" parent="Geometry/BasementDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, -39.85, -0.250002, 7.45)
+use_collision = true
+size = Vector3(15.5, 0.2, 23)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall6" type="CSGBox3D" parent="Geometry/BasementDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -28.2932, -3.25, -0.217285)
+use_collision = true
+size = Vector3(30.5, 0.2, 24)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall7" type="CSGBox3D" parent="Geometry/BasementDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -39.9932, -4.225, 1.98271)
+use_collision = true
+size = Vector3(23.5, 0.2, 26.05)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="PipeHoleDoor" type="CSGBox3D" parent="Geometry/BasementDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 1, 2.98023e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -28.2932, 2.6, 7.25772)
+operation = 2
+size = Vector3(5.5, 1, 2.15)
 
 [node name="Pipe2" type="CSGCombiner3D" parent="Geometry"]
 transform = Transform3D(-1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0, 1, -16.6771, 16.538, -4.1649)
@@ -655,60 +970,53 @@ height = 4.74453
 sides = 16
 material = SubResource("StandardMaterial3D_78e8x")
 
-[node name="Pipe" type="CSGCombiner3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -7.5, -9)
+[node name="Pipe3" type="CSGCombiner3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.5, 2)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry/Pipe"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 27.25, -5.96046e-08, -0.5)
 radius = 1.0
-height = 4.0
+height = 7.5
 sides = 16
 material = SubResource("StandardMaterial3D_tswho")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Geometry/Pipe"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.5, 4, 0)
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.55469, 4.85, 5.3)
 radius = 1.0
-height = 9.0
+height = 58.1094
 sides = 16
-material = SubResource("StandardMaterial3D_78e8x")
+material = SubResource("StandardMaterial3D_tswho")
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Geometry/Pipe"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 9, 4, 4.5)
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 23.5, 2.43125, -0.5)
 radius = 1.0
-height = 9.0
+height = 4.8875
 sides = 16
-material = SubResource("StandardMaterial3D_78e8x")
+material = SubResource("StandardMaterial3D_tswho")
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Geometry/Pipe"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, -8.74228e-08, -1, 4.37114e-08, 1, -8.74228e-08, 1.91069e-15, 9, 8.75, 9)
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 23.5, 4.875, 2.4)
 radius = 1.0
-height = 9.5
+height = 5.75
 sides = 16
-material = SubResource("StandardMaterial3D_78e8x")
+material = SubResource("StandardMaterial3D_tswho")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Geometry/Pipe"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 4, 0)
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 0, -0.5)
 radius = 1.0
 radial_segments = 16
 rings = 8
 material = SubResource("StandardMaterial3D_ltutm")
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Geometry/Pipe"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9, 4, 0)
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 4.85, -0.5)
 radius = 1.0
 radial_segments = 16
 rings = 8
 material = SubResource("StandardMaterial3D_ltutm")
 
-[node name="CSGSphere3D3" type="CSGSphere3D" parent="Geometry/Pipe"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9, 4, 9)
-radius = 1.0
-radial_segments = 16
-rings = 8
-material = SubResource("StandardMaterial3D_ltutm")
-
-[node name="CSGSphere3D4" type="CSGSphere3D" parent="Geometry/Pipe"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9, 13.5, 9)
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="Geometry/Pipe3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 4.85, 5.3)
 radius = 1.0
 radial_segments = 16
 rings = 8

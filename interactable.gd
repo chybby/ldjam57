@@ -11,4 +11,7 @@ func interact(source: Node) -> void:
     was_interacted_by.emit(source)
 
     if oneshot:
-        process_mode = Node.PROCESS_MODE_DISABLED
+        disable.call_deferred()
+
+func disable() -> void:
+    process_mode = Node.PROCESS_MODE_DISABLED

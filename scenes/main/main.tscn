@@ -1,17 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=7 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
 [ext_resource type="PackedScene" uid="uid://b8ic6wdu3t8ql" path="res://scenes/game_objects/level/level.tscn" id="3_k2fmo"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2fmo"]
-transparency = 1
-cull_mode = 2
-albedo_color = Color(0, 0.937255, 0.937255, 0.580392)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_k2fmo"]
-material = SubResource("StandardMaterial3D_k2fmo")
-size = Vector2(100, 30)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -30,13 +21,9 @@ glow_enabled = true
 script = ExtResource("1_jcq7f")
 
 [node name="Player" parent="." instance=ExtResource("1_rrmv2")]
-transform = Transform3D(-0.0500002, 0, 0.998749, 0, 1, 0, -0.998749, 0, -0.0500002, 42.0931, -8.3879, -4.01086)
+transform = Transform3D(-0.0500002, 0, 0.998749, 0, 1, 0, -0.998749, 0, -0.0500002, 10.0561, 25.8482, 0.699233)
 
 [node name="Level" parent="." instance=ExtResource("3_k2fmo")]
-
-[node name="WaterSurface" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("PlaneMesh_k2fmo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l3cfh")
