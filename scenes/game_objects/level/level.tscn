@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=43 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -39,6 +39,14 @@ size = Vector3(33, 31, 78.5)
 [sub_resource type="PlaneMesh" id="PlaneMesh_2ptmb"]
 material = SubResource("StandardMaterial3D_2ptmb")
 size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1d51"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tswho"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbbif"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_78e8x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qx8j2"]
 size = Vector3(1.6, 2.6, 0.4)
@@ -329,6 +337,34 @@ shape = SubResource("BoxShape3D_ltutm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TheSequelToWater"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.25, -19.7, -10.7)
 mesh = SubResource("PlaneMesh_2ptmb")
+
+[node name="ScubaInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -42.2567, 12.1396, 6.09566)
+label = "Scuba"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScubaInteractable"]
+shape = SubResource("BoxShape3D_h1d51")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ScubaInteractable"]
+mesh = SubResource("BoxMesh_tswho")
+skeleton = NodePath("")
+
+[node name="GlassBreakerInteractable" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -39.8993, 12.1396, 5.01498)
+label = "Glass Breaker"
+oneshot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GlassBreakerInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
+shape = SubResource("BoxShape3D_qbbif")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GlassBreakerInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
+mesh = SubResource("CapsuleMesh_78e8x")
+skeleton = NodePath("")
 
 [node name="BedInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true

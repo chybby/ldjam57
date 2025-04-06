@@ -15,6 +15,8 @@ signal respawn_player
 @onready var stop_spinning_interactable: Interactable = %StopSpinningInteractable
 @onready var go_to_surface_interactable: Interactable = %GoToSurfaceInteractable
 @onready var emergency_exit_interactable: Interactable = %EmergencyExitInteractable
+@onready var scuba_interactable: Interactable = %ScubaInteractable
+@onready var glass_breaker_interactable: Interactable = %GlassBreakerInteractable
 
 @onready var tube: CSGCombiner3D = $Geometry/Tube
 @onready var water: Area3D = $Water
@@ -36,6 +38,8 @@ func _ready() -> void:
     stop_spinning_interactable.was_interacted_by.connect(_on_stop_spinning)
     go_to_surface_interactable.was_interacted_by.connect(_on_go_to_surface)
     emergency_exit_interactable.was_interacted_by.connect(_on_escape)
+    scuba_interactable.was_interacted_by.connect(_on_scuba_interacted)
+    glass_breaker_interactable.was_interacted_by.connect(_on_glass_breaker_interacted)
 
     tube.visible = true
     water.visible = false
@@ -111,3 +115,11 @@ func _on_go_to_surface(source: Node3D) -> void:
 func _on_escape(source: Node3D) -> void:
     print('Escaping')
     get_tree().quit()
+    
+    
+func _on_scuba_interacted(source: Node3D) -> void:
+    scuba_interactable.queue_free()
+    
+    
+func _on_glass_breaker_interacted(source: Node3D) -> void:
+    glass_breaker_interactable.queue_free()
