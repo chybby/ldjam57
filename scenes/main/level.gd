@@ -20,8 +20,10 @@ signal respawn_player
 @onready var water: Area3D = $Water
 @onready var the_sequel_to_water: Area3D = $TheSequelToWater
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var pipe_cover: AnimatableBody3D = %PipeCover
+@onready var ladder_cover: AnimatableBody3D = %LadderCover
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var stop_once_oriented: bool = false
 
@@ -59,6 +61,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
+    pipe_cover.rotation_degrees.y = 180
+    ladder_cover.rotation_degrees.z = 90
     rotate_x(deg_to_rad(-90))
 
     water.visible = true
@@ -69,7 +73,6 @@ func _on_bed_interacted(source: Node3D) -> void:
 
     await get_tree().physics_frame
     await get_tree().physics_frame # bruh
-
 
     respawn_player.emit()
 
@@ -88,11 +91,14 @@ func _on_bilge_manual_override(source: Node3D) -> void:
 func _on_entered_central_deck(source: Node3D) -> void:
     print('Shit gets crazy?')
     rotation_speed = -0.2
+    pipe_cover.rotation_degrees.y = -90
     stop_spinning_interactable.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_stop_spinning(source: Node3D) -> void:
     print('Waiting for correct orientation')
+
+    ladder_cover.rotation_degrees.z = 0
     stop_once_oriented = true
 
 
