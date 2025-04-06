@@ -1,8 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=34 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
+[ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="2_78e8x"]
+[ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="3_ltutm"]
 [ext_resource type="PackedScene" uid="uid://c51gq1dbqkgk8" path="res://trigger.tscn" id="5_llh75"]
+[ext_resource type="Texture2D" uid="uid://cxigk52ttl8hh" path="res://assets/metal-rusted-background.png" id="7_2ptmb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -54,6 +57,8 @@ albedo_color = Color(0, 0.517802, 0.768486, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i0lj"]
 albedo_color = Color(0, 0.517802, 0.768486, 1)
+albedo_texture = ExtResource("2_78e8x")
+uv1_scale = Vector3(25, 6.175, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx8j2"]
 albedo_color = Color(0, 0.517802, 0.768486, 1)
@@ -63,6 +68,8 @@ albedo_color = Color(0, 0.517802, 0.768486, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llh75"]
 albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
+albedo_texture = ExtResource("3_ltutm")
+uv1_scale = Vector3(10, 10, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vghux"]
 transparency = 1
@@ -70,40 +77,13 @@ albedo_color = Color(0.643137, 0.643137, 0.643137, 0.501961)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78e8x"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
+albedo_texture = ExtResource("7_2ptmb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tswho"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltutm"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
-
-[sub_resource type="Animation" id="Animation_vw1pa"]
-resource_name = "bilge"
-length = 30.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Water:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 14.014),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-37, 10.5, -3.3), Vector3(-37, 10.5, -16.8)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(15.0043, 30),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_llh75"]
 length = 0.001
@@ -166,6 +146,34 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vw1pa"]
+resource_name = "bilge"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Water:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 14.014),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-37, 10.5, -3.3), Vector3(-37, 10.5, -16.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(15.0043, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_qx8j2"]

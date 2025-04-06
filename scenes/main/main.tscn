@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=11 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
 [ext_resource type="PackedScene" uid="uid://b8ic6wdu3t8ql" path="res://scenes/game_objects/level/level.tscn" id="3_k2fmo"]
+[ext_resource type="Script" path="res://scenes/main/postprocessing.gd" id="4_6q06x"]
+[ext_resource type="Shader" path="res://scenes/main/main.gdshader" id="4_l3cfh"]
+[ext_resource type="AudioStream" uid="uid://cfmvp6qtpnbrf" path="res://resources/bgmusic.mp3" id="4_ow5a4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +19,17 @@ background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_density = 0.025
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
+shader = ExtResource("4_l3cfh")
+shader_parameter/enable_aberration = true
+shader_parameter/levels = 5
+shader_parameter/spread = 0.03
+shader_parameter/enable_dithering = true
+shader_parameter/colors = 64
+shader_parameter/dither_size = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jcq7f")
@@ -27,3 +41,18 @@ transform = Transform3D(-0.0500002, 0, 0.998749, 0, 1, 0, -0.998749, 0, -0.05000
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l3cfh")
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ow5a4")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_6q06x")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_l3cfh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
