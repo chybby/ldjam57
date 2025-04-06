@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
 [ext_resource type="PackedScene" uid="uid://b8ic6wdu3t8ql" path="res://scenes/game_objects/level/level.tscn" id="3_k2fmo"]
-[ext_resource type="Script" path="res://scenes/main/postprocessing.gd" id="4_6q06x"]
-[ext_resource type="Shader" path="res://scenes/main/main.gdshader" id="4_l3cfh"]
+[ext_resource type="Script" uid="uid://dg5ti4ep33k6y" path="res://scenes/main/postprocessing.gd" id="4_6q06x"]
+[ext_resource type="Shader" uid="uid://cb0mfmpkehdnp" path="res://scenes/main/main.gdshader" id="4_l3cfh"]
 [ext_resource type="AudioStream" uid="uid://cfmvp6qtpnbrf" path="res://resources/bgmusic.mp3" id="4_ow5a4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
@@ -44,7 +44,6 @@ environment = SubResource("Environment_l3cfh")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")
-autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_6q06x")

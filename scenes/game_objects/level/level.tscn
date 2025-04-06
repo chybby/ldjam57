@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=35 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -84,6 +84,9 @@ albedo_color = Color(0.765127, 0, 0.336076, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltutm"]
 albedo_color = Color(0.765127, 0, 0.336076, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vghux"]
+size = Vector3(5.5, 1, 3.5)
 
 [sub_resource type="Animation" id="Animation_llh75"]
 length = 0.001
@@ -1029,6 +1032,34 @@ radius = 1.0
 radial_segments = 16
 rings = 8
 material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="Pipe4" type="CSGCombiner3D" parent="Geometry"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -22, 5.8, -1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry/Pipe4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -8.25, 0, -0.5)
+radius = 1.0
+height = 7.5
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Geometry/Pipe4"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, -1.23002e-14, -4.37114e-08, -1.06581e-14, -1, -4.37114e-08, -4.5, 0, -5.5625)
+radius = 1.0
+height = 10.125
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Geometry/Pipe4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.5, 0, -0.5)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -22.5, 12.05, -1.45)
+shape = SubResource("BoxShape3D_vghux")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -16.65, 16.5, -4.15)
