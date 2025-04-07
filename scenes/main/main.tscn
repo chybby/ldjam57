@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=22 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
@@ -25,10 +25,13 @@ background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
 tonemap_white = 0.5
+ssao_enabled = true
 glow_enabled = true
 fog_enabled = true
 fog_density = 0.0085
 fog_height = -1.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blune"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 shader = ExtResource("4_l3cfh")
@@ -96,6 +99,7 @@ unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l3cfh")
+camera_attributes = SubResource("CameraAttributesPractical_blune")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")

@@ -259,3 +259,4 @@ func emit_rotation_upright() -> void:
 
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
+    animation_player.play("raise_water")
