@@ -31,7 +31,6 @@ func StopScuba() -> void:
     scuba.stop()
     
 func _on_end() -> void:
-    scuba.play()
     playSound("swim")
     
     

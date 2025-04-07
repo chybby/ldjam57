@@ -107,7 +107,6 @@ func _physics_process(delta: float) -> void:
 
     if camera_submerged_collider.has_overlapping_areas() and not is_underwater:
         is_underwater = true
-        audio_manager.StartScuba()
         var sfx_bus_idx = AudioServer.get_bus_index("SFX")
         var music_bus_idx = AudioServer.get_bus_index("Music")
         var sfx_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(sfx_bus_idx, 0)
@@ -116,9 +115,10 @@ func _physics_process(delta: float) -> void:
         AudioServer.get_bus_effect_instance(music_bus_idx, 0)
         var music_effect = AudioServer.get_bus_effect(music_bus_idx, 0)
         tween.tween_property(music_effect, "cutoff_hz", 1000, 0.2)
+        if has_scuba:
+            audio_manager.StartScuba()
     elif not camera_submerged_collider.has_overlapping_areas() and is_underwater:
         is_underwater = false
-        audio_manager.StopScuba()
         var sfx_bus_idx = AudioServer.get_bus_index("SFX")
         var music_bus_idx = AudioServer.get_bus_index("Music")
         var sfx_effect = AudioServer.get_bus_effect(sfx_bus_idx, 0)
@@ -127,6 +127,8 @@ func _physics_process(delta: float) -> void:
         AudioServer.get_bus_effect_instance(music_bus_idx, 0)
         var music_effect = AudioServer.get_bus_effect(music_bus_idx, 0)
         tween.tween_property(music_effect, "cutoff_hz", 20500, 0.2)
+        if has_scuba:
+            audio_manager.StopScuba()
 
     if swimming:
         motion_mode = CharacterBody3D.MOTION_MODE_FLOATING

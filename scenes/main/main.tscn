@@ -149,31 +149,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WaterLayer" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-
-[node name="WaterRect" type="ColorRect" parent="WaterLayer"]
-material = SubResource("ShaderMaterial_th5th")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
 [node name="HUD" type="CanvasLayer" parent="."]
-layer = 18
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 3
 anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -16.0
+offset_left = -8.0
 offset_top = -16.0
 grow_horizontal = 0
+offset_right = 8.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
@@ -201,6 +193,19 @@ theme_override_styles/panel = ExtResource("7_b1x3f")
 [node name="TextureRect2" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer/ScubaIcon"]
 layout_mode = 2
 texture = ExtResource("8_b1x3f")
+
+[node name="WaterLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="WaterRect" type="ColorRect" parent="WaterLayer"]
+material = SubResource("ShaderMaterial_th5th")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]
 layer = 15
