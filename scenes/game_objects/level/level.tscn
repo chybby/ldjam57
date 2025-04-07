@@ -700,41 +700,46 @@ mesh = ExtResource("10_xki4i")
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.2749, 11.0205, -5.83879)
-light_color = Color(0.785054, 0.0674944, 1.92523e-07, 1)
-light_energy = 2.0
-omni_range = 4.0
-omni_attenuation = 2.0
-script = ExtResource("6_ltutm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D"]
-transform = Transform3D(-0.00453746, -0.199949, 0, 0.199949, -0.00453746, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = ExtResource("15_nwbs5")
-
-[node name="OmniLight3D9" type="OmniLight3D" parent="Lights/OmniLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2113, 0, 3.75451)
+[node name="OmniLight3D9" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0434, 11.0205, -2.08428)
 light_color = Color(0.971333, 0.0946586, 0, 1)
 light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 intensity = 4.0
+blink_speed = 2.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D/OmniLight3D9"]
-transform = Transform3D(-0.00453748, -0.199949, 0, 0.199949, -0.00453748, 0, 0, 0, 0.2, 0.212948, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D9"]
+transform = Transform3D(-0.00340312, -0.149961, 0, 0.149961, -0.00340312, 0, 0, 0, 0.15, 0.168127, 0, 0)
+mesh = ExtResource("15_nwbs5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.1236, 11.0205, -5.83879)
+light_color = Color(0.785054, 0.0674944, 1.92523e-07, 1)
+light_energy = 2.0
+omni_range = 4.0
+omni_attenuation = 2.0
+script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D"]
+transform = Transform3D(-0.0034031, -0.149961, 0, 0.149961, -0.0034031, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7387, 2.28275, 5.46432)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0062, 2.28275, 5.46432)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D12"]
-transform = Transform3D(2.38498e-09, 0.2, 0, -0.2, 2.38498e-09, 0, 0, 0, 0.2, -0.389143, 0, 0)
+transform = Transform3D(-6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0, 0, 0.15, -0.17461, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="Lights"]
@@ -744,9 +749,11 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D13"]
-transform = Transform3D(3.82137e-16, 8.74228e-09, 0.2, 0.2, -8.74228e-09, 0, 8.74228e-09, 0.2, -8.74228e-09, 0, 0, 0)
+transform = Transform3D(2.86603e-16, 6.55671e-09, 0.15, 0.15, -6.55671e-09, 0, 6.55671e-09, 0.15, -6.55671e-09, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D10" type="OmniLight3D" parent="Lights"]
@@ -756,18 +763,22 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D10"]
-transform = Transform3D(-8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(-6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D11" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5067, -6.42784, -0.743278)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5266, -6.42784, -0.743278)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D11"]
 transform = Transform3D(-6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 0, 0, 0.15, 0, 0, 0)
@@ -780,6 +791,8 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D7"]
 transform = Transform3D(1.78873e-09, 0.15, 0, -0.15, 1.78873e-09, 0, 0, 0, 0.15, 0, 0, 0)
@@ -792,9 +805,11 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D14"]
-transform = Transform3D(-8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(-6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D15" type="OmniLight3D" parent="Lights"]
@@ -804,6 +819,8 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D15"]
 transform = Transform3D(1.78873e-09, 0.15, 0, -0.15, 1.78873e-09, 0, 0, 0, 0.15, -0.0622444, 0, 0)
@@ -816,6 +833,8 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D8"]
 transform = Transform3D(2.86603e-16, 6.55671e-09, 0.15, 0.15, -6.55671e-09, 0, 6.55671e-09, 0.15, -6.55671e-09, 0, 0, 0)
@@ -828,7 +847,7 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
-intensity = 4.0
+intensity = 8.0
 blink_speed = 2.0
 exit_light = true
 
@@ -843,6 +862,8 @@ light_energy = 2.0
 omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
+intensity = 4.0
+blink_speed = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D5"]
 transform = Transform3D(2.86603e-16, 6.55671e-09, 0.15, 0.15, -6.55671e-09, 0, 6.55671e-09, 0.15, -6.55671e-09, 0, 0, 0)
@@ -867,7 +888,7 @@ omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/light"]
-transform = Transform3D(2.38498e-09, 0.2, 0, -0.2, 2.38498e-09, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(1.78873e-09, 0.15, 0, -0.15, 1.78873e-09, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="light2" type="OmniLight3D" parent="Lights"]
@@ -882,25 +903,25 @@ transform = Transform3D(-6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 0, 0, 0.1
 mesh = ExtResource("15_nwbs5")
 
 [node name="GreenLight" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(0.66591, 0.745906, 0.013693, -0.745749, 0.666051, -0.0153347, -0.0205585, 0, 0.999789, -32.1999, 10.2291, -1.43827)
+transform = Transform3D(0.66591, 0.745906, 0.013693, -0.745749, 0.666051, -0.0153347, -0.0205585, 0, 0.999789, -31.9015, 10.1479, -1.43827)
 light_color = Color(0, 0.41, 0.142959, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/GreenLight"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.0856247, -0.0516559, -0.000295598, 0.0516559, 0.0856186, 0.00106219, -0.000295598, -0.00106219, 0.0999939, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="GreenLight2" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(0.999789, 9.31126e-10, 0.0205585, -0.0139068, 0.736487, 0.676309, -0.0151411, -0.676452, 0.736331, 46.07, -7.2709, 4.27435)
+transform = Transform3D(0.999789, 9.31126e-10, 0.0205585, -0.0139068, 0.736487, 0.676309, -0.0151411, -0.676452, 0.736331, 46.1653, -7.33329, 4.04699)
 light_color = Color(0, 0.41, 0.142959, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/GreenLight2"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.0999973, -0.000728906, 0.000133528, 0.000728906, 0.0935037, -0.0354477, 0.000133527, 0.0354477, 0.0935064, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
@@ -911,7 +932,7 @@ omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D2"]
-transform = Transform3D(-1.04251e-16, -2.38498e-09, -0.2, 0.2, -8.74228e-09, 0, -8.74228e-09, -0.2, 2.38498e-09, 0, 0, 0)
+transform = Transform3D(-7.8188e-17, -1.78873e-09, -0.15, 0.15, -6.55671e-09, 0, -6.55671e-09, -0.15, 1.78873e-09, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
@@ -922,7 +943,7 @@ omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/OmniLight3D4"]
-transform = Transform3D(-1.04251e-16, -2.38498e-09, -0.2, 0.2, -8.74228e-09, 0, -8.74228e-09, -0.2, 2.38498e-09, 0, 0, 0)
+transform = Transform3D(-7.8188e-17, -1.78873e-09, -0.15, 0.15, -6.55671e-09, 0, -6.55671e-09, -0.15, 1.78873e-09, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="light3" type="OmniLight3D" parent="Lights"]
@@ -933,7 +954,7 @@ omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/light3"]
-transform = Transform3D(2.38498e-09, 0.2, 0, -0.2, 2.38498e-09, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(1.78873e-09, 0.15, 0, -0.15, 1.78873e-09, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = ExtResource("15_nwbs5")
 
 [node name="Model" parent="." instance=ExtResource("4_vw1pa")]
