@@ -27,6 +27,9 @@ signal rotation_upright
 @onready var engine_glass_interactable: Interactable = $Glass/EngineGlassInteractable
 @onready var entered_engine_trigger: Trigger = %EnteredEngineRoom
 @onready var easter_egg_interactable: Interactable = %EasterEggInteractable2
+@onready var wrongbed1: Interactable = %WrongBed1
+@onready var wrongbed2: Interactable = %WrongBed2
+@onready var wrongbed3: Interactable = %WrongBed3
 
 @onready var glass: MeshInstance3D = %Glass
 @onready var hammer: MeshInstance3D = %Hammer
@@ -78,6 +81,10 @@ func _ready() -> void:
     engine_glass_interactable.was_interacted_by.connect(_on_engine_glass_interacted)
     entered_engine_trigger.was_triggered_by.connect(_on_enter_engine)
     easter_egg_interactable.was_interacted_by.connect(_on_easter_egg_trigger)
+    wrongbed1.was_interacted_by.connect(_wrong_bed)
+    wrongbed2.was_interacted_by.connect(_wrong_bed)
+    wrongbed3.was_interacted_by.connect(_wrong_bed)
+    
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -315,3 +322,7 @@ func emit_rotation_upright() -> void:
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
     animation_player.play("raise_water")
+    
+func _wrong_bed(source: Node3D) -> void:
+    print("wrong bed")
+    GameEvents.emit_signal("trigger_monologue", "Why'd I want to sleep here??")
