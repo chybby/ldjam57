@@ -26,6 +26,7 @@ signal rotation_upright
 @onready var water: Area3D = $Water
 @onready var the_sequel_to_water: Area3D = $TheSequelToWater
 @onready var timer = $Timer
+@onready var engine_manager = $EngineAudioManager
 
 @onready var pipe_cover: AnimatableBody3D = %PipeCover
 @onready var ladder_cover: AnimatableBody3D = %LadderCover
@@ -35,6 +36,7 @@ signal rotation_upright
 var stop_once_oriented: bool = false
 var has_scuba: bool = false
 var said_the_pipe_line: bool = false
+var can_move = true
 
 var fall_off_pipe_lines = [
     "Well, at least I know which way is down.",
@@ -80,10 +82,12 @@ func _on_bed_interacted(source: Node3D) -> void:
     #TODO: disable movement
 
     GameEvents.emit_signal("trigger_fade")
+    GameEvents.emit_signal("toggle_move")
     GameEvents.emit_signal("trigger_monologue", "Time for a good night's sleep...")
+    engine_manager.StopEngine()
 
     timer.timeout.connect(wakeup)
-    timer.start(2)
+    timer.start(3)
 
 
 func wakeup() -> void:
@@ -121,16 +125,10 @@ func _on_glass_breaker_interacted(source: Node3D) -> void:
 
 func _on_start_bilge_main_console(source: Node3D) -> void:
     print('Bilge needs manual override')
+    GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_monologue", "Yep. Water inside bad.")
     GameEvents.emit_signal("trigger_monologue", "The bilge pump needs a manual override. It's at the back in the engine room.")
     GameEvents.emit_signal("trigger_monologue", "I'll need to get the scuba gear from opposite the stairs first...")
-
-
-func _on_scuba_interacted(source: Node3D) -> void:
-    GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
-    GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
-    scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
-    has_scuba = true
 
 
 func _through_the_pipe(source: Node3D) -> void:
@@ -142,16 +140,23 @@ func _through_the_pipe(source: Node3D) -> void:
 func _on_bilge_manual_override(source: Node3D) -> void:
     print('Bilge manual override enabled')
     GameEvents.emit_signal("trigger_lights", "deactivate")
+    GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_monologue", "Bilge manual override enabled!")
     GameEvents.emit_signal("trigger_monologue", "The sub should stabilise once the water is drained.")
     GameEvents.emit_signal("trigger_monologue", "Wow, that wasn't so bad...")
-
+    
+    start_bilge_main_console_interactable.process_mode = Node.PROCESS_MODE_DISABLED
+    
+    engine_manager.StartEngine()
     animation_player.play("bilge")
 
 
 func _on_entered_central_deck(source: Node3D) -> void:
     print('Shit gets crazy?')
     GameEvents.emit_signal("trigger_monologue", "That doesn't sound good...")
+    
+    engine_manager.Explode()
+    engine_manager.StopEngine()
 
     timer.timeout.connect(start_rotation)
     timer.start(3)
@@ -182,6 +187,7 @@ func _on_stop_spinning(source: Node3D) -> void:
     print('Waiting for correct orientation')
     ladder_cover.rotation_degrees.z = 0
 
+    GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
     GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to... stabilise.")
 
@@ -191,10 +197,13 @@ func _on_stop_spinning(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I'm not waiting around for that to happen again...")
     GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
     go_to_surface_interactable.process_mode = Node.PROCESS_MODE_INHERIT
+    
+    engine_manager.StartClunkyEngine()
 
 
 func _on_go_to_surface(source: Node3D) -> void:
     print('Going to surface')
+    GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_lights", "exit")
     GameEvents.emit_signal("trigger_monologue", "Done. The escape pod is right at the front.")
 
@@ -220,14 +229,17 @@ func _on_escape(source: Node3D) -> void:
     timer.start(4)
 
 
+
+func _on_scuba_interacted(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
+    GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
+    scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
+    GameEvents.emit_signal("get_scuba")
+    has_scuba = true
+
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
     get_tree().quit()
-
-
-func get_water_surface_level() -> float:
-    return water.position.y
-
 
 func emit_rotation_upright() -> void:
     rotation_upright.emit()

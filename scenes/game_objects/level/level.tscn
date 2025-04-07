@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=56 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -10,9 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://c51gq1dbqkgk8" path="res://trigger.tscn" id="5_llh75"]
 [ext_resource type="Script" uid="uid://d0xy42ycsao2k" path="res://scenes/game_objects/level/warninglight.gd" id="6_ltutm"]
 [ext_resource type="AudioStream" uid="uid://cmcxps0tlmkye" path="res://assets/sfx/chunky.wav" id="6_xki4i"]
+[ext_resource type="Script" uid="uid://c4dnonamlbpk7" path="res://scenes/game_objects/level/engine_audio_manager.gd" id="11_lbiv7"]
+[ext_resource type="AudioStream" uid="uid://dueuvrutq0ih7" path="res://assets/sfx/hq-explosion-6288.mp3" id="12_0crnt"]
 [ext_resource type="AudioStream" uid="uid://dsx38bfon268d" path="res://assets/sfx/creaks1.wav" id="12_lbiv7"]
 [ext_resource type="AudioStream" uid="uid://c4322eokptlr7" path="res://assets/sfx/creaks2.wav" id="13_0crnt"]
+[ext_resource type="AudioStream" uid="uid://cbaym7qqdjxx3" path="res://assets/sfx/sound-of-a-bulldozer-151161.mp3" id="13_sxxw5"]
+[ext_resource type="AudioStream" uid="uid://cb1atwpyk835s" path="res://assets/sfx/underwater-ambiencewav-14428.mp3" id="14_0crnt"]
 [ext_resource type="AudioStream" uid="uid://bosggiwcwvim" path="res://assets/sfx/creaks3.wav" id="14_sxxw5"]
+[ext_resource type="Script" uid="uid://bksh30ltdw2ay" path="res://scenes/game_objects/level/whale_manager.gd" id="18_sxxw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -768,6 +773,13 @@ light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
+[node name="light3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4487, -1.29287, -8.27495)
+light_color = Color(0.744757, 0.654545, 0.421907, 1)
+light_energy = 2.0
+omni_range = 1.5
+omni_attenuation = 2.0
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 visible = false
 shape = SubResource("ConcavePolygonShape3D_jghyl")
@@ -783,22 +795,37 @@ libraries = {
 unique_name_in_owner = true
 wait_time = 3.0
 
-[node name="CreakingAudio1" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, 16.7834, 11.5608)
-stream = SubResource("AudioStreamRandomizer_a3g7j")
+[node name="EngineAudioManager" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.126164, 0.992009, 0, -0.992009, -0.126164, 30.819, 0, 0)
+script = ExtResource("11_lbiv7")
+
+[node name="ExplosionAudioSource" type="AudioStreamPlayer3D" parent="EngineAudioManager"]
+stream = ExtResource("12_0crnt")
+bus = &"SFX"
+
+[node name="EngineAudioSource" type="AudioStreamPlayer3D" parent="EngineAudioManager"]
+stream = ExtResource("13_sxxw5")
 autoplay = true
 
-[node name="CreakingAudio2" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, -11.247, 12.8778)
-stream = SubResource("AudioStreamRandomizer_a3g7j")
+[node name="UnderwaterAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, 16.7834, 11.5608)
+stream = ExtResource("14_0crnt")
+volume_db = -4.384
 autoplay = true
+bus = &"SFX"
 
 [node name="CreakingAudio3" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6383, -11.247, 12.8778)
 stream = SubResource("AudioStreamRandomizer_a3g7j")
+volume_db = -80.0
 autoplay = true
 
-[node name="CreakingAudio4" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6383, 14.7874, 11.6546)
-stream = SubResource("AudioStreamRandomizer_a3g7j")
-autoplay = true
+[node name="WhaleManager" type="Node3D" parent="."]
+script = ExtResource("18_sxxw5")
+
+[node name="WhaleNoise" type="AudioStreamPlayer3D" parent="WhaleManager"]
+volume_db = -24.11
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="WhaleManager"]
+wait_time = 2.004

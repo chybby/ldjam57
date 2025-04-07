@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cwav8ma78d78y"]
+[gd_scene load_steps=34 format=3 uid="uid://cwav8ma78d78y"]
 
 [ext_resource type="Script" uid="uid://cbrfiao50xcnv" path="res://scenes/game_objects/player/player.gd" id="1_k7pqn"]
 [ext_resource type="AudioStream" uid="uid://1bhyod82xaj1" path="res://assets/sfx/metalfoot1.wav" id="2_lqtp8"]
@@ -10,8 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://hxjtag7ynf2o" path="res://assets/sfx/metalfoot7.wav" id="8_g8suy"]
 [ext_resource type="AudioStream" uid="uid://lbigfpku0cqo" path="res://assets/sfx/metalfoot8.wav" id="9_1ns1k"]
 [ext_resource type="AudioStream" uid="uid://crdw0vmgbxydb" path="res://assets/sfx/waterstroke1.wav" id="10_1ns1k"]
+[ext_resource type="Script" uid="uid://dprwvyfyjsfep" path="res://scenes/game_objects/player/player_audio_manager.gd" id="10_7wc5h"]
+[ext_resource type="AudioStream" uid="uid://dcwouhui63pvh" path="res://assets/sfx/beep-6-96243.mp3" id="10_i6po3"]
 [ext_resource type="AudioStream" uid="uid://dymsyaxc3hced" path="res://assets/sfx/waterstroke2.wav" id="11_i6po3"]
 [ext_resource type="AudioStream" uid="uid://ctykn3jbxkbwf" path="res://assets/sfx/waterstroke3.wav" id="12_7wc5h"]
+[ext_resource type="AudioStream" uid="uid://xmo6jxykhnx0" path="res://assets/sfx/scuba_breath.wav" id="12_lyf0u"]
 [ext_resource type="AudioStream" uid="uid://c4ds0ihld5d84" path="res://assets/sfx/waterstroke4.wav" id="13_lyf0u"]
 [ext_resource type="AudioStream" uid="uid://ou5qwv1cw0wy" path="res://assets/sfx/waterstroke5.wav" id="14_rl6uc"]
 [ext_resource type="AudioStream" uid="uid://dvejk5vcag7hg" path="res://assets/sfx/waterstroke6.wav" id="15_d2mjs"]
@@ -205,6 +208,21 @@ bus = &"SFX"
 libraries = {
 &"": SubResource("AnimationLibrary_euv0w")
 }
+
+[node name="AudioManager" type="Node3D" parent="."]
+script = ExtResource("10_7wc5h")
+
+[node name="ConsoleInteract" type="AudioStreamPlayer3D" parent="AudioManager"]
+stream = ExtResource("10_i6po3")
+volume_db = -20.457
+bus = &"SFX"
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="AudioManager"]
+bus = &"SFX"
+
+[node name="ScubaBreathing" type="AudioStreamPlayer3D" parent="AudioManager"]
+stream = ExtResource("12_lyf0u")
+volume_db = -20.506
 
 [node name="SwimmingAudioPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7mys8")
