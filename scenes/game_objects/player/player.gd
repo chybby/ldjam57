@@ -80,6 +80,11 @@ func _process(delta: float) -> void:
         var new_label := interactable.label if interactable != null else "nothing"
         print("Stopped looking at %s and started looking at %s" % [old_label, new_label])
         focused_interactable = interactable
+        
+    if interactable != null:
+        GameEvents.emit_signal("show_tooltip", interactable.verb)
+    else:
+        GameEvents.emit_signal("hide_tooltip")
 
 
 func _physics_process(delta: float) -> void:

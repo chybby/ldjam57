@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=24 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bw0cbygxgthwr" path="res://assets/scuba.png" id="8_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://dqdghib36qcfw" path="res://scenes/monologueSystem/monologue.tscn" id="10_a8run"]
 [ext_resource type="Script" uid="uid://b3fxjr68xip05" path="res://scenes/main/fade_layer.gd" id="10_ouso4"]
+[ext_resource type="PackedScene" uid="uid://0nxybsqbuerp" path="res://scenes/ui/Tooltip.tscn" id="13_th5th"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -78,22 +79,6 @@ tracks/1/keys = {
 "values": [Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_a8run"]
-resource_name = "fadeout"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 4.23333, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_blune"]
 resource_name = "end"
 length = 1.5
@@ -108,6 +93,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8run"]
+resource_name = "fadeout"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 4.23333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_blune"]
@@ -223,3 +224,5 @@ libraries = {
 [node name="Monologue" type="CanvasLayer" parent="."]
 
 [node name="MonologueSystem" parent="Monologue" instance=ExtResource("10_a8run")]
+
+[node name="Tooltip" parent="Monologue" instance=ExtResource("13_th5th")]

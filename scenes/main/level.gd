@@ -25,6 +25,8 @@ signal rotation_upright
 @onready var top_glass_interactable: Interactable = $"Glass/TopGlassInteractable"
 @onready var command_glass_interactable: Interactable = $Glass/CommandGlassInteractable
 @onready var engine_glass_interactable: Interactable = $Glass/EngineGlassInteractable
+@onready var entered_engine_trigger: Trigger = %EnteredEngineRoom
+@onready var easter_egg_triggered: Trigger = %EasterEggTrigger
 
 @onready var glass: MeshInstance3D = %Glass
 @onready var hammer: MeshInstance3D = %Hammer
@@ -74,6 +76,8 @@ func _ready() -> void:
     top_glass_interactable.was_interacted_by.connect(_on_top_glass_interacted)
     command_glass_interactable.was_interacted_by.connect(_on_command_glass_interacted)
     engine_glass_interactable.was_interacted_by.connect(_on_engine_glass_interacted)
+    entered_engine_trigger.was_triggered_by.connect(_on_enter_engine)
+    easter_egg_triggered.was_triggered_by.connect(_on_easter_egg_trigger)
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -84,6 +88,7 @@ func _ready() -> void:
     top_glass_interactable.disable()
     command_glass_interactable.disable()
     engine_glass_interactable.disable()
+    easter_egg_triggered.disable()
 
     water.visible = false
     water.monitorable = false
@@ -233,6 +238,7 @@ func _on_go_to_surface(source: Node3D) -> void:
     GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_lights", "exit")
     GameEvents.emit_signal("trigger_monologue", "Done. The escape pod is right at the front.")
+    easter_egg_triggered.enable()
 
     timer.timeout.connect(panic)
     timer.start(3)
@@ -285,6 +291,13 @@ func _on_engine_glass_interacted(source: Node3D) -> void:
     
     GameEvents.emit_signal("play_sound", "breakGlass")
     engine_glass_interactable.queue_free()
+
+func _on_enter_engine(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "The controls should be at the back of the engine room...")
+
+func _on_easter_egg_trigger(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
+    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)

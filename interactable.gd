@@ -6,6 +6,7 @@ signal was_interacted_by(source: Node)
 @export var label: String
 @export var oneshot: bool = false
 @export var audio_stream: AudioStream
+@export var verb: String = ""
 
 @onready var audio_stream_player = $AudioStreamPlayer3D
 
