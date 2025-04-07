@@ -125,9 +125,6 @@ size = Vector3(15.4711, 2.6, 13.9329)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7avse"]
 size = Vector3(4.36548, 2.6, 6.23627)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i0ocf"]
-size = Vector3(1.61362, 1.47764, 2.10967)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bi83"]
 size = Vector3(2.14575, 2.02903, 2.39047)
 
@@ -139,6 +136,9 @@ size = Vector3(2.4, 0.9, 0.45)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a3g7j"]
 size = Vector3(2.4, 0.9, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0ocf"]
+size = Vector3(1.61362, 1.47764, 1.56558)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vuubk"]
 size = Vector3(1.95, 0.9, 1.95)
@@ -576,14 +576,6 @@ oneshot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54622, -2.8, -0.591888)
 shape = SubResource("BoxShape3D_7avse")
 
-[node name="EasterEggTrigger" parent="." instance=ExtResource("5_llh75")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3982, 13.1707, -3.99017)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EasterEggTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.47757, -3.28008, 0.808235)
-shape = SubResource("BoxShape3D_i0ocf")
-
 [node name="FirstSeeWater" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4504, 15.2806, -2.45411)
@@ -622,6 +614,17 @@ verb = "Unlock hatch"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GoToSurfaceInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, -0.075, -0.299999, 0.499999)
 shape = SubResource("BoxShape3D_a3g7j")
+
+[node name="EasterEggInteractable2" parent="." instance=ExtResource("2_1i0lj")]
+unique_name_in_owner = true
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.4932, 9.65, -0.40708)
+label = "Easter Egg"
+oneshot = true
+verb = "Play"
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="EasterEggInteractable2"]
+transform = Transform3D(-1.17225e-07, 4.14518e-16, 1, 1, -4.37114e-08, 1.17225e-07, 4.37114e-08, 1, 5.12407e-15, -2.50281, -11.4275, 0.240607)
+shape = SubResource("BoxShape3D_i0ocf")
 
 [node name="EmergencyExitInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true

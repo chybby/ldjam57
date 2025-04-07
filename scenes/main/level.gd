@@ -26,7 +26,7 @@ signal rotation_upright
 @onready var command_glass_interactable: Interactable = $Glass/CommandGlassInteractable
 @onready var engine_glass_interactable: Interactable = $Glass/EngineGlassInteractable
 @onready var entered_engine_trigger: Trigger = %EnteredEngineRoom
-@onready var easter_egg_triggered: Trigger = %EasterEggTrigger
+@onready var easter_egg_interactable: Interactable = %EasterEggInteractable2
 
 @onready var glass: MeshInstance3D = %Glass
 @onready var hammer: MeshInstance3D = %Hammer
@@ -77,7 +77,7 @@ func _ready() -> void:
     command_glass_interactable.was_interacted_by.connect(_on_command_glass_interacted)
     engine_glass_interactable.was_interacted_by.connect(_on_engine_glass_interacted)
     entered_engine_trigger.was_triggered_by.connect(_on_enter_engine)
-    easter_egg_triggered.was_triggered_by.connect(_on_easter_egg_trigger)
+    easter_egg_interactable.was_interacted_by.connect(_on_easter_egg_trigger)
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -88,7 +88,7 @@ func _ready() -> void:
     top_glass_interactable.disable()
     command_glass_interactable.disable()
     engine_glass_interactable.disable()
-    easter_egg_triggered.disable()
+    easter_egg_interactable.disable()
 
     water.visible = false
     water.monitorable = false
@@ -220,17 +220,20 @@ func _on_stop_spinning(source: Node3D) -> void:
     ladder_cover.rotation_degrees.z = 0
 
     GameEvents.emit_signal("interact_console")
+    GameEvents.emit_signal("trigger_lights", "deactivate")
     GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
     GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to... stabilise.")
+    
+    engine_manager.StartClunkyEngine()
 
     await rotation_upright
     animation_player.stop()
 
-    GameEvents.emit_signal("trigger_monologue", "I'm not waiting around for that to happen again...")
+    GameEvents.emit_signal("trigger_monologue", "The stabilisers sound like they'll give at any moment.")
     GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
     go_to_surface_interactable.enable()
 
-    engine_manager.StartClunkyEngine()
+    
 
 
 func _on_go_to_surface(source: Node3D) -> void:
@@ -238,7 +241,7 @@ func _on_go_to_surface(source: Node3D) -> void:
     GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_lights", "exit")
     GameEvents.emit_signal("trigger_monologue", "Done. The escape pod is right at the front.")
-    easter_egg_triggered.enable()
+    easter_egg_interactable.enable()
 
     timer.timeout.connect(panic)
     timer.start(3)
@@ -247,6 +250,7 @@ func _on_go_to_surface(source: Node3D) -> void:
 func panic() -> void:
     timer.timeout.disconnect(panic)
     animation_player.play("go_to_surface")
+    engine_manager.Explode()
     engine_manager.ShipGroan()
 
     GameEvents.emit_signal("trigger_lights", "panic")
