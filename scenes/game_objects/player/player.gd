@@ -24,6 +24,8 @@ class_name Player
 @onready var swimming_audio: AudioStreamPlayer3D = $SwimmingAudioPlayer3D
 @onready var camera_submerged_collider: Area3D = $CameraPivot/CameraSubmerged
 
+@onready var audio_manager = $AudioManager
+
 var mouse_movement: Vector2 = Vector2.ZERO
 var jumped: bool = false
 var sprinting: bool = false
@@ -32,9 +34,13 @@ var swimming: bool = false
 var wants_to_crouch: bool = false
 var crouching: bool = false
 var is_underwater = false
+var has_scuba = false
+var can_move = true
 
 func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+    GameEvents.connect("get_scuba", Callable(self, "_on_get_scuba"))
+    GameEvents.connect("toggle_move", Callable(self, "_on_toggle_move"))
 
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("pause"):
@@ -58,6 +64,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+    if(!can_move):
+        return
     # Movement
     camera_pivot.rotation.x = clamp(camera_pivot.rotation.x - mouse_movement.y * mouse_sensitivity, deg_to_rad(-90), deg_to_rad(90))
     rotation.y -= mouse_movement.x * mouse_sensitivity
@@ -92,6 +100,7 @@ func _physics_process(delta: float) -> void:
 
     if camera_submerged_collider.has_overlapping_areas() and not is_underwater:
         is_underwater = true
+        audio_manager.StartScuba()
         var sfx_bus_idx = AudioServer.get_bus_index("SFX")
         var music_bus_idx = AudioServer.get_bus_index("Music")
         var sfx_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(sfx_bus_idx, 0)
@@ -102,6 +111,7 @@ func _physics_process(delta: float) -> void:
         tween.tween_property(music_effect, "cutoff_hz", 1000, 0.2)
     elif not camera_submerged_collider.has_overlapping_areas() and is_underwater:
         is_underwater = false
+        audio_manager.StopScuba()
         var sfx_bus_idx = AudioServer.get_bus_index("SFX")
         var music_bus_idx = AudioServer.get_bus_index("Music")
         var sfx_effect = AudioServer.get_bus_effect(sfx_bus_idx, 0)
@@ -117,7 +127,10 @@ func _physics_process(delta: float) -> void:
         if jumped:
             velocity.y = water_jump_strength
         if wants_to_crouch:
-            velocity.y = -dive_speed
+            if has_scuba:
+                velocity.y = -dive_speed
+            else:
+                GameEvents.emit_signal("trigger_monologue", "There's no way I'm going down there without a scuba")
         velocity.y = lerp(velocity.y, 0.0, 1.0 - exp(-water_dampening * delta))
 
         var playback_pos = 1
@@ -132,7 +145,7 @@ func _physics_process(delta: float) -> void:
             footstep_animation_player.speed_scale = 1.5
         else:
             footstep_animation_player.speed_scale = 1
-        if not crouching and get_real_velocity().length() > 2 and is_on_floor() and not footstep_animation_player.is_playing():
+        if not crouching and get_movement_vector().length() > 0.5 and is_on_floor() and not footstep_animation_player.is_playing():
                 footstep_animation_player.play("step")
 
         # Crouching
@@ -171,3 +184,10 @@ func set_crouching(new_crouching: bool) -> void:
 
 func get_movement_vector() -> Vector2:
     return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+    
+func _on_get_scuba() -> void:
+    has_scuba = true
+    audio_manager.playSound("zip")
+    
+func _on_toggle_move() -> void:
+    can_move = !can_move
