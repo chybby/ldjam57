@@ -81,6 +81,7 @@ func _ready() -> void:
     engine_glass_interactable.was_interacted_by.connect(_on_engine_glass_interacted)
     entered_engine_trigger.was_triggered_by.connect(_on_enter_engine)
     easter_egg_interactable.was_interacted_by.connect(_on_easter_egg_trigger)
+    through_the_pipe.was_triggered_by.connect(_through_the_pipe)
     wrongbed1.was_interacted_by.connect(_wrong_bed)
     wrongbed2.was_interacted_by.connect(_wrong_bed)
     wrongbed3.was_interacted_by.connect(_wrong_bed)
@@ -307,7 +308,7 @@ func _on_enter_engine(source: Node3D) -> void:
 
 func _on_easter_egg_trigger(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
-    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
+    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")    
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)

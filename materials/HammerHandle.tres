@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cgl4tgwwu2wj0"]
+[gd_resource type="StandardMaterial3D" load_steps=0 format=3 uid="uid://cgl4tgwwu2wj0"]
 
 [resource]
 resource_name = "HammerHandle"
