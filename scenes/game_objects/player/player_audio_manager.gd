@@ -5,11 +5,16 @@ extends Node3D
 @onready var scuba: AudioStreamPlayer3D = $ScubaBreathing
 
 var soundsDict = {
-    "zip": preload("res://assets/sfx/zip-sfx-322244.mp3")
+    "zip": preload("res://assets/sfx/zip-sfx-322244.mp3"),
+    "breakGlass": preload("res://assets/sfx/glass-breaking-sound-effect-240679.mp3"),
+    "vaultOpen": preload("res://assets/sfx/vault-2-100077.mp3"),
+    "swim": preload("res://assets/sfx/atmospheric-depth-sound-heard-by-a-diver-while-swimming.mp3")
 }
 
 func _ready() -> void:
     GameEvents.connect("interact_console", Callable(self, "_on_console_interact"))
+    GameEvents.connect("play_sound", Callable(self, "playSound"))
+    GameEvents.connect("end", Callable(self, "_on_end"))
 
 func _on_console_interact() -> void:
     console_interact.play()
@@ -24,6 +29,9 @@ func StartScuba() -> void:
     
 func StopScuba() -> void:
     scuba.stop()
+    
+func _on_end() -> void:
+    playSound("swim")
     
     
     

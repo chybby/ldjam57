@@ -13,7 +13,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Monologue" type="CanvasLayer" parent="."]
-layer = 17
+layer = 16
 script = ExtResource("1_3var0")
 
 [node name="MarginContainer" type="MarginContainer" parent="Monologue"]

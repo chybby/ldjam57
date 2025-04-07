@@ -14,8 +14,8 @@ var sound_list = [
 
 var min_interval = 5.0
 var max_interval = 10.0
-var min_volume_db = -30.0
-var max_volume_db = -20.0
+var min_volume_db = -10.0
+var max_volume_db = 0.0
 var distance_from_player = 50.0
 
 func _ready():

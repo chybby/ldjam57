@@ -22,6 +22,14 @@ signal rotation_upright
 @onready var finished_pipe: Trigger = %FinishedPipeSection
 @onready var first_see_water: Trigger = %FirstSeeWater
 @onready var through_the_pipe: Trigger = %ThroughThePipe
+@onready var top_glass_interactable: Interactable = $"Glass/TopGlassInteractable"
+@onready var command_glass_interactable: Interactable = $Glass/CommandGlassInteractable
+@onready var engine_glass_interactable: Interactable = $Glass/EngineGlassInteractable
+@onready var entered_engine_trigger: Trigger = %EnteredEngineRoom
+@onready var easter_egg_interactable: Interactable = %EasterEggInteractable2
+@onready var wrongbed1: Interactable = %WrongBed1
+@onready var wrongbed2: Interactable = %WrongBed2
+@onready var wrongbed3: Interactable = %WrongBed3
 
 @onready var glass: MeshInstance3D = %Glass
 @onready var hammer: MeshInstance3D = %Hammer
@@ -37,11 +45,13 @@ signal rotation_upright
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var has_scuba: bool = false
+var has_hammer: bool = false
 var said_the_pipe_line: bool = false
 var can_move = true
 
 var fall_off_pipe_lines = [
-    "Well, at least I know which way is down.",
+    "I think I gotta stay on the pipe all the way to the door...",
+    "Well, at least I know which way is down now.",
     "I meant to do that...",
     "Maybe if I stay on top of the pipe...",
     "Guess I'm not cut out for plumbing.",
@@ -66,6 +76,15 @@ func _ready() -> void:
     fell_off_pipe_trigger.was_triggered_by.connect(_on_fell_off_pipe)
     finished_pipe.was_triggered_by.connect(_on_finished_pipe)
     first_see_water.was_triggered_by.connect(_on_first_see_water)
+    top_glass_interactable.was_interacted_by.connect(_on_top_glass_interacted)
+    command_glass_interactable.was_interacted_by.connect(_on_command_glass_interacted)
+    engine_glass_interactable.was_interacted_by.connect(_on_engine_glass_interacted)
+    entered_engine_trigger.was_triggered_by.connect(_on_enter_engine)
+    easter_egg_interactable.was_interacted_by.connect(_on_easter_egg_trigger)
+    wrongbed1.was_interacted_by.connect(_wrong_bed)
+    wrongbed2.was_interacted_by.connect(_wrong_bed)
+    wrongbed3.was_interacted_by.connect(_wrong_bed)
+    
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -73,6 +92,10 @@ func _ready() -> void:
     stop_spinning_interactable.disable()
     go_to_surface_interactable.disable()
     emergency_exit_interactable.disable()
+    top_glass_interactable.disable()
+    command_glass_interactable.disable()
+    engine_glass_interactable.disable()
+    easter_egg_interactable.disable()
 
     water.visible = false
     water.monitorable = false
@@ -85,6 +108,7 @@ func _ready() -> void:
 
 func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
+    
     pipe_cover.rotation_degrees.y = 180
     ladder_cover.rotation_degrees.z = 90
 
@@ -131,6 +155,11 @@ func _on_glass_breaker_interacted(source: Node3D) -> void:
     glass.visible = false
     hammer.visible = false
     GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies... this counts, right?")
+    glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
+    has_hammer = true
+    top_glass_interactable.enable()
+    command_glass_interactable.enable()
+    engine_glass_interactable.enable()
 
 
 func _on_start_bilge_main_console(source: Node3D) -> void:
@@ -198,17 +227,20 @@ func _on_stop_spinning(source: Node3D) -> void:
     ladder_cover.rotation_degrees.z = 0
 
     GameEvents.emit_signal("interact_console")
+    GameEvents.emit_signal("trigger_lights", "deactivate")
     GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
     GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to... stabilise.")
+    
+    engine_manager.StartClunkyEngine()
 
     await rotation_upright
     animation_player.stop()
 
-    GameEvents.emit_signal("trigger_monologue", "I'm not waiting around for that to happen again...")
+    GameEvents.emit_signal("trigger_monologue", "The stabilisers sound like they'll give at any moment.")
     GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
     go_to_surface_interactable.enable()
 
-    engine_manager.StartClunkyEngine()
+    
 
 
 func _on_go_to_surface(source: Node3D) -> void:
@@ -216,6 +248,7 @@ func _on_go_to_surface(source: Node3D) -> void:
     GameEvents.emit_signal("interact_console")
     GameEvents.emit_signal("trigger_lights", "exit")
     GameEvents.emit_signal("trigger_monologue", "Done. The escape pod is right at the front.")
+    easter_egg_interactable.enable()
 
     timer.timeout.connect(panic)
     timer.start(3)
@@ -224,6 +257,8 @@ func _on_go_to_surface(source: Node3D) -> void:
 func panic() -> void:
     timer.timeout.disconnect(panic)
     animation_player.play("go_to_surface")
+    engine_manager.Explode()
+    engine_manager.ShipGroan()
 
     GameEvents.emit_signal("trigger_lights", "panic")
     GameEvents.emit_signal("trigger_monologue", "Ok, that's not normal. Better find something to hold onto.")
@@ -234,10 +269,11 @@ func _on_escape(source: Node3D) -> void:
     print('Escaping')
     GameEvents.emit_signal("toggle_move")
     GameEvents.emit_signal("trigger_monologue", "FREEEDOM!!")
-    GameEvents.emit_signal("trigger_fade")
+    GameEvents.emit_signal("end")
 
+    GameEvents.emit_signal("play_sound", "vaultOpen")
     timer.timeout.connect(freedom)
-    timer.start(4)
+    timer.start(10)
 
 
 func _on_scuba_interacted(source: Node3D) -> void:
@@ -247,6 +283,32 @@ func _on_scuba_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("get_scuba")
     has_scuba = true
 
+func _on_top_glass_interacted(source: Node3D) -> void:
+    print("try")
+    if(!has_hammer):
+        return
+    GameEvents.emit_signal("play_sound", "breakGlass")
+    top_glass_interactable.queue_free()    
+    
+func _on_command_glass_interacted(source: Node3D) -> void:
+    if(!has_hammer):
+        return
+    GameEvents.emit_signal("play_sound", "breakGlass")
+    command_glass_interactable.queue_free()
+    
+func _on_engine_glass_interacted(source: Node3D) -> void:
+    if(!has_hammer):
+        return
+    
+    GameEvents.emit_signal("play_sound", "breakGlass")
+    engine_glass_interactable.queue_free()
+
+func _on_enter_engine(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "The controls should be at the back of the engine room...")
+
+func _on_easter_egg_trigger(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
+    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
@@ -260,3 +322,7 @@ func emit_rotation_upright() -> void:
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
     animation_player.play("raise_water")
+    
+func _wrong_bed(source: Node3D) -> void:
+    print("wrong bed")
+    GameEvents.emit_signal("trigger_monologue", "Why'd I want to sleep here??")
