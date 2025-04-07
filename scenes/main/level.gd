@@ -16,7 +16,6 @@ signal respawn_player
 @onready var go_to_surface_interactable: Interactable = %GoToSurfaceInteractable
 @onready var emergency_exit_interactable: Interactable = %EmergencyExitInteractable
 
-@onready var tube: CSGCombiner3D = $Geometry/Tube
 @onready var water: Area3D = $Water
 @onready var the_sequel_to_water: Area3D = $TheSequelToWater
 
@@ -37,7 +36,6 @@ func _ready() -> void:
     go_to_surface_interactable.was_interacted_by.connect(_on_go_to_surface)
     emergency_exit_interactable.was_interacted_by.connect(_on_escape)
 
-    tube.visible = true
     water.visible = false
     water.monitorable = false
     the_sequel_to_water.visible = false
@@ -73,6 +71,9 @@ func _on_bed_interacted(source: Node3D) -> void:
 
     await get_tree().physics_frame
     await get_tree().physics_frame # bruh
+    await get_tree().physics_frame
+    await get_tree().physics_frame
+    await get_tree().physics_frame
 
     respawn_player.emit()
 

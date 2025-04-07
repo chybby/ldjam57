@@ -20,6 +20,21 @@ radius = 0.3
 [sub_resource type="SphereShape3D" id="SphereShape3D_7uu8a"]
 radius = 0.3
 
+[sub_resource type="Animation" id="Animation_tuuoe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.7, -0.1)]
+}
+
 [sub_resource type="Animation" id="Animation_7uu8a"]
 resource_name = "crouch"
 length = 0.3
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.7, -0.1), Vector3(0, 0.9, -0.1)]
-}
-
-[sub_resource type="Animation" id="Animation_tuuoe"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CameraPivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.7, -0.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v2l2k"]

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dlwram63n57cs"]
+
+[resource]
+resource_name = "DarkBlue"
+cull_mode = 2
+albedo_color = Color(0, 0.071425, 0.264918, 1)
+roughness = 0.8

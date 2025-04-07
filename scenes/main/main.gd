@@ -10,9 +10,11 @@ func _ready() -> void:
     # TODO: comment for debugging
     respawn_player()
 
+
 func _on_respawn_player() -> void:
     respawn_player()
 
 
 func respawn_player() -> void:
     player.global_position = level.respawn_point.global_position
+    player.velocity = Vector3.ZERO

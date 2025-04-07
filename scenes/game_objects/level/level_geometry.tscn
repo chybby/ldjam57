@@ -1,0 +1,806 @@
+[gd_scene load_steps=14 format=3 uid="uid://boas5lby00clg"]
+
+[ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="1_xb8vw"]
+[ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="2_llf3u"]
+[ext_resource type="Texture2D" uid="uid://cxigk52ttl8hh" path="res://assets/metal-rusted-background.png" id="3_afcta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pt7sd"]
+albedo_color = Color(0, 0.517802, 0.768486, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i0lj"]
+albedo_color = Color(0, 0.517802, 0.768486, 1)
+albedo_texture = ExtResource("1_xb8vw")
+uv1_scale = Vector3(25, 6.175, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx8j2"]
+albedo_color = Color(0, 0.517802, 0.768486, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vw1pa"]
+albedo_color = Color(0, 0.517802, 0.768486, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llh75"]
+albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
+albedo_texture = ExtResource("2_llf3u")
+uv1_scale = Vector3(10, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1d51"]
+transparency = 1
+albedo_color = Color(0.333333, 0.333333, 0.333333, 0.501961)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vghux"]
+transparency = 1
+albedo_color = Color(0.643137, 0.643137, 0.643137, 0.501961)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78e8x"]
+albedo_color = Color(0.765127, 0, 0.336076, 1)
+albedo_texture = ExtResource("3_afcta")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tswho"]
+albedo_color = Color(0.765127, 0, 0.336076, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltutm"]
+albedo_color = Color(0.765127, 0, 0.336076, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="Tube" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+use_collision = true
+
+[node name="TubeOuter" type="CSGCylinder3D" parent="CSGCombiner3D/Tube"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 14.9427, 0)
+use_collision = true
+radius = 15.0
+height = 100.0
+sides = 64
+material = SubResource("StandardMaterial3D_pt7sd")
+
+[node name="TubeInner" type="CSGCylinder3D" parent="CSGCombiner3D/Tube"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 14.9427, 0)
+operation = 2
+use_collision = true
+radius = 14.5
+height = 101.0
+sides = 64
+material = SubResource("StandardMaterial3D_1i0lj")
+
+[node name="EndCap1" type="CSGCylinder3D" parent="CSGCombiner3D/Tube"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50, 14.943, 0)
+radius = 15.0
+sides = 32
+material = SubResource("StandardMaterial3D_qx8j2")
+
+[node name="EndCap2" type="CSGCylinder3D" parent="CSGCombiner3D/Tube"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 50, 14.943, 0)
+radius = 15.0
+sides = 32
+material = SubResource("StandardMaterial3D_vw1pa")
+
+[node name="BedroomsDeck" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+
+[node name="Wall" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -37.6319, 11.5, -2)
+use_collision = true
+size = Vector3(23.7363, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -43.0213, 11.104, -2)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Door4" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -34.4734, 11.104, -2)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Door6" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -30.4734, 11.104, -2)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Wall4" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -46.1485, 11.5, 7.71387)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall5" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -36.75, 11.5, 7.7356)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Bed" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -44.9, 10.25, 3.4856)
+use_collision = true
+size = Vector3(1.5, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall7" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -40.75, 11.5, -7.7213)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall10" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -32.25, 11.5, -7.7213)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall6" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 11.5, 7.68304)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall9" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 10.675, -0.0154572)
+use_collision = true
+size = Vector3(4.5, 0.2, 1.35)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall8" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 11.5, -7.7345)
+use_collision = true
+size = Vector3(11.5, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="PipeOpening" type="CSGCylinder3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 11.1, -4.1845)
+operation = 2
+radius = 1.0
+sides = 16
+
+[node name="Wall2" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -37.6235, 11.5, 2)
+use_collision = true
+size = Vector3(23.7531, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door5" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -28.0281, 11.104, 2.01472)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Door3" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -47.598, 11.1032, 2)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Door2" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -39, 11.1032, 2)
+operation = 2
+size = Vector3(1.5, 1, 2.5)
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.3408, 10, 0)
+use_collision = true
+size = Vector3(23.3198, 0.2, 27)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="StairHole" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6326, 10, 5.75)
+operation = 2
+size = Vector3(2.5, 1, 5)
+
+[node name="CommandDeck" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 0)
+
+[node name="Wall" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -45.75, 11.25, -2)
+use_collision = true
+size = Vector3(7.5, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -47.75, 11.2415, -2)
+operation = 2
+size = Vector3(1.5, 1, 2.62329)
+
+[node name="Wall3" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -42, 11.25, 0)
+use_collision = true
+size = Vector3(28, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door4" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -42, 11.3001, -7)
+operation = 2
+size = Vector3(1.5, 1, 2.48462)
+
+[node name="Door2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -42, 11.2571, -2.38419e-07)
+operation = 2
+size = Vector3(1.5, 1, 2.51715)
+
+[node name="Wall4" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -44.1004, 11.25, 8)
+use_collision = true
+size = Vector3(12, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -45.75, 11.25, 2)
+use_collision = true
+size = Vector3(7.5, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door3" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -45.2795, 11.2529, 2)
+operation = 2
+size = Vector3(1.5, 1, 2.68213)
+
+[node name="Stairs2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-0.000297127, 0.000822486, 1, 0.498727, 0.866759, -0.000564731, -0.866759, 0.498726, -0.000667718, -47.6285, 11.3122, 5.44843)
+use_collision = true
+size = Vector3(5.18398, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall6" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -25.7432, 11.25, 0.0128174)
+use_collision = true
+size = Vector3(27.0398, 0.2, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Window" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -25.5, 11.4534, 0.75)
+operation = 2
+size = Vector3(4.7, 1, 1.7)
+
+[node name="MainCommandConsole" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.8932, 10.8, -1.25708)
+use_collision = true
+size = Vector3(5, 1, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole7" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -30.8932, 10.8, -4.25708)
+use_collision = true
+size = Vector3(1, 1, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole8" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -32.8932, 10.55, -2.25708)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="SlantedCeilingConsole" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, -0.5, -2.18557e-08, -35.7182, 12.05, -6.57)
+use_collision = true
+size = Vector3(5.8, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole11" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -38.5682, 10.55, -8.72359)
+use_collision = true
+size = Vector3(1, 5.5, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole14" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -39.8182, 10.55, -6.47359)
+use_collision = true
+size = Vector3(1.5, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole12" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -42.7682, 10.8, -2.82359)
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole15" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(0.866025, 0.5, 2.18557e-08, 8.57914e-16, -4.37114e-08, 1, 0.5, -0.866025, -3.78552e-08, -46.3178, 10.55, -2.28207)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck/CommandConsole15"]
+transform = Transform3D(0.875635, -0.482978, -2.11116e-08, 0.482978, 0.875635, -5.43623e-09, 2.11116e-08, -5.43618e-09, 1, 0.285206, -0.511486, 0)
+operation = 2
+size = Vector3(1.31238, 0.508301, 1)
+
+[node name="Couch" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -44.5682, 10.55, -6.02359)
+use_collision = true
+size = Vector3(1, 4.5, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Couch2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -45.5682, 10.55, -7.77359)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="TV" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, 0, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -48.5682, 10.8, -6.02359)
+use_collision = true
+size = Vector3(1, 2.5, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="SlantedCeilingConsole2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-0.866025, 0.5, 2.18557e-08, 0, -4.37114e-08, 1, 0.5, 0.866025, 3.78552e-08, -35.9512, 12.05, 6.02641)
+use_collision = true
+size = Vector3(6, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="MiddleTable" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -36.1932, 10.55, -0.25708)
+use_collision = true
+size = Vector3(4.5, 3.5, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole5" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -41.4432, 10.55, -1.25708)
+use_collision = true
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole3" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -29.3932, 12, -3.50708)
+use_collision = true
+size = Vector3(6.5, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole2" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -26.4932, 10.8, -2.25708)
+use_collision = true
+size = Vector3(1.5, 1, 1.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CommandConsole6" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -27.9932, 10.55, -4.25708)
+use_collision = true
+size = Vector3(1.5, 3, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Scuba Gear" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(-1.19209e-07, 1, 4.37114e-08, -2.68222e-22, -4.37114e-08, 1, 1, 1.19209e-07, 8.88178e-15, -46.498, 11.35, -1.62359)
+use_collision = true
+size = Vector3(0.75, 1, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Emergency Exit" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 7.54979e-08, 6.9711e-15, -2.68222e-22, -4.37114e-08, 1, 7.54979e-08, -1, -4.37114e-08, -49.1182, 11.35, 0.0264137)
+use_collision = true
+size = Vector3(0.5, 2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Ladder" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1.51421e-07, -8.74228e-08, 1, 1, 0, -1.51421e-07, 0, 1, 8.74227e-08, -47.5285, 6.57697, 2.19491)
+use_collision = true
+size = Vector3(11.5, 0.392957, 1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5832, 10, 0)
+use_collision = true
+size = Vector3(23.8336, 0.2, 29)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="LadderHole" type="CSGBox3D" parent="CSGCombiner3D/CommandDeck"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -47.55, 10.2284, 3.21637)
+operation = 2
+size = Vector3(1.5, 1, 2.31726)
+
+[node name="EngineRoomDeck" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -16.6771, 17.038, -3.16489)
+
+[node name="Wall7" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -28.8339, 17.188, 3.15781)
+use_collision = true
+size = Vector3(30, 0.2, 30)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall8" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -60.3339, 24.113, 2.65781)
+use_collision = true
+size = Vector3(10, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Door" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -60.5213, 24.5189, 1)
+operation = 2
+size = Vector3(1.5, 1, 2.42981)
+
+[node name="Window" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -60.5213, 24.054, 4.5)
+operation = 2
+size = Vector3(2.5, 1, 1.5)
+
+[node name="WindowGlass" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -60.3339, 24.063, 4.48281)
+use_collision = true
+size = Vector3(2.45, 0.2, 1.5)
+material = SubResource("StandardMaterial3D_h1d51")
+
+[node name="Door3" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -29.0213, 17.47, 12.65)
+operation = 2
+size = Vector3(1.5, 1, 2.33191)
+
+[node name="Wall9" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -64.1589, 24.113, -2.34219)
+use_collision = true
+size = Vector3(7.85, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Shelf" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -64.2839, 24.363, 1.05781)
+use_collision = true
+size = Vector3(2.7, 1, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Shelf2" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -62.9839, 24.363, -1.94219)
+use_collision = true
+size = Vector3(5, 1, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Shelf3" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -61.2339, 24.363, 2.55781)
+use_collision = true
+size = Vector3(1.5, 1, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Shelf4" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -64.6589, 24.363, 4.05781)
+use_collision = true
+size = Vector3(1.85, 1, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Bilge Controls" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -62.9839, 24.363, 7.05781)
+use_collision = true
+size = Vector3(4.5, 1, 2.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall10" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, -1.39091e-08, -8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 1.39091e-08, 1, 4.37114e-08, -64.1589, 24.113, 7.65781)
+use_collision = true
+size = Vector3(7.85, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Ceiling" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(1, 7.35137e-08, 5.37315e-16, -7.35137e-08, 1, 8.74228e-08, -6.07985e-16, -8.74228e-08, 1, -64.1589, 22.613, 2.65781)
+use_collision = true
+size = Vector3(7.85, 0.2, 10)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="PipeOpening" type="CSGCylinder3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -28.4339, 4.48803, -1.0196)
+operation = 2
+radius = 1.0
+sides = 16
+
+[node name="Engine" type="CSGCylinder3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -48.6839, 17.488, 3.1304)
+radius = 7.5
+height = 17.5
+sides = 32
+
+[node name="Engine3" type="CSGCylinder3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -36.2152, 17.488, 3.1304)
+radius = 5.407
+height = 7.5625
+sides = 32
+
+[node name="Engine2" type="CSGCylinder3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -60.9339, 17.488, 3.1304)
+radius = 2.0
+height = 10.0
+sides = 32
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -48.6271, 25.688, 3.16489)
+use_collision = true
+size = Vector3(39.5, 0.2, 29)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor2" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -46.8771, 18.688, 11.6649)
+use_collision = true
+size = Vector3(36, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor7" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -30.3771, 18.688, 13.6649)
+use_collision = true
+size = Vector3(3, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor8" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, -37.8902, 22.1708, 13.6649)
+use_collision = true
+size = Vector3(14, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor9" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -30.3771, 18.688, -7.33511)
+use_collision = true
+size = Vector3(3, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor10" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, -37.8902, 22.1788, -7.33511)
+use_collision = true
+size = Vector3(14, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor4" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(8.74228e-08, -7.57103e-08, 1, 0.5, -0.866025, -1.09278e-07, 0.866025, 0.5, -3.78552e-08, -63.3771, 16.8123, 7.51411)
+use_collision = true
+size = Vector3(7.50293, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor6" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(4.37114e-08, -8.74228e-08, 1, 5.96046e-08, -1, -8.74228e-08, 1, 5.96046e-08, -4.37114e-08, -63.3771, 14.9515, 3.16537)
+use_collision = true
+size = Vector3(2.3, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor5" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(7.57103e-08, -3.19989e-08, -1, 0.5, -0.866025, 6.55671e-08, -0.866025, -0.5, -4.95676e-08, -63.3771, 16.8124, -1.18356)
+use_collision = true
+size = Vector3(7.50244, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor3" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -46.8771, 18.688, -5.33511)
+use_collision = true
+size = Vector3(36, 0.2, 2)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="CentralDeck" type="CSGCombiner3D" parent="CSGCombiner3D"]
+
+[node name="Floor11" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, 10.7, -1.65, -9.53674e-07)
+use_collision = true
+size = Vector3(22, 0.2, 3)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor16" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, 7.65, -1.65, 4.175)
+use_collision = true
+size = Vector3(2.85, 0.2, 3.1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor12" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, -26.75, -0.250002, 7.25)
+use_collision = true
+size = Vector3(7.5, 0.2, 3.1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor15" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, -8.05, -4.75, 7.25)
+use_collision = true
+size = Vector3(14.5, 0.2, 40.5)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor13" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(0.258819, 0.965926, -2.75853e-15, -0.965926, 0.258819, 1.0295e-14, 1.06581e-14, 7.10543e-15, 1, -24.8687, -1.65, 5.05)
+use_collision = true
+size = Vector3(3, 0.2, 3.1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Floor14" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(1.13565e-07, 6.55671e-08, -1, -0.5, 0.866025, 7.10543e-15, 0.866025, 0.5, 1.31134e-07, 7.63087, -3.26243, 8.36602)
+use_collision = true
+size = Vector3(6.5, 0.2, 3.1)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall7" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, -1, -2.98023e-08, -4.37114e-08, -2.98023e-08, 1, 1.39091e-08, -8.04317, -4.96728, -0.0241164)
+use_collision = true
+size = Vector3(27.5, 0.2, 40.4)
+material = SubResource("StandardMaterial3D_vghux")
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, 1.39091e-08, 1, 1.39091e-08, 1, -1.39091e-08, 4.37114e-08, -8.04317, 8.68272, -1.52412)
+use_collision = true
+size = Vector3(34.5, 0.2, 40.4)
+material = SubResource("StandardMaterial3D_vghux")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/CentralDeck"]
+transform = Transform3D(4.37114e-08, 1.39091e-08, -1, 1.39091e-08, 1, 1.39091e-08, 1, -1.39091e-08, 4.37114e-08, -24.1932, 8.73272, -3.27412)
+operation = 2
+radius = 1.15
+height = 0.5
+sides = 16
+
+[node name="BasementDeck" type="CSGCombiner3D" parent="CSGCombiner3D"]
+
+[node name="Wall6" type="CSGBox3D" parent="CSGCombiner3D/BasementDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -28.2932, -3.25, -0.217285)
+use_collision = true
+size = Vector3(30.5, 0.2, 24)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="Wall7" type="CSGBox3D" parent="CSGCombiner3D/BasementDeck"]
+transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -39.9932, -4.225, 1.98271)
+use_collision = true
+size = Vector3(23.5, 0.2, 26.05)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="PipeHoleDoor" type="CSGBox3D" parent="CSGCombiner3D/BasementDeck"]
+transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 1, 2.98023e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -28.2932, 0.954004, 7.25772)
+operation = 2
+size = Vector3(2.29199, 1, 1.5)
+
+[node name="Floor13" type="CSGBox3D" parent="CSGCombiner3D/BasementDeck"]
+transform = Transform3D(-4.37114e-08, -7.10543e-15, -1, -7.10543e-15, 1, 0, 1, 0, -4.37114e-08, -39.8134, -0.250002, 7.45)
+use_collision = true
+size = Vector3(15.5, 0.2, 23.0732)
+material = SubResource("StandardMaterial3D_llh75")
+
+[node name="PipeYouSwimThrough" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0, 1, -16.6771, 16.538, -4.1649)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -9.95312, 4, 0)
+radius = 1.0
+height = 37.9063
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(2.26267e-08, 1.28155e-07, 1, 0.258819, 0.965926, -1.29645e-07, -0.965926, 0.258819, -1.13133e-08, 7.54692, 6.97445, 0.769113)
+radius = 1.0
+height = 6.25
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9.03205, 10, 1.6)
+radius = 1.0
+height = 4.97656
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -9.78124, 4, 0)
+operation = 2
+radius = 0.9
+height = 38.3125
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(2.26267e-08, -4.07325e-08, -1, 0.258819, -0.965926, 4.52008e-08, -0.965926, -0.258819, -1.13133e-08, 7.51879, 7.09519, 0.801469)
+operation = 2
+radius = 0.9
+height = 6.5
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9.08478, 10, 1.6)
+operation = 2
+radius = 0.9
+height = 4.74453
+sides = 16
+material = SubResource("StandardMaterial3D_78e8x")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(1, -5.68414e-09, -4.10397e-08, -5.68413e-09, 0.962356, -0.271793, 4.10397e-08, 0.271793, 0.962356, 6.03755, 6.40554, 0.683389)
+size = Vector3(1, 3.1875, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(1, -5.68414e-09, -4.10397e-08, -5.68413e-09, 0.962356, -0.271793, 4.10397e-08, 0.271793, 0.962356, 8.69895, 6.40512, 0.683273)
+size = Vector3(0.557373, 3.19666, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/PipeYouSwimThrough"]
+transform = Transform3D(1, -2.34053e-11, 2.65896e-09, -2.34053e-11, 0.999845, 0.0176095, -2.65897e-09, -0.0176095, 0.999845, 5.60575, 4.70639, 2.56554)
+size = Vector3(1, 5.75879, 3.34909)
+
+[node name="PipeYouWalkOver" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -0.5, 2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 27.25, -5.96046e-08, -0.5)
+radius = 1.0
+height = 7.5
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.55469, 4.85, 5.3)
+radius = 1.0
+height = 58.1094
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 23.5, 2.43125, -0.5)
+radius = 1.0
+height = 4.8875
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 23.5, 4.875, 2.4)
+radius = 1.0
+height = 5.75
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 0, -0.5)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 4.85, -0.5)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGCombiner3D/PipeYouWalkOver"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 23.5, 4.85, 5.3)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="PipeThatBlocks" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -22, 5.8, -1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/PipeThatBlocks"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -8.25, 0, -0.5)
+radius = 1.0
+height = 7.5
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/PipeThatBlocks"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, -1.23002e-14, -4.37114e-08, -1.06581e-14, -1, -4.37114e-08, -4.5, 0, -5.5625)
+radius = 1.0
+height = 10.125
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/PipeThatBlocks"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.5, 0, -0.5)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="BrokenPipeLeaning" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.5, -0.866025, -1.46938e-07, -0.433013, -0.25, 0.866026, -0.75, -0.433013, -0.5, 16.5, 7.2, -14.1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/BrokenPipeLeaning"]
+transform = Transform3D(-4.37114e-08, -1, 1.59578e-37, 1, -4.37114e-08, 0, 0, 8.35187e-23, 1, -5.625, 0, -0.5)
+radius = 1.0
+height = 2.25
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/BrokenPipeLeaning"]
+transform = Transform3D(-8.9407e-08, 0, -1, 1, 1.49012e-08, -2.98023e-08, -2.98023e-08, -1, -2.98023e-08, -4.5, 0, -6.04531)
+radius = 1.0
+height = 11.0906
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/BrokenPipeLeaning"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.5, 0, -0.5)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("StandardMaterial3D_ltutm")
+
+[node name="BrokenPipeInFloor" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, -4.37114e-08, 4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 19, 13, -4.2)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/BrokenPipeInFloor"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, -1.23002e-14, -4.37114e-08, -1.06581e-14, -1, -4.37114e-08, -4.5, 0, -19.0625)
+radius = 1.0
+height = 10.125
+sides = 16
+material = SubResource("StandardMaterial3D_tswho")

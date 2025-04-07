@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://l111e4klv0g2"]
+
+[ext_resource type="Texture2D" uid="uid://cw7w642smqyr7" path="res://level__albedo003.png" id="1_wmook"]
+
+[resource]
+resource_name = "Pipe"
+albedo_color = Color(0.726606, 0.855585, 1, 1)
+albedo_texture = ExtResource("1_wmook")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true

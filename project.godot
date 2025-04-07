@@ -46,6 +46,10 @@ script/templates_search_path="res://scripts/templates"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gui]
 
 theme/custom="res://resources/ui_theme.tres"

@@ -16,15 +16,15 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 // Bayer dithering matrix
 float dithering_pattern(ivec2 fragcoord) {
     const float pattern[] = {
-        0.00, 0.50, 0.10, 0.65, 
-        0.75, 0.25, 0.90, 0.35, 
-        0.20, 0.70, 0.05, 0.50, 
+        0.00, 0.50, 0.10, 0.65,
+        0.75, 0.25, 0.90, 0.35,
+        0.20, 0.70, 0.05, 0.50,
         0.95, 0.40, 0.80, 0.30
     };
-    
+
     int x = fragcoord.x % 4;
     int y = fragcoord.y % 4;
-    
+
     return pattern[y * 4 + x];
 }
 
@@ -60,7 +60,7 @@ vec3 chromatic_slice(float t){
 
 void fragment(){
     vec3 final_color;
-    if(enable_aberration) {   
+    if(enable_aberration) {
 	   vec3 sum = vec3(0.0);
 	   final_color = vec3(0.0);
 	   vec2 offset = (UV - vec2(0.5))*vec2(1,-1);
@@ -76,15 +76,15 @@ void fragment(){
     } else {
         final_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
     }
-    
+
     if(enable_dithering) {
         ivec2 uv = ivec2(FRAGCOORD.xy / float(dither_size));
         float dithering_value = dithering_pattern(uv);
-        
+
         final_color.r = reduce_color(final_color.r, (dithering_value - 0.5) * dithering_value + 0.5, colors - 1);
         final_color.g = reduce_color(final_color.g, (dithering_value - 0.5) * dithering_value + 0.5, colors - 1);
         final_color.b = reduce_color(final_color.b, (dithering_value - 0.5) * dithering_value + 0.5, colors - 1);
     }
-    
+
     COLOR.rgb = final_color;
 }

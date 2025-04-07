@@ -79,12 +79,10 @@ func _physics_process(delta: float) -> void:
     crouching_collision_shape_3d.disabled = not crouching
 
     if water_collider.has_overlapping_areas() and not swimming:
-        print('entered water')
         # Simulate surface tension.
         velocity.y = -1.2
         swimming = true
     elif not water_collider.has_overlapping_areas() and swimming:
-        print('exited water')
         swimming = false
 
     if swimming:

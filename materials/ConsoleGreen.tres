@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqigjro1wm5gc"]
+
+[resource]
+resource_name = "ConsoleGreen"
+cull_mode = 2
+albedo_color = Color(0.562777, 0.62589, 0.403213, 1)
+metallic = 1.0
+roughness = 0.8

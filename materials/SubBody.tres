@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dxnfwciciigso"]
+
+[ext_resource type="Texture2D" uid="uid://6gq4i8ltkwpn" path="res://level__albedo000.png" id="1_4syig"]
+
+[resource]
+resource_name = "SubBody"
+albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
+albedo_texture = ExtResource("1_4syig")
