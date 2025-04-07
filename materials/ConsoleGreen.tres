@@ -1,8 +1,11 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqigjro1wm5gc"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://6hkwvkr5ucmi"]
+
+[ext_resource type="Texture2D" uid="uid://d1pcekn38wlv8" path="res://level_greenmetal.png" id="1_fx3g7"]
 
 [resource]
 resource_name = "ConsoleGreen"
-cull_mode = 2
-albedo_color = Color(0.562777, 0.62589, 0.403213, 1)
+albedo_texture = ExtResource("1_fx3g7")
 metallic = 1.0
 roughness = 0.8
+uv1_scale = Vector3(0.2, 0.2, 0.5)
+uv1_triplanar = true

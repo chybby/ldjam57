@@ -6,5 +6,5 @@
 resource_name = "Floor"
 albedo_color = Color(0.436389, 0.562709, 0.7558, 1)
 albedo_texture = ExtResource("1_tbmnr")
-uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_scale = Vector3(0.3, 0.3, 0.3)
 uv1_triplanar = true

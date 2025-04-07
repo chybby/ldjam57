@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cdhjjnglqfrdx"]
+
+[ext_resource type="Texture2D" uid="uid://dwu5qmkuv3qtd" path="res://level_pickyplantslogo.png" id="1_yhtww"]
+
+[resource]
+resource_name = "PlantGameLogo"
+cull_mode = 2
+albedo_texture = ExtResource("1_yhtww")
+metallic = 1.0
+roughness = 0.3
+emission_enabled = true
+emission_energy_multiplier = 0.6
+emission_texture = ExtResource("1_yhtww")
+uv1_scale = Vector3(-1, 1, 1)

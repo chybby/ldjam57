@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bsd13juem8c6w"]
+
+[ext_resource type="Texture2D" uid="uid://kgo0wn60wm5j" path="res://level_brickupgameplay.jpg" id="1_dtetq"]
+
+[resource]
+resource_name = "LavaGame"
+cull_mode = 2
+albedo_texture = ExtResource("1_dtetq")
+metallic = 1.0
+roughness = 0.3
+emission_enabled = true
+emission_energy_multiplier = 0.5
+emission_texture = ExtResource("1_dtetq")
+uv1_scale = Vector3(-1, 1, 1)

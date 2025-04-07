@@ -1,7 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cgksm1521whet"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgksm1521whet"]
+
+[ext_resource type="Texture2D" uid="uid://civddfcdcd6h1" path="res://textures/wood4.png" id="1_7puvm"]
 
 [resource]
 resource_name = "CounterTop"
-cull_mode = 2
-albedo_color = Color(0.426349, 0.336703, 0.191, 1)
+albedo_texture = ExtResource("1_7puvm")
 roughness = 0.7
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true

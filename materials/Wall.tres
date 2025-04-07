@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ppuwdripdyma"]
+
+[ext_resource type="Texture2D" uid="uid://c5hblglxbgn8f" path="res://level_whitemetalwall.png" id="1_p4rm8"]
+
+[resource]
+resource_name = "Wall"
+albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
+albedo_texture = ExtResource("1_p4rm8")
+uv1_scale = Vector3(0.2, 0.32, 0.2)
+uv1_offset = Vector3(0, 1.3, 0)
+uv1_triplanar = true

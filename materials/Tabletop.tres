@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5uoj37glpqto"]
+
+[resource]
+resource_name = "Tabletop"
+cull_mode = 2
+albedo_color = Color(0.124001, 0.0401915, 0.133827, 1)
+roughness = 0.3

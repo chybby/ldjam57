@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=51 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -90,34 +90,45 @@ material = SubResource("ShaderMaterial_h1d51")
 size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1d51"]
+size = Vector3(1.05, 0.85, 1.05)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qbbif"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jghyl"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_78e8x"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qx8j2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wlxdm"]
 size = Vector3(1.6, 2.6, 0.4)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2ptmb"]
-size = Vector3(1.9, 0.9, 0.7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tswho"]
-size = Vector3(4.5, 1.15, 2.45)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jghyl"]
-size = Vector3(2.00867, 2.6, 2.4382)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_78e8x"]
-size = Vector3(2.25, 2.6, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wlxdm"]
-size = Vector3(4.36548, 2.6, 6.23627)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0crnt"]
+size = Vector3(2.4, 0.9, 0.45)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xki4i"]
-size = Vector3(2.14575, 2.02903, 2.39047)
+size = Vector3(4.5, 1.15, 2.45)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbiv7"]
+size = Vector3(2.00867, 2.6, 2.4382)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kgpi"]
+size = Vector3(2.25, 2.6, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7avse"]
+size = Vector3(4.36548, 2.6, 6.23627)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bi83"]
 size = Vector3(2.14575, 2.02903, 2.39047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x8cgc"]
+size = Vector3(2.14575, 2.02903, 2.39047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxxw5"]
+size = Vector3(2.4, 0.9, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3g7j"]
+size = Vector3(2.4, 0.9, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuubk"]
+size = Vector3(1.95, 0.9, 1.95)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tswho"]
 data = PackedVector3Array(0.707107, 0.15, -0.707107, 0.382684, 0.15, -0.923879, 0.382684, -0.15, -0.923879, 1.19249e-08, -0.15, -1, 0.382684, -0.15, -0.923879, 0.382684, 0.15, -0.923879, 0.707107, -0.15, -0.707107, 0.382684, -0.15, -0.923879, 1, -0.15, 0, 0.92388, -0.15, -0.382683, 0.707107, -0.15, -0.707107, 1, -0.15, 0, 0.382684, -0.15, -0.923879, 0.707107, -0.15, -0.707107, 0.707107, 0.15, -0.707107, 0.707107, -0.15, -0.707107, 0.92388, -0.15, -0.382683, 0.92388, 0.15, -0.382683, 0.92388, -0.15, -0.382683, 1, -0.15, 0, 1, 0.15, 0, -0.382683, -0.15, 0.92388, -4.37114e-08, -0.15, 1, 1, -0.15, 0, -4.37114e-08, -0.15, 1, 0.382683, -0.15, 0.92388, 1, -0.15, 0, 0.382683, -0.15, 0.92388, -4.37114e-08, -0.15, 1, -4.37114e-08, 0.15, 1, 0.707107, -0.15, 0.707107, 0.382683, -0.15, 0.92388, 0.382683, 0.15, 0.92388, 0.707107, -0.15, 0.707107, 0.92388, -0.15, 0.382683, 1, -0.15, 0, 0.382683, -0.15, 0.92388, 0.707107, -0.15, 0.707107, 1, -0.15, 0, 1, -0.15, 0, 0.92388, -0.15, 0.382683, 0.92388, 0.15, 0.382683, 0.92388, -0.15, 0.382683, 0.707107, -0.15, 0.707107, 0.707107, 0.15, 0.707107, 0.382684, 0.15, -0.923879, 1.19249e-08, 0.15, -1, 1.19249e-08, -0.15, -1, 0.382684, -0.15, -0.923879, 1.19249e-08, -0.15, -1, 1, -0.15, 0, 1.19249e-08, 0.15, -1, 0.382684, 0.15, -0.923879, 0, 0.15, 0, 0.382684, 0.15, -0.923879, 0.707107, 0.15, -0.707107, 0, 0.15, 0, 0.92388, 0.15, -0.382683, 0.707107, 0.15, -0.707107, 0.707107, -0.15, -0.707107, 1, 0.15, 0, 0.92388, 0.15, -0.382683, 0.92388, -0.15, -0.382683, 0.707107, 0.15, -0.707107, 0.92388, 0.15, -0.382683, 0, 0.15, 0, 0.92388, 0.15, -0.382683, 1, 0.15, 0, 0, 0.15, 0, -4.37114e-08, 0.15, 1, 0.382683, 0.15, 0.92388, 0.382683, -0.15, 0.92388, 0.382683, 0.15, 0.92388, -4.37114e-08, 0.15, 1, 0, 0.15, 0, 0.707107, 0.15, 0.707107, 0.382683, 0.15, 0.92388, 0, 0.15, 0, 0.92388, 0.15, 0.382683, 1, 0.15, 0, 1, -0.15, 0, 0.707107, 0.15, 0.707107, 0.92388, 0.15, 0.382683, 0.92388, -0.15, 0.382683, 0.382683, 0.15, 0.92388, 0.707107, 0.15, 0.707107, 0.707107, -0.15, 0.707107, 1, 0.15, 0, 0.92388, 0.15, 0.382683, 0, 0.15, 0, 0.92388, 0.15, 0.382683, 0.707107, 0.15, 0.707107, 0, 0.15, 0, -0.92388, 0.15, -0.382683, -1, 0.15, -8.74228e-08, -1, -0.15, -8.74228e-08, -1, -0.15, -8.74228e-08, -0.92388, -0.15, -0.382683, -0.92388, 0.15, -0.382683, -0.382684, -0.15, -0.92388, -0.707107, -0.15, -0.707107, 1, -0.15, 0, -0.92388, -0.15, -0.382683, -1, -0.15, -8.74228e-08, 1, -0.15, 0, -0.707107, -0.15, -0.707107, -0.92388, -0.15, -0.382683, 1, -0.15, 0, -0.707107, -0.15, -0.707107, -0.382684, -0.15, -0.92388, -0.382684, 0.15, -0.92388, -0.382684, -0.15, -0.92388, 1.19249e-08, -0.15, -1, 1.19249e-08, 0.15, -1, -0.92388, -0.15, 0.382683, -1, -0.15, -8.74228e-08, -1, 0.15, -8.74228e-08, -0.707107, -0.15, 0.707107, -0.92388, -0.15, 0.382683, -0.92388, 0.15, 0.382683, -0.382683, -0.15, 0.92388, -0.707107, -0.15, 0.707107, -0.707107, 0.15, 0.707107, -1, -0.15, -8.74228e-08, -0.92388, -0.15, 0.382683, 1, -0.15, 0, -0.92388, -0.15, 0.382683, -0.707107, -0.15, 0.707107, 1, -0.15, 0, -0.707107, -0.15, 0.707107, -0.382683, -0.15, 0.92388, 1, -0.15, 0, -4.37114e-08, -0.15, 1, -0.382683, -0.15, 0.92388, -0.382683, 0.15, 0.92388, -0.382684, 0.15, -0.92388, -0.707107, 0.15, -0.707107, -0.707107, -0.15, -0.707107, -0.707107, 0.15, -0.707107, -0.92388, 0.15, -0.382683, -0.92388, -0.15, -0.382683, -0.92388, -0.15, -0.382683, -0.707107, -0.15, -0.707107, -0.707107, 0.15, -0.707107, -0.92388, 0.15, -0.382683, -0.707107, 0.15, -0.707107, 0, 0.15, 0, -1, 0.15, -8.74228e-08, -0.92388, 0.15, -0.382683, 0, 0.15, 0, 1.19249e-08, 0.15, -1, -0.382684, 0.15, -0.92388, -0.382684, -0.15, -0.92388, -0.707107, 0.15, -0.707107, -0.382684, 0.15, -0.92388, 0, 0.15, 0, -0.382684, 0.15, -0.92388, 1.19249e-08, 0.15, -1, 0, 0.15, 0, -1, 0.15, -8.74228e-08, -0.92388, 0.15, 0.382683, -0.92388, -0.15, 0.382683, -0.92388, 0.15, 0.382683, -0.707107, 0.15, 0.707107, -0.707107, -0.15, 0.707107, -0.92388, 0.15, 0.382683, -1, 0.15, -8.74228e-08, 0, 0.15, 0, -0.707107, 0.15, 0.707107, -0.92388, 0.15, 0.382683, 0, 0.15, 0, -0.707107, 0.15, 0.707107, -0.382683, 0.15, 0.92388, -0.382683, -0.15, 0.92388, -0.382683, 0.15, 0.92388, -4.37114e-08, 0.15, 1, -4.37114e-08, -0.15, 1, -0.382683, 0.15, 0.92388, -0.707107, 0.15, 0.707107, 0, 0.15, 0, -4.37114e-08, 0.15, 1, -0.382683, 0.15, 0.92388, 0, 0.15, 0, 1.19249e-08, -0.15, -1, -0.382684, -0.15, -0.92388, 1, -0.15, 0)
@@ -452,6 +463,7 @@ oneshot = true
 audio_stream = ExtResource("3_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ScubaInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250015, 0.0749999, -0.0249996)
 shape = SubResource("BoxShape3D_h1d51")
 
 [node name="GlassBreakerInteractable" parent="." instance=ExtResource("2_1i0lj")]
@@ -462,8 +474,8 @@ oneshot = true
 audio_stream = ExtResource("3_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlassBreakerInteractable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
-shape = SubResource("BoxShape3D_qbbif")
+transform = Transform3D(1, 4.12115e-13, -6.43929e-15, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
+shape = SubResource("BoxShape3D_jghyl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GlassBreakerInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
@@ -479,7 +491,7 @@ audio_stream = ExtResource("4_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BedInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999994)
-shape = SubResource("BoxShape3D_qx8j2")
+shape = SubResource("BoxShape3D_wlxdm")
 
 [node name="StartBilgeMainConsoleInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -489,8 +501,8 @@ label = "Start Bilge Pump"
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StartBilgeMainConsoleInteractable"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.00669e-22, 1, -0.05, -0.299999, 0.349999)
-shape = SubResource("BoxShape3D_2ptmb")
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.00669e-22, 1, -0.075, -0.299999, 0.499999)
+shape = SubResource("BoxShape3D_0crnt")
 
 [node name="BilgeManualOverrideInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -501,7 +513,7 @@ audio_stream = ExtResource("6_xki4i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BilgeManualOverrideInteractable"]
 transform = Transform3D(1, 0, 3.17637e-22, 0, 1, 0, -1.74912e-19, 0, 1, -0.0499992, -0.075, 0.0250001)
-shape = SubResource("BoxShape3D_tswho")
+shape = SubResource("BoxShape3D_xki4i")
 
 [node name="EnteredCentralDeckTrigger" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
@@ -510,7 +522,7 @@ oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnteredCentralDeckTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.675, -2.8, -1.5)
-shape = SubResource("BoxShape3D_jghyl")
+shape = SubResource("BoxShape3D_lbiv7")
 
 [node name="FellOffPipe" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
@@ -518,7 +530,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4026, -7.08351, 8.32331)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FellOffPipe"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2861, -2.8, -2.86481)
-shape = SubResource("BoxShape3D_78e8x")
+shape = SubResource("BoxShape3D_2kgpi")
 
 [node name="FinishedPipeSection" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
@@ -527,7 +539,7 @@ oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishedPipeSection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54622, -2.8, -0.591888)
-shape = SubResource("BoxShape3D_wlxdm")
+shape = SubResource("BoxShape3D_7avse")
 
 [node name="FirstSeeWater" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
@@ -536,7 +548,7 @@ oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FirstSeeWater"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22395, -2.92611, 1.33101)
-shape = SubResource("BoxShape3D_xki4i")
+shape = SubResource("BoxShape3D_4bi83")
 
 [node name="ThroughThePipe" parent="." instance=ExtResource("5_llh75")]
 unique_name_in_owner = true
@@ -544,7 +556,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4504, 13.2543, -2.45411)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ThroughThePipe"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22395, -2.92611, 1.33101)
-shape = SubResource("BoxShape3D_lbiv7")
+shape = SubResource("BoxShape3D_x8cgc")
 
 [node name="StopSpinningInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -554,8 +566,8 @@ label = "Stop Spin"
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StopSpinningInteractable"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, -0.05, -0.299999, 0.349999)
-shape = SubResource("BoxShape3D_2ptmb")
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, -0.075, -0.299999, 0.499999)
+shape = SubResource("BoxShape3D_sxxw5")
 
 [node name="GoToSurfaceInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -565,8 +577,8 @@ label = "Go To Surface"
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GoToSurfaceInteractable"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, -0.05, -0.299999, 0.349999)
-shape = SubResource("BoxShape3D_2ptmb")
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, -0.075, -0.299999, 0.499999)
+shape = SubResource("BoxShape3D_a3g7j")
 
 [node name="EmergencyExitInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
@@ -576,8 +588,8 @@ label = "Escape"
 oneshot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EmergencyExitInteractable"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.0067e-22, 1, 0.95, 0.449997, 0.55)
-shape = SubResource("BoxShape3D_2ptmb")
+transform = Transform3D(1, 0, 0, 0, 1, 5.52077e-22, 0, 6.00669e-22, 1, 0.925, 0.449997, 0.524999)
+shape = SubResource("BoxShape3D_vuubk")
 
 [node name="PipeCover" type="AnimatableBody3D" parent="."]
 unique_name_in_owner = true
@@ -757,6 +769,7 @@ omni_range = 1.5
 omni_attenuation = 2.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_jghyl")
 
 [node name="Model" parent="." instance=ExtResource("4_vw1pa")]

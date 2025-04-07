@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c32sg5oh5ebp0"]
+
+[ext_resource type="Texture2D" uid="uid://bos6qsretks8t" path="res://level_chrome_SaKsVov9Uk.png" id="1_tago6"]
+
+[resource]
+resource_name = "PlantGame"
+cull_mode = 2
+albedo_texture = ExtResource("1_tago6")
+metallic = 1.0
+roughness = 0.3
+emission_enabled = true
+emission_energy_multiplier = 0.5
+emission_texture = ExtResource("1_tago6")
+uv1_scale = Vector3(-1, 1, 1)

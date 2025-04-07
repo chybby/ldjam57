@@ -50,6 +50,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://materials/DarkBlue.tres"
 },
+"DarkGreen": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/DarkGreen.tres"
+},
 "DoorRim": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/DoorRim.tres"
@@ -58,13 +62,37 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://materials/Floor.tres"
 },
+"FunButtonBlue": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/FunButtonBlue.tres"
+},
+"FunButtonGreen": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/FunButtonGreen.tres"
+},
 "Glass": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/Glass.tres"
 },
+"Joystick": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Joystick.tres"
+},
+"LavaGame": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/LavaGame.tres"
+},
+"LavaGameLogo": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/LavaGameLogo.tres"
+},
 "MatteMetal": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/MatteMetal.tres"
+},
+"MatteMetal.001": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/MatteMetal.001.tres"
 },
 "Meshing": {
 "use_external/enabled": true,
@@ -73,6 +101,14 @@ _subresources={
 "Pipe": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/Pipe.tres"
+},
+"PlantGame": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/PlantGame.tres"
+},
+"PlantGameLogo": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/PlantGameLogo.tres"
 },
 "RubbishBag": {
 "use_external/enabled": true,
@@ -89,6 +125,14 @@ _subresources={
 "SubBody": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/SubBody.tres"
+},
+"Tabletop": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Tabletop.tres"
+},
+"Wall": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Wall.tres"
 }
 }
 }

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfh26cj4ajsfd"]
+
+[resource]
+resource_name = "Joystick"
+cull_mode = 2
+albedo_color = Color(1, 0.051291, 0, 1)
+roughness = 0.95
