@@ -42,9 +42,17 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://materials/CounterTop.tres"
 },
+"CushionBlue": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/CushionBlue.tres"
+},
 "CushionRed": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/CushionRed.tres"
+},
+"CushionWhite": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/CushionWhite.tres"
 },
 "DarkBlue": {
 "use_external/enabled": true,
@@ -86,6 +94,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://materials/LavaGameLogo.tres"
 },
+"Light": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Light.tres"
+},
 "MatteMetal": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/MatteMetal.tres"
@@ -93,6 +105,10 @@ _subresources={
 "MatteMetal.001": {
 "use_external/enabled": true,
 "use_external/path": "res://materials/MatteMetal.001.tres"
+},
+"MatteMetal.002": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/MatteMetal.002.tres"
 },
 "Meshing": {
 "use_external/enabled": true,
@@ -144,6 +160,38 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/path": "res://ladderhatchmodel.res"
 },
+"level_Cube_184": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://hammerboxmodel.res"
+},
+"level_Cube_185": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://hammerglassmodel.res"
+},
+"level_Cylinder_042": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://lightmodel.res"
+},
+"level_Cylinder_043": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://HammerModel.res"
+},
 "level_Sphere_002": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
@@ -151,6 +199,17 @@ _subresources={
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
 "save_to_file/path": "res://pipecovermodel.res"
+}
+},
+"nodes": {
+"PATH:Hammer": {
+"mesh_instance/layers": 0
+},
+"PATH:HammerBox": {
+"mesh_instance/layers": 0
+},
+"PATH:HammerGlass": {
+"mesh_instance/layers": 0
 }
 }
 }

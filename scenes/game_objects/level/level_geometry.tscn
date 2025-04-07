@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://boas5lby00clg"]
+[gd_scene load_steps=13 format=3 uid="uid://boas5lby00clg"]
 
 [ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="1_xb8vw"]
 [ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="2_llf3u"]
@@ -22,10 +22,6 @@ albedo_color = Color(0, 0.517802, 0.768486, 1)
 albedo_color = Color(0.369795, 0.435126, 0.508726, 1)
 albedo_texture = ExtResource("2_llf3u")
 uv1_scale = Vector3(10, 10, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1d51"]
-transparency = 1
-albedo_color = Color(0.333333, 0.333333, 0.333333, 0.501961)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vghux"]
 transparency = 1
@@ -112,12 +108,6 @@ material = SubResource("StandardMaterial3D_llh75")
 transform = Transform3D(2.98023e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -2.98023e-08, -8.88178e-16, -36.75, 11.5, 7.7356)
 use_collision = true
 size = Vector3(11.5, 0.2, 3)
-material = SubResource("StandardMaterial3D_llh75")
-
-[node name="Bed" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
-transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -44.9, 10.25, 3.4856)
-use_collision = true
-size = Vector3(1.5, 2.5, 0.5)
 material = SubResource("StandardMaterial3D_llh75")
 
 [node name="Wall7" type="CSGBox3D" parent="CSGCombiner3D/BedroomsDeck"]
@@ -402,12 +392,6 @@ size = Vector3(1.5, 1, 2.42981)
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -60.5213, 24.054, 4.5)
 operation = 2
 size = Vector3(2.5, 1, 1.5)
-
-[node name="WindowGlass" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
-transform = Transform3D(-2.98023e-08, 1, -4.37114e-08, 2.6054e-15, -4.37114e-08, -1, -1, -2.98023e-08, -8.88178e-16, -60.3339, 24.063, 4.48281)
-use_collision = true
-size = Vector3(2.45, 0.2, 1.5)
-material = SubResource("StandardMaterial3D_h1d51")
 
 [node name="Door3" type="CSGBox3D" parent="CSGCombiner3D/EngineRoomDeck"]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, 8.74228e-08, -29.0213, 17.47, 12.65)

@@ -25,10 +25,13 @@ background_mode = 2
 sky = SubResource("Sky_k2fmo")
 tonemap_mode = 2
 tonemap_white = 0.5
+ssao_enabled = true
 glow_enabled = true
 fog_enabled = true
 fog_density = 0.0085
 fog_height = -1.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blune"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 shader = ExtResource("4_l3cfh")
@@ -125,6 +128,7 @@ unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l3cfh")
+camera_attributes = SubResource("CameraAttributesPractical_blune")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")

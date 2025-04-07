@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dyicnujkra32l"]
+
+[resource]
+resource_name = "Light"
+cull_mode = 2
+roughness = 0.95
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b2swxgp0ineu4"]
+
+[resource]
+resource_name = "CushionWhite"
+cull_mode = 2
+albedo_color = Color(0.946427, 0.772437, 0.532019, 1)
+roughness = 0.95

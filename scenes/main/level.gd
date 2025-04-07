@@ -26,6 +26,9 @@ signal rotation_upright
 @onready var command_glass_interactable: Interactable = $Glass/CommandGlassInteractable
 @onready var engine_glass_interactable: Interactable = $Glass/EngineGlassInteractable
 
+@onready var glass: MeshInstance3D = %Glass
+@onready var hammer: MeshInstance3D = %Hammer
+
 @onready var water: Area3D = $Water
 @onready var the_sequel_to_water: Area3D = $TheSequelToWater
 @onready var timer = $Timer
@@ -137,6 +140,8 @@ func _on_first_see_water(source: Node3D) -> void:
 
 
 func _on_glass_breaker_interacted(source: Node3D) -> void:
+    glass.visible = false
+    hammer.visible = false
     GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies... this counts, right?")
     glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
     has_hammer = true
@@ -292,3 +297,4 @@ func emit_rotation_upright() -> void:
 
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
+    animation_player.play("raise_water")
