@@ -22,6 +22,7 @@ signal rotation_upright
 @onready var finished_pipe: Trigger = %FinishedPipeSection
 @onready var first_see_water: Trigger = %FirstSeeWater
 @onready var through_the_pipe: Trigger = %ThroughThePipe
+@onready var top_glass_interactable: Interactable = $"Glass/TopGlassInteractable"
 
 @onready var water: Area3D = $Water
 @onready var the_sequel_to_water: Area3D = $TheSequelToWater
@@ -34,6 +35,7 @@ signal rotation_upright
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var has_scuba: bool = false
+var has_hammer: bool = false
 var said_the_pipe_line: bool = false
 var can_move = true
 
@@ -63,6 +65,7 @@ func _ready() -> void:
     fell_off_pipe_trigger.was_triggered_by.connect(_on_fell_off_pipe)
     finished_pipe.was_triggered_by.connect(_on_finished_pipe)
     first_see_water.was_triggered_by.connect(_on_first_see_water)
+    top_glass_interactable.was_interacted_by.connect(_on_glass_interacted)
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -82,6 +85,7 @@ func _ready() -> void:
 
 func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
+    
     pipe_cover.rotation_degrees.y = 180
     ladder_cover.rotation_degrees.z = 90
 
@@ -243,6 +247,10 @@ func _on_scuba_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("get_scuba")
     has_scuba = true
 
+func _on_glass_interacted(source: Node3D) -> void:
+    if(!has_hammer):
+        return
+    print("glass")
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
