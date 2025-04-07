@@ -19,6 +19,9 @@ class_name Player
 @onready var crouching_collision_shape_3d: CollisionShape3D = $CrouchingCollisionShape3D
 @onready var swimming_collision_shape_3d: CollisionShape3D = $SwimmingCollisionShape3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var footstep_animation_player: AnimationPlayer = $Footsteps/AnimationPlayer
+@onready var jump_audio: AudioStreamPlayer3D = $Footsteps/AudioStreamPlayer3D
+@onready var swimming_audio: AudioStreamPlayer3D = $SwimmingAudioPlayer3D
 @onready var camera_submerged_collider: Area3D = $CameraPivot/CameraSubmerged
 
 var mouse_movement: Vector2 = Vector2.ZERO
@@ -91,8 +94,24 @@ func _physics_process(delta: float) -> void:
     
     if camera_submerged_collider.has_overlapping_areas() and not is_underwater:
         is_underwater = true
+        var sfx_bus_idx = AudioServer.get_bus_index("SFX")
+        var music_bus_idx = AudioServer.get_bus_index("Music")
+        var sfx_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(sfx_bus_idx, 0)
+        var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
+        tween.tween_property(sfx_effect, "cutoff_hz", 1000, 0.2)
+        AudioServer.get_bus_effect_instance(music_bus_idx, 0)
+        var music_effect = AudioServer.get_bus_effect(music_bus_idx, 0)
+        tween.tween_property(music_effect, "cutoff_hz", 1000, 0.2)
     elif not camera_submerged_collider.has_overlapping_areas() and is_underwater:
         is_underwater = false
+        var sfx_bus_idx = AudioServer.get_bus_index("SFX")
+        var music_bus_idx = AudioServer.get_bus_index("Music")
+        var sfx_effect = AudioServer.get_bus_effect(sfx_bus_idx, 0)
+        var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
+        tween.tween_property(sfx_effect, "cutoff_hz", 20500, 0.2)
+        AudioServer.get_bus_effect_instance(music_bus_idx, 0)
+        var music_effect = AudioServer.get_bus_effect(music_bus_idx, 0)
+        tween.tween_property(music_effect, "cutoff_hz", 20500, 0.2)
 
     if swimming:
         motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
@@ -102,8 +121,21 @@ func _physics_process(delta: float) -> void:
         if wants_to_crouch:
             velocity.y = -dive_speed
         velocity.y = lerp(velocity.y, 0.0, 1.0 - exp(-water_dampening * delta))
+        
+        var playback_pos = 1
+        if sprinting:
+            playback_pos = 0.5
+        if get_real_velocity().length() > 1 and (not swimming_audio.playing or swimming_audio.get_playback_position() > playback_pos):
+            swimming_audio.play()
     else:
         motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+        
+        if sprinting:
+            footstep_animation_player.speed_scale = 1.5
+        else:
+            footstep_animation_player.speed_scale = 1
+        if not crouching and get_real_velocity().length() > 2 and is_on_floor() and not footstep_animation_player.is_playing():
+                footstep_animation_player.play("step")
 
         # Crouching
         if wants_to_crouch and not crouching and is_on_floor():
@@ -123,8 +155,9 @@ func _physics_process(delta: float) -> void:
 
         # Jumping
         if jumped and is_on_floor() and not crouching:
+            jump_audio.play()
             velocity.y = jump_strength
-
+    
     jumped = false
     move_and_slide()
 

@@ -1,14 +1,21 @@
-[gd_scene load_steps=51 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=55 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
 [ext_resource type="Texture2D" uid="uid://ndw2wx1q8tff" path="res://assets/wall90.png" id="2_78e8x"]
 [ext_resource type="Shader" uid="uid://blr6vvhgbh0fy" path="res://scenes/game_objects/level/water.gdshader" id="2_ltutm"]
 [ext_resource type="Texture2D" uid="uid://d1skwc4ipvwcc" path="res://assets/clear+sea+water-256x256.png" id="3_2ptmb"]
+[ext_resource type="AudioStream" uid="uid://riy11xc0s5r6" path="res://assets/sfx/toilet.wav" id="2_wlxdm"]
+[ext_resource type="AudioStream" uid="uid://bpvd3bltp3p2r" path="res://assets/sfx/item.wav" id="3_2ptmb"]
 [ext_resource type="Texture2D" uid="uid://dm553r43cdjbl" path="res://assets/floor.png" id="3_ltutm"]
+[ext_resource type="AudioStream" uid="uid://4f6lqpvawvqy" path="res://assets/sfx/bed.wav" id="4_2ptmb"]
 [ext_resource type="PackedScene" uid="uid://c51gq1dbqkgk8" path="res://trigger.tscn" id="5_llh75"]
 [ext_resource type="Script" uid="uid://d0xy42ycsao2k" path="res://scenes/game_objects/level/warninglight.gd" id="6_ltutm"]
+[ext_resource type="AudioStream" uid="uid://cmcxps0tlmkye" path="res://assets/sfx/chunky.wav" id="6_xki4i"]
 [ext_resource type="Texture2D" uid="uid://cxigk52ttl8hh" path="res://assets/metal-rusted-background.png" id="7_2ptmb"]
+[ext_resource type="AudioStream" uid="uid://dsx38bfon268d" path="res://assets/sfx/creaks1.wav" id="12_lbiv7"]
+[ext_resource type="AudioStream" uid="uid://c4322eokptlr7" path="res://assets/sfx/creaks2.wav" id="13_0crnt"]
+[ext_resource type="AudioStream" uid="uid://bosggiwcwvim" path="res://assets/sfx/creaks3.wav" id="14_sxxw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -242,6 +249,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Water/AudioStreamPlayer3D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vw1pa"]
 resource_name = "bilge"
@@ -269,6 +288,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Water/AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 14.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_qx8j2"]
@@ -330,6 +361,12 @@ _data = {
 &"go_to_surface": SubResource("Animation_qx8j2")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a3g7j"]
+streams_count = 3
+stream_0/stream = ExtResource("12_lbiv7")
+stream_1/stream = ExtResource("13_0crnt")
+stream_2/stream = ExtResource("14_sxxw5")
+
 [node name="Level" type="AnimatableBody3D"]
 script = ExtResource("1_pt7sd")
 
@@ -377,6 +414,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 74.15,
 mesh = SubResource("PlaneMesh_tswho")
 skeleton = NodePath("")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6524, -13.1353, 0.987767)
+stream = ExtResource("2_wlxdm")
+
 [node name="TheSequelToWater" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 41, 10.5, -3.3)
 visible = false
@@ -399,6 +440,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -46.4644, 10.2094, -1.58756)
 label = "Scuba"
 oneshot = true
+audio_stream = ExtResource("3_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ScubaInteractable"]
 shape = SubResource("BoxShape3D_h1d51")
@@ -408,6 +450,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 7.35137e-08, 2.82228e-15, -1.72043e-09, 0.0234027, 0.999726, 7.34936e-08, -0.999726, 0.0234027, -26.4671, 12.1637, -0.687416)
 label = "Glass Breaker"
 oneshot = true
+audio_stream = ExtResource("3_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlassBreakerInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.76837e-07, 0)
@@ -423,6 +466,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 7.35137e-08, 2.79886e-15, 0, -4.37114e-08, 1, 7.35137e-08, -1, -4.37114e-08, -44.9, 11.7, 3.4856)
 label = "Sleep"
 oneshot = true
+audio_stream = ExtResource("4_2ptmb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BedInteractable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999994)
@@ -444,6 +488,7 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 1.39091e-08, -7.10543e-15, 7.10543e-15, -4.37114e-08, 1, 1.39091e-08, 1, 4.37114e-08, 46.3068, -7.32502, 3.89292)
 label = "Bilge Controls"
 oneshot = true
+audio_stream = ExtResource("6_xki4i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BilgeManualOverrideInteractable"]
 transform = Transform3D(1, 0, 3.17637e-22, 0, 1, 0, -1.74912e-19, 0, 1, -0.0499992, -0.075, 0.0250001)
@@ -1419,3 +1464,23 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
+
+[node name="CreakingAudio1" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, 16.7834, 11.5608)
+stream = SubResource("AudioStreamRandomizer_a3g7j")
+autoplay = true
+
+[node name="CreakingAudio2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, -11.247, 12.8778)
+stream = SubResource("AudioStreamRandomizer_a3g7j")
+autoplay = true
+
+[node name="CreakingAudio3" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6383, -11.247, 12.8778)
+stream = SubResource("AudioStreamRandomizer_a3g7j")
+autoplay = true
+
+[node name="CreakingAudio4" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6383, 14.7874, 11.6546)
+stream = SubResource("AudioStreamRandomizer_a3g7j")
+autoplay = true

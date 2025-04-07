@@ -95,7 +95,7 @@ func _on_bed_interacted(source: Node3D) -> void:
     
     GameEvents.emit_signal("trigger_fade")
     GameEvents.emit_signal("trigger_monologue", "Time for a good nights sleep...")
-
+    
     timer.timeout.connect(wakeup)
     timer.start(1)
 
@@ -160,13 +160,13 @@ func _on_escape(source: Node3D) -> void:
 func _on_scuba_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
     GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
-    scuba_interactable.queue_free()
+    scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
     has_scuba = true
     
 func _on_glass_breaker_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies...")
     GameEvents.emit_signal("trigger_monologue", "I think this counts right?")
-    glass_breaker_interactable.queue_free()
+    glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
     
 func _on_fell_off_pipe(source: Node3D) -> void:
     falls += 1

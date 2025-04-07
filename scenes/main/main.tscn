@@ -100,6 +100,7 @@ environment = SubResource("Environment_l3cfh")
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")
 autoplay = true
+bus = &"Music"
 
 [node name="PostProcessing" type="CanvasLayer" parent="."]
 layer = 10
