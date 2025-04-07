@@ -2,8 +2,8 @@ extends Node3D
 class_name Level
 
 signal respawn_player
+signal rotation_upright
 
-@export var rotation_speed: float = 0.0
 @export var water_surface_y: float = 0.0
 
 @onready var after_sleep_spawn_point: Marker3D = $AfterSleepSpawnPoint
@@ -37,7 +37,7 @@ var has_scuba: bool = false
 var said_the_pipe_line: bool = false
 
 var fall_off_pipe_lines = [
-    "Well, at least I know which way is down",
+    "Well, at least I know which way is down.",
     "I meant to do that...",
     "Maybe if I stay on top of the pipe...",
     "Guess I'm not cut out for plumbing.",
@@ -47,6 +47,7 @@ var fall_off_pipe_lines = [
     ]
 
 var falls = 0
+
 
 func _ready() -> void:
     bed_interactable.was_interacted_by.connect(_on_bed_interacted)
@@ -71,117 +72,19 @@ func _ready() -> void:
     #_on_sleep()
 
 
-func _physics_process(delta: float) -> void:
-    if not is_zero_approx(rotation_speed):
-        rotate_x(rotation_speed * delta)
-
-    if stop_once_oriented and abs(rotation_degrees.x) < 1.0:
-        print('Orientation fixed')
-        GameEvents.emit_signal("trigger_monologue", "Yeah...I don't think the stabilisers are gonna hold...")
-        GameEvents.emit_signal("trigger_monologue", "Let's unlock the exit hatch from the terminal and get outta here")
-
-        rotation.x = 0
-        rotation_speed = 0
-        go_to_surface_interactable.process_mode = Node.PROCESS_MODE_INHERIT
-        stop_once_oriented = false
-
-
 func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
     pipe_cover.rotation_degrees.y = 180
     ladder_cover.rotation_degrees.z = 90
 
+    #TODO: disable movement
+
     GameEvents.emit_signal("trigger_fade")
-    GameEvents.emit_signal("trigger_monologue", "Time for a good nights sleep...")
+    GameEvents.emit_signal("trigger_monologue", "Time for a good night's sleep...")
 
     timer.timeout.connect(wakeup)
-    timer.start(1)
+    timer.start(2)
 
-
-func _on_start_bilge_main_console(source: Node3D) -> void:
-    #TODO: show that bilge needs manual override
-    print('Bilge needs manual override')
-    GameEvents.emit_signal("trigger_monologue", "Yep. Water inside bad.")
-    GameEvents.emit_signal("trigger_monologue", "I'll need to get to the back to pump out the water.")
-    GameEvents.emit_signal("trigger_monologue", "I'll need to get the scuba gear further down first...")
-
-    pass
-
-
-func _on_bilge_manual_override(source: Node3D) -> void:
-    print('Bilge manual override enabled')
-    GameEvents.emit_signal("trigger_lights", "deactivate")
-    GameEvents.emit_signal("trigger_monologue", "Bilge manual override enabled")
-    GameEvents.emit_signal("trigger_monologue", "I also activated the stabilisers.")
-    GameEvents.emit_signal("trigger_monologue", "Wow, that wasnt so bad...")
-
-    animation_player.play("bilge")
-
-
-func _on_entered_central_deck(source: Node3D) -> void:
-    print('Shit gets crazy?')
-    GameEvents.emit_signal("trigger_monologue", "That doesn't sound good...")
-
-    timer.timeout.connect(start_rotation)
-    timer.start()
-
-
-func _on_stop_spinning(source: Node3D) -> void:
-    print('Waiting for correct orientation')
-    GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
-    GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to...")
-    GameEvents.emit_signal("trigger_monologue", "Stabilise")
-
-    ladder_cover.rotation_degrees.z = 0
-    stop_once_oriented = true
-
-
-func _on_go_to_surface(source: Node3D) -> void:
-    print('Going to surface')
-    GameEvents.emit_signal("trigger_lights", "exit")
-    GameEvents.emit_signal("trigger_monologue", "Done. Now just to get to the tip.")
-
-    timer.timeout.connect(panic)
-    timer.start(3)
-
-
-func _on_escape(source: Node3D) -> void:
-    print('Escaping')
-    GameEvents.emit_signal("trigger_monologue", "FREEEDOM!!")
-    GameEvents.emit_signal("trigger_fade")
-
-    timer.timeout.connect(freedom)
-    timer.start(3)
-
-
-
-func _on_scuba_interacted(source: Node3D) -> void:
-    GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
-    GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
-    scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
-    has_scuba = true
-
-func _on_glass_breaker_interacted(source: Node3D) -> void:
-    GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies...")
-    GameEvents.emit_signal("trigger_monologue", "I think this counts right?")
-    glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
-
-func _on_fell_off_pipe(source: Node3D) -> void:
-    falls += 1
-    var index = (falls - 1) % fall_off_pipe_lines.size()
-    GameEvents.emit_signal("trigger_monologue", fall_off_pipe_lines[index])
-
-func _on_finished_pipe(source: Node3D) -> void:
-    GameEvents.emit_signal("trigger_monologue", "I hope I never need to do that again....")
-    GameEvents.emit_signal("trigger_monologue", "To the main deck. So we can stop this madness.")
-
-func _on_first_see_water(source: Node3D) -> void:
-    GameEvents.emit_signal("trigger_monologue", "Hmm...I think we may have a leak...")
-
-func _through_the_pipe(source: Node3D) -> void:
-    if(has_scuba && !said_the_pipe_line):
-        GameEvents.emit_signal("trigger_monologue", "Looks like I'll need to go through the pipe to get to the back right now...")
-        said_the_pipe_line = true
 
 func wakeup() -> void:
     timer.timeout.disconnect(wakeup)
@@ -197,34 +100,138 @@ func wakeup() -> void:
     await get_tree().physics_frame
     await get_tree().physics_frame # bruh
     await get_tree().physics_frame
-    await get_tree().physics_frame
-    await get_tree().physics_frame
 
     respawn_player.emit()
-    GameEvents.emit_signal("trigger_monologue", "Whoa...Why's everything sideways???")
+
+    #TODO: reenable movement
+
+    await get_tree().create_timer(5).timeout
+    GameEvents.emit_signal("trigger_monologue", "Whoa... Why's everything sideways???")
     GameEvents.emit_signal("trigger_monologue", "Better get to the command terminal to see what's going on...")
+
+
+func _on_first_see_water(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "Hmm...I think we may have a leak...")
+
+
+func _on_glass_breaker_interacted(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies... this counts, right?")
+    glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
+
+
+func _on_start_bilge_main_console(source: Node3D) -> void:
+    print('Bilge needs manual override')
+    GameEvents.emit_signal("trigger_monologue", "Yep. Water inside bad.")
+    GameEvents.emit_signal("trigger_monologue", "The bilge pump needs a manual override. It's at the back in the engine room.")
+    GameEvents.emit_signal("trigger_monologue", "I'll need to get the scuba gear from opposite the stairs first...")
+
+
+func _on_scuba_interacted(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
+    GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
+    scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
+    has_scuba = true
+
+
+func _through_the_pipe(source: Node3D) -> void:
+    if (has_scuba && !said_the_pipe_line):
+        GameEvents.emit_signal("trigger_monologue", "Looks like I'll need to go through the pipe to get to the back right now...")
+        said_the_pipe_line = true
+
+
+func _on_bilge_manual_override(source: Node3D) -> void:
+    print('Bilge manual override enabled')
+    GameEvents.emit_signal("trigger_lights", "deactivate")
+    GameEvents.emit_signal("trigger_monologue", "Bilge manual override enabled!")
+    GameEvents.emit_signal("trigger_monologue", "The sub should stabilise once the water is drained.")
+    GameEvents.emit_signal("trigger_monologue", "Wow, that wasn't so bad...")
+
+    animation_player.play("bilge")
+
+
+func _on_entered_central_deck(source: Node3D) -> void:
+    print('Shit gets crazy?')
+    GameEvents.emit_signal("trigger_monologue", "That doesn't sound good...")
+
+    timer.timeout.connect(start_rotation)
+    timer.start(3)
 
 
 func start_rotation() -> void:
     timer.timeout.disconnect(start_rotation)
-    rotation_speed = -0.2
+    animation_player.play("rotate")
     pipe_cover.rotation_degrees.y = -90
     stop_spinning_interactable.process_mode = Node.PROCESS_MODE_INHERIT
     GameEvents.emit_signal("trigger_lights", "panic")
-    GameEvents.emit_signal("trigger_monologue", "Just when I thought I fixed it all...")
-    GameEvents.emit_signal("trigger_monologue", "Better hurry back to the main command and try fix this...")
+    GameEvents.emit_signal("trigger_monologue", "Just when I thought I'd fixed it all...")
+    GameEvents.emit_signal("trigger_monologue", "Better hurry back to main command and fix this...")
+
+
+func _on_fell_off_pipe(source: Node3D) -> void:
+    falls += 1
+    var index = (falls - 1) % fall_off_pipe_lines.size()
+    GameEvents.emit_signal("trigger_monologue", fall_off_pipe_lines[index])
+
+
+func _on_finished_pipe(source: Node3D) -> void:
+    GameEvents.emit_signal("trigger_monologue", "I hope I never need to do that again....")
+    GameEvents.emit_signal("trigger_monologue", "To the main deck. So we can stop this madness.")
+
+
+func _on_stop_spinning(source: Node3D) -> void:
+    print('Waiting for correct orientation')
+    ladder_cover.rotation_degrees.z = 0
+
+    GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
+    GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to... stabilise.")
+
+    await rotation_upright
+    animation_player.stop()
+
+    GameEvents.emit_signal("trigger_monologue", "I'm not waiting around for that to happen again...")
+    GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
+    go_to_surface_interactable.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_go_to_surface(source: Node3D) -> void:
+    print('Going to surface')
+    GameEvents.emit_signal("trigger_lights", "exit")
+    GameEvents.emit_signal("trigger_monologue", "Done. The escape pod is right at the front.")
+
+    timer.timeout.connect(panic)
+    timer.start(3)
+
+
+func panic() -> void:
+    timer.timeout.disconnect(panic)
+    animation_player.play("go_to_surface")
+
+    GameEvents.emit_signal("trigger_lights", "panic")
+    GameEvents.emit_signal("trigger_monologue", "Ok, that's not normal. Better find something to hold onto.")
+    GameEvents.emit_signal("trigger_monologue", "I need to climb my way to the top and escape this nightmare...")
+
+
+func _on_escape(source: Node3D) -> void:
+    print('Escaping')
+    GameEvents.emit_signal("trigger_monologue", "FREEEDOM!!")
+    GameEvents.emit_signal("trigger_fade")
+
+    timer.timeout.connect(freedom)
+    timer.start(4)
+
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
     get_tree().quit()
 
-func panic() -> void:
-    timer.timeout.disconnect(panic)
-    animation_player.play("go_to_surface")
-    emergency_exit_interactable.process_mode = Node.PROCESS_MODE_INHERIT
-    GameEvents.emit_signal("trigger_lights", "panic")
-    GameEvents.emit_signal("trigger_monologue", "Ok that's not normal better find something to hold onto")
-    GameEvents.emit_signal("trigger_monologue", "Just gotta get to the top and we'll be free...")
 
 func get_water_surface_level() -> float:
     return water.position.y
+
+
+func emit_rotation_upright() -> void:
+    rotation_upright.emit()
+
+
+func fully_tilted() -> void:
+    emergency_exit_interactable.process_mode = Node.PROCESS_MODE_INHERIT

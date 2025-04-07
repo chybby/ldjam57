@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=48 format=4 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -275,7 +275,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 14),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
@@ -287,8 +287,8 @@ tracks/1/path = NodePath("TheSequelToWater:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(15, 30),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(10.9667, 24.3),
+"transitions": PackedFloat32Array(1, 2),
 "update": 0,
 "values": [Vector3(41, 10.5, -3.3), Vector3(-37, 10.5, -3.3)]
 }
@@ -299,7 +299,7 @@ tracks/2/path = NodePath("TheSequelToWater:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(15),
+"times": PackedFloat32Array(10.9667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -311,17 +311,63 @@ tracks/3/path = NodePath("TheSequelToWater:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(15),
+"times": PackedFloat32Array(10.9667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fully_tilted"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jghyl"]
+resource_name = "rotate"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-6.28319, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(20),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_rotation_upright"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tswho"]
 _data = {
 &"RESET": SubResource("Animation_llh75"),
 &"bilge": SubResource("Animation_vw1pa"),
-&"go_to_surface": SubResource("Animation_qx8j2")
+&"go_to_surface": SubResource("Animation_qx8j2"),
+&"rotate": SubResource("Animation_jghyl")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a3g7j"]
@@ -560,7 +606,9 @@ shape = SubResource("ConcavePolygonShape3D_78e8x")
 transform = Transform3D(1, 1.64203e-15, 0, 1.64203e-15, 1, 0, 0, 0, 1, 0.924999, -0.0249987, -2.38419e-06)
 mesh = SubResource("ArrayMesh_ltutm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.2749, 11.0205, -5.83879)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -568,7 +616,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D9" type="OmniLight3D" parent="."]
+[node name="OmniLight3D9" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3187, 11.0205, -2.08428)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -576,7 +624,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D12" type="OmniLight3D" parent="."]
+[node name="OmniLight3D12" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7387, 2.28275, 5.46432)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -584,7 +632,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D13" type="OmniLight3D" parent="."]
+[node name="OmniLight3D13" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3147, 8.55247, 4.02744)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -592,7 +640,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D10" type="OmniLight3D" parent="."]
+[node name="OmniLight3D10" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3187, 13.3686, -2.83722)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -600,7 +648,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D11" type="OmniLight3D" parent="."]
+[node name="OmniLight3D11" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3889, -6.42784, -0.743278)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -608,7 +656,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="."]
+[node name="OmniLight3D7" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5545, 10.7585, 1.84027)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -616,7 +664,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D14" type="OmniLight3D" parent="."]
+[node name="OmniLight3D14" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.1883, 11.0205, -0.972704)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -624,7 +672,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D15" type="OmniLight3D" parent="."]
+[node name="OmniLight3D15" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.769, 11.0205, -8.05279)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -632,7 +680,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="."]
+[node name="OmniLight3D8" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6149, 10.861, -1.71631)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -640,7 +688,7 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="ExitLight" type="OmniLight3D" parent="."]
+[node name="ExitLight" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8564, 11.0205, 1.28113)
 light_color = Color(0.412974, 0.7403, 0.878113, 1)
 light_energy = 2.0
@@ -651,7 +699,7 @@ intensity = 4.0
 blink_speed = 2.0
 exit_light = true
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6821, 13.8258, -1.73497)
 light_color = Color(0.717629, 0.0576632, 4.81307e-07, 1)
 light_energy = 2.0
@@ -659,49 +707,49 @@ omni_range = 4.0
 omni_attenuation = 2.0
 script = ExtResource("6_ltutm")
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5288, 9.4006, -3.58274)
 light_color = Color(0.744757, 0.654545, 0.421907, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="light" type="OmniLight3D" parent="."]
+[node name="light" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4487, -1.29287, 10.6899)
 light_color = Color(0.744757, 0.654545, 0.421907, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="light2" type="OmniLight3D" parent="."]
+[node name="light2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3712, -8.27102, -0.810903)
 light_color = Color(0.744757, 0.654545, 0.421907, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="GreenLight" type="OmniLight3D" parent="."]
+[node name="GreenLight" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(0.999789, 0, 0.0205585, 0, 1, 0, -0.0205585, 0, 0.999789, -31.2097, 10.0567, 0.654569)
 light_color = Color(0, 0.41, 0.142959, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="GreenLight2" type="OmniLight3D" parent="."]
+[node name="GreenLight2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(0.999789, 0, 0.0205585, 0, 1, 0, -0.0205585, 0, 0.999789, 48.1449, -6.86487, 3.22398)
 light_color = Color(0, 0.41, 0.142959, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6115, 9.2992, 1.6564)
 light_color = Color(0.802138, 0.660776, 0.484303, 1)
 light_energy = 2.0
 omni_range = 1.5
 omni_attenuation = 2.0
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8408, 11.7452, 1.70199)
 light_color = Color(0.802138, 0.660776, 0.484303, 1)
 light_energy = 2.0
