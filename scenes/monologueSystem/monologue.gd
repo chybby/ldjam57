@@ -34,7 +34,7 @@ func _ready():
 func show_text(text):
     print(text)
 
-    if is_active: 
+    if is_active:
         if not text_queue.has(text):
             text_queue.append(text)
         return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=56 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -12,14 +12,14 @@
 [ext_resource type="AudioStream" uid="uid://cmcxps0tlmkye" path="res://assets/sfx/chunky.wav" id="6_xki4i"]
 [ext_resource type="ArrayMesh" uid="uid://cba6ptvpso4c8" path="res://pipecovermodel.res" id="9_wlxdm"]
 [ext_resource type="ArrayMesh" uid="uid://cryhla5u7vfa5" path="res://ladderhatchmodel.res" id="10_xki4i"]
-[ext_resource type="Script" uid="uid://c4dnonamlbpk7" path="res://scenes/game_objects/level/engine_audio_manager.gd" id="11_lbiv7"]
+[ext_resource type="Script" path="res://scenes/game_objects/level/engine_audio_manager.gd" id="11_lbiv7"]
 [ext_resource type="AudioStream" uid="uid://dueuvrutq0ih7" path="res://assets/sfx/hq-explosion-6288.mp3" id="12_0crnt"]
 [ext_resource type="AudioStream" uid="uid://dsx38bfon268d" path="res://assets/sfx/creaks1.wav" id="12_lbiv7"]
 [ext_resource type="AudioStream" uid="uid://c4322eokptlr7" path="res://assets/sfx/creaks2.wav" id="13_0crnt"]
 [ext_resource type="AudioStream" uid="uid://cbaym7qqdjxx3" path="res://assets/sfx/sound-of-a-bulldozer-151161.mp3" id="13_sxxw5"]
 [ext_resource type="AudioStream" uid="uid://cb1atwpyk835s" path="res://assets/sfx/underwater-ambiencewav-14428.mp3" id="14_0crnt"]
 [ext_resource type="AudioStream" uid="uid://bosggiwcwvim" path="res://assets/sfx/creaks3.wav" id="14_sxxw5"]
-[ext_resource type="Script" uid="uid://bksh30ltdw2ay" path="res://scenes/game_objects/level/whale_manager.gd" id="18_sxxw5"]
+[ext_resource type="Script" path="res://scenes/game_objects/level/whale_manager.gd" id="18_sxxw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vw1pa"]
 size = Vector3(25, 5.3, 11.7)
@@ -480,7 +480,6 @@ shape = SubResource("BoxShape3D_wlxdm")
 
 [node name="StartBilgeMainConsoleInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-process_mode = 4
 transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.4932, 9.65, -0.40708)
 label = "Start Bilge Pump"
 oneshot = true
@@ -545,7 +544,6 @@ shape = SubResource("BoxShape3D_x8cgc")
 
 [node name="StopSpinningInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-process_mode = 4
 transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.4932, 9.65, -0.40708)
 label = "Stop Spin"
 oneshot = true
@@ -556,7 +554,6 @@ shape = SubResource("BoxShape3D_sxxw5")
 
 [node name="GoToSurfaceInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-process_mode = 4
 transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -31.4932, 9.65, -0.40708)
 label = "Go To Surface"
 oneshot = true
@@ -567,7 +564,6 @@ shape = SubResource("BoxShape3D_a3g7j")
 
 [node name="EmergencyExitInteractable" parent="." instance=ExtResource("2_1i0lj")]
 unique_name_in_owner = true
-process_mode = 4
 transform = Transform3D(-1.17225e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 1.17225e-07, 4.70955e-15, -49.3932, 9.65, -0.90708)
 label = "Escape"
 oneshot = true

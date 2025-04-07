@@ -51,7 +51,11 @@ func _unhandled_input(event: InputEvent) -> void:
         else:
             if focused_interactable != null:
                 focused_interactable.interact(self)
-    elif event.is_action_pressed("jump"):
+
+    if(!can_move):
+        return
+
+    if event.is_action_pressed("jump"):
         jumped = true
     elif event.is_action_pressed("crouch"):
         wants_to_crouch = true
@@ -64,9 +68,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-    if(!can_move):
-        return
-    # Movement
+    # Camera movement
     camera_pivot.rotation.x = clamp(camera_pivot.rotation.x - mouse_movement.y * mouse_sensitivity, deg_to_rad(-90), deg_to_rad(90))
     rotation.y -= mouse_movement.x * mouse_sensitivity
     mouse_movement = Vector2.ZERO
@@ -183,11 +185,13 @@ func set_crouching(new_crouching: bool) -> void:
     crouching = new_crouching
 
 func get_movement_vector() -> Vector2:
+    if(!can_move):
+        return Vector2.ZERO
     return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-    
+
 func _on_get_scuba() -> void:
     has_scuba = true
     audio_manager.playSound("zip")
-    
+
 func _on_toggle_move() -> void:
     can_move = !can_move

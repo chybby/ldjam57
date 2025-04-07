@@ -33,7 +33,6 @@ signal rotation_upright
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var stop_once_oriented: bool = false
 var has_scuba: bool = false
 var said_the_pipe_line: bool = false
 var can_move = true
@@ -65,6 +64,13 @@ func _ready() -> void:
     finished_pipe.was_triggered_by.connect(_on_finished_pipe)
     first_see_water.was_triggered_by.connect(_on_first_see_water)
 
+    glass_breaker_interactable.disable()
+    scuba_interactable.disable()
+    start_bilge_main_console_interactable.disable()
+    stop_spinning_interactable.disable()
+    go_to_surface_interactable.disable()
+    emergency_exit_interactable.disable()
+
     water.visible = false
     water.monitorable = false
     the_sequel_to_water.visible = false
@@ -78,8 +84,6 @@ func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
     pipe_cover.rotation_degrees.y = 180
     ladder_cover.rotation_degrees.z = 90
-
-    #TODO: disable movement
 
     GameEvents.emit_signal("trigger_fade")
     GameEvents.emit_signal("toggle_move")
@@ -97,7 +101,7 @@ func wakeup() -> void:
 
     water.visible = true
     water.monitorable = true
-    start_bilge_main_console_interactable.process_mode = Node.PROCESS_MODE_INHERIT
+    start_bilge_main_console_interactable.enable()
 
     respawn_point = after_sleep_spawn_point
 
@@ -107,7 +111,9 @@ func wakeup() -> void:
 
     respawn_player.emit()
 
-    #TODO: reenable movement
+    GameEvents.emit_signal("toggle_move")
+    glass_breaker_interactable.enable()
+    scuba_interactable.enable()
 
     await get_tree().create_timer(5).timeout
     GameEvents.emit_signal("trigger_monologue", "Whoa... Why's everything sideways???")
@@ -144,9 +150,9 @@ func _on_bilge_manual_override(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Bilge manual override enabled!")
     GameEvents.emit_signal("trigger_monologue", "The sub should stabilise once the water is drained.")
     GameEvents.emit_signal("trigger_monologue", "Wow, that wasn't so bad...")
-    
-    start_bilge_main_console_interactable.process_mode = Node.PROCESS_MODE_DISABLED
-    
+
+    start_bilge_main_console_interactable.disable()
+
     engine_manager.StartEngine()
     animation_player.play("bilge")
 
@@ -154,7 +160,7 @@ func _on_bilge_manual_override(source: Node3D) -> void:
 func _on_entered_central_deck(source: Node3D) -> void:
     print('Shit gets crazy?')
     GameEvents.emit_signal("trigger_monologue", "That doesn't sound good...")
-    
+
     engine_manager.Explode()
     engine_manager.StopEngine()
 
@@ -166,7 +172,7 @@ func start_rotation() -> void:
     timer.timeout.disconnect(start_rotation)
     animation_player.play("rotate")
     pipe_cover.rotation_degrees.y = -90
-    stop_spinning_interactable.process_mode = Node.PROCESS_MODE_INHERIT
+    stop_spinning_interactable.enable()
     GameEvents.emit_signal("trigger_lights", "panic")
     GameEvents.emit_signal("trigger_monologue", "Just when I thought I'd fixed it all...")
     GameEvents.emit_signal("trigger_monologue", "Better hurry back to main command and fix this...")
@@ -196,8 +202,8 @@ func _on_stop_spinning(source: Node3D) -> void:
 
     GameEvents.emit_signal("trigger_monologue", "I'm not waiting around for that to happen again...")
     GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
-    go_to_surface_interactable.process_mode = Node.PROCESS_MODE_INHERIT
-    
+    go_to_surface_interactable.enable()
+
     engine_manager.StartClunkyEngine()
 
 
@@ -222,12 +228,12 @@ func panic() -> void:
 
 func _on_escape(source: Node3D) -> void:
     print('Escaping')
+    GameEvents.emit_signal("toggle_move")
     GameEvents.emit_signal("trigger_monologue", "FREEEDOM!!")
     GameEvents.emit_signal("trigger_fade")
 
     timer.timeout.connect(freedom)
     timer.start(4)
-
 
 
 func _on_scuba_interacted(source: Node3D) -> void:
@@ -237,13 +243,15 @@ func _on_scuba_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("get_scuba")
     has_scuba = true
 
+
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
     get_tree().quit()
+
 
 func emit_rotation_upright() -> void:
     rotation_upright.emit()
 
 
 func fully_tilted() -> void:
-    emergency_exit_interactable.process_mode = Node.PROCESS_MODE_INHERIT
+    emergency_exit_interactable.enable()

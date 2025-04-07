@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://hxjtag7ynf2o" path="res://assets/sfx/metalfoot7.wav" id="8_g8suy"]
 [ext_resource type="AudioStream" uid="uid://lbigfpku0cqo" path="res://assets/sfx/metalfoot8.wav" id="9_1ns1k"]
 [ext_resource type="AudioStream" uid="uid://crdw0vmgbxydb" path="res://assets/sfx/waterstroke1.wav" id="10_1ns1k"]
-[ext_resource type="Script" uid="uid://dprwvyfyjsfep" path="res://scenes/game_objects/player/player_audio_manager.gd" id="10_7wc5h"]
+[ext_resource type="Script" path="res://scenes/game_objects/player/player_audio_manager.gd" id="10_7wc5h"]
 [ext_resource type="AudioStream" uid="uid://dcwouhui63pvh" path="res://assets/sfx/beep-6-96243.mp3" id="10_i6po3"]
 [ext_resource type="AudioStream" uid="uid://dymsyaxc3hced" path="res://assets/sfx/waterstroke2.wav" id="11_i6po3"]
 [ext_resource type="AudioStream" uid="uid://ctykn3jbxkbwf" path="res://assets/sfx/waterstroke3.wav" id="12_7wc5h"]
