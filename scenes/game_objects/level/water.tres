@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cd5rv8nux0ok6"]
+
+[ext_resource type="Shader" uid="uid://blr6vvhgbh0fy" path="res://scenes/game_objects/level/water.gdshader" id="1_1t2uc"]
+[ext_resource type="Texture2D" uid="uid://d1skwc4ipvwcc" path="res://assets/clear+sea+water-256x256.png" id="2_k7hk4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1t2uc")
+shader_parameter/wave_texture = ExtResource("2_k7hk4")
+shader_parameter/enable_surface = false
+shader_parameter/water_color = Color(0.041, 0.147, 0.161, 0.95)
+shader_parameter/line_color = Color(0.205117, 0.205117, 0.205117, 0.426)
+shader_parameter/line_thickness = 0.01
+shader_parameter/line_threshold = 0.8
+shader_parameter/line_speed = 0.002
+shader_parameter/wave_frequency = 50.0
+shader_parameter/wave_direction = Vector2(0.5, 1)
+shader_parameter/wave_speed = 1.0
+shader_parameter/wave_height = 0.03
+shader_parameter/steps = 5.0

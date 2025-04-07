@@ -1,6 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwav8ma78d78y"]
+[gd_scene load_steps=31 format=3 uid="uid://cwav8ma78d78y"]
 
 [ext_resource type="Script" uid="uid://cbrfiao50xcnv" path="res://scenes/game_objects/player/player.gd" id="1_k7pqn"]
+[ext_resource type="AudioStream" uid="uid://1bhyod82xaj1" path="res://assets/sfx/metalfoot1.wav" id="2_lqtp8"]
+[ext_resource type="AudioStream" uid="uid://wuutjsktbt2m" path="res://assets/sfx/metalfoot2.wav" id="3_8w328"]
+[ext_resource type="AudioStream" uid="uid://c73l3vm0ypb2d" path="res://assets/sfx/metalfoot3.wav" id="4_3mdk8"]
+[ext_resource type="AudioStream" uid="uid://casn8atdaobc" path="res://assets/sfx/metalfoot4.wav" id="5_pad3l"]
+[ext_resource type="AudioStream" uid="uid://dxtstmi2dnrro" path="res://assets/sfx/metalfoot5.wav" id="6_84ntt"]
+[ext_resource type="AudioStream" uid="uid://bq78qgdalmsud" path="res://assets/sfx/metalfoot6.wav" id="7_qwalg"]
+[ext_resource type="AudioStream" uid="uid://hxjtag7ynf2o" path="res://assets/sfx/metalfoot7.wav" id="8_g8suy"]
+[ext_resource type="AudioStream" uid="uid://lbigfpku0cqo" path="res://assets/sfx/metalfoot8.wav" id="9_1ns1k"]
+[ext_resource type="AudioStream" uid="uid://crdw0vmgbxydb" path="res://assets/sfx/waterstroke1.wav" id="10_1ns1k"]
+[ext_resource type="AudioStream" uid="uid://dymsyaxc3hced" path="res://assets/sfx/waterstroke2.wav" id="11_i6po3"]
+[ext_resource type="AudioStream" uid="uid://ctykn3jbxkbwf" path="res://assets/sfx/waterstroke3.wav" id="12_7wc5h"]
+[ext_resource type="AudioStream" uid="uid://c4ds0ihld5d84" path="res://assets/sfx/waterstroke4.wav" id="13_lyf0u"]
+[ext_resource type="AudioStream" uid="uid://ou5qwv1cw0wy" path="res://assets/sfx/waterstroke5.wav" id="14_rl6uc"]
+[ext_resource type="AudioStream" uid="uid://dvejk5vcag7hg" path="res://assets/sfx/waterstroke6.wav" id="15_d2mjs"]
+[ext_resource type="AudioStream" uid="uid://d1ajufj0bu26l" path="res://assets/sfx/waterstroke7.wav" id="16_r1mhb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7uu8a"]
 radius = 0.3
@@ -13,6 +28,9 @@ height = 1.2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2l2k"]
 radius = 0.3
 height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v2l2k"]
+radius = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tuuoe"]
 radius = 0.3
@@ -57,6 +75,67 @@ _data = {
 &"crouch": SubResource("Animation_7uu8a")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tuuoe"]
+random_pitch = 1.02
+random_volume_offset_db = 1.0
+streams_count = 8
+stream_0/stream = ExtResource("2_lqtp8")
+stream_1/stream = ExtResource("3_8w328")
+stream_2/stream = ExtResource("4_3mdk8")
+stream_3/stream = ExtResource("5_pad3l")
+stream_4/stream = ExtResource("6_84ntt")
+stream_5/stream = ExtResource("7_qwalg")
+stream_6/stream = ExtResource("8_g8suy")
+stream_7/stream = ExtResource("9_1ns1k")
+
+[sub_resource type="Animation" id="Animation_euv0w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v2l2k"]
+resource_name = "step"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_euv0w"]
+_data = {
+&"RESET": SubResource("Animation_euv0w"),
+&"step": SubResource("Animation_v2l2k")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mys8"]
+random_pitch = 1.02
+streams_count = 7
+stream_0/stream = ExtResource("10_1ns1k")
+stream_1/stream = ExtResource("11_i6po3")
+stream_2/stream = ExtResource("12_7wc5h")
+stream_3/stream = ExtResource("13_lyf0u")
+stream_4/stream = ExtResource("14_rl6uc")
+stream_5/stream = ExtResource("15_d2mjs")
+stream_6/stream = ExtResource("16_r1mhb")
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_k7pqn")
@@ -86,6 +165,14 @@ collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="CameraSubmerged" type="Area3D" parent="CameraPivot"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/CameraSubmerged"]
+shape = SubResource("SphereShape3D_v2l2k")
+
 [node name="WaterCollider" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 8
@@ -107,3 +194,20 @@ shape = SubResource("SphereShape3D_7uu8a")
 libraries = {
 &"": SubResource("AnimationLibrary_v2l2k")
 }
+
+[node name="Footsteps" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Footsteps"]
+stream = SubResource("AudioStreamRandomizer_tuuoe")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Footsteps"]
+libraries = {
+&"": SubResource("AnimationLibrary_euv0w")
+}
+
+[node name="SwimmingAudioPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7mys8")
+max_polyphony = 2
+bus = &"SFX"
+area_mask = 8
