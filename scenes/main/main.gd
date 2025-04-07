@@ -3,6 +3,8 @@ extends Node3D
 @onready var player: Player = $Player
 @onready var level: Level = $Level
 @onready var waterLayer = $WaterLayer
+@onready var settings: CanvasLayer = %Settings
+@onready var fade_layer: CanvasLayer = $FadeLayer
 
 @onready var scuba_interactable: Interactable = $Level/ScubaInteractable
 @onready var scuba_icon: PanelContainer = %ScubaIcon
@@ -12,13 +14,26 @@ extends Node3D
 var is_underwater = false
 
 
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("pause"):
+        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+        get_tree().paused = true
+        settings.visible = true
+    elif event.is_action_pressed("left_click"):
+        if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+            Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
 func _ready() -> void:
     level.respawn_player.connect(_on_respawn_player)
     scuba_interactable.was_interacted_by.connect(_on_scuba_interacted)
     glass_breaker_interactable.was_interacted_by.connect(_on_glass_breaker_interacted)
 
+    fade_layer.start_fade_cycle_from_black()
+
     # TODO: comment for debugging
     respawn_player()
+
 
 func _process(delta: float) -> void:
     waterLayer.visible = player.is_underwater

@@ -3,7 +3,7 @@ class_name Player
 
 @export_range(0.0, 100.0, 0.1, "or_greater", "suffix:px/s") var walk_speed: float = 3.0
 @export_range(0.0, 100.0, 0.1, "or_greater", "suffix:px/s") var sprint_speed: float = 5.0
-@export var mouse_sensitivity: float = 0.005
+@export var mouse_sensitivity: float = 5
 @export var jump_strength: float = 7.5
 @export var water_jump_strength: float = 11.0
 @export var dive_speed: float = 2.0
@@ -43,14 +43,9 @@ func _ready() -> void:
     GameEvents.connect("toggle_move", Callable(self, "_on_toggle_move"))
 
 func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("pause"):
-        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-    elif event.is_action_pressed("left_click"):
-        if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-            Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-        else:
-            if focused_interactable != null:
-                focused_interactable.interact(self)
+    if event.is_action_pressed("left_click"):
+        if focused_interactable != null:
+            focused_interactable.interact(self)
 
     if(!can_move):
         return
@@ -69,8 +64,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
     # Camera movement
-    camera_pivot.rotation.x = clamp(camera_pivot.rotation.x - mouse_movement.y * mouse_sensitivity, deg_to_rad(-90), deg_to_rad(90))
-    rotation.y -= mouse_movement.x * mouse_sensitivity
+    camera_pivot.rotation.x = clamp(camera_pivot.rotation.x - mouse_movement.y * mouse_sensitivity / 1000, deg_to_rad(-90), deg_to_rad(90))
+    rotation.y -= mouse_movement.x * mouse_sensitivity / 1000
     mouse_movement = Vector2.ZERO
 
     # Interacting
@@ -132,7 +127,7 @@ func _physics_process(delta: float) -> void:
             if has_scuba:
                 velocity.y = -dive_speed
             else:
-                GameEvents.emit_signal("trigger_monologue", "There's no way I'm going down there without a scuba")
+                GameEvents.emit_signal("trigger_monologue", "There's no way I'm going down there without scuba gear")
         velocity.y = lerp(velocity.y, 0.0, 1.0 - exp(-water_dampening * delta))
 
         var playback_pos = 1

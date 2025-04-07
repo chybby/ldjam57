@@ -19,14 +19,6 @@ func _ready():
     GameEvents.connect("trigger_monologue", Callable(self, "show_text"))
     text_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-    var font = SystemFont.new()
-    font.font_names = ["Courier New"]
-    font.generate_mipmaps = false
-    font.antialiasing = false
-
-    text_label.add_theme_font_override("normal_font", font)
-    text_label.add_theme_font_size_override("normal_font_size", 8)
-
     timer.timeout.connect(initialise)
     timer.start(2)
 

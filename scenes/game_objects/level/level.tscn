@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b8ic6wdu3t8ql"]
+[gd_scene load_steps=61 format=3 uid="uid://b8ic6wdu3t8ql"]
 
 [ext_resource type="Script" uid="uid://b14gnnw5gomgq" path="res://scenes/main/level.gd" id="1_pt7sd"]
 [ext_resource type="PackedScene" uid="uid://bdlc32ufvi3ef" path="res://interactable.tscn" id="2_1i0lj"]
@@ -295,37 +295,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_jghyl"]
-resource_name = "rotate"
-length = 20.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 20),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-6.28319, 0, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(20),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"emit_rotation_upright"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_x8cgc"]
 resource_name = "raise_water"
 length = 15.0
@@ -366,6 +335,37 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_jghyl"]
+resource_name = "rotate"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-6.28319, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(20),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_rotation_upright"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tswho"]
 _data = {
 &"RESET": SubResource("Animation_llh75"),
@@ -381,11 +381,15 @@ stream_0/stream = ExtResource("12_lbiv7")
 stream_1/stream = ExtResource("13_0crnt")
 stream_2/stream = ExtResource("14_sxxw5")
 
+[sub_resource type="SystemFont" id="SystemFont_x8cgc"]
+font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
+
 [node name="Level" type="AnimatableBody3D"]
 script = ExtResource("1_pt7sd")
 
 [node name="InitialSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 9.2, 0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 8.95, 0.75)
 
 [node name="AfterSleepSpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 12.7, 2.25)
@@ -431,6 +435,7 @@ skeleton = NodePath("")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Water"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6524, -13.1353, 0.987767)
 stream = ExtResource("2_wlxdm")
+bus = &"SFX"
 
 [node name="TheSequelToWater" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 41, 10.5, -3.3)
@@ -816,6 +821,7 @@ bus = &"SFX"
 [node name="EngineAudioSource" type="AudioStreamPlayer3D" parent="EngineAudioManager"]
 stream = ExtResource("13_sxxw5")
 autoplay = true
+bus = &"SFX"
 
 [node name="UnderwaterAudio" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89183, 16.7834, 11.5608)
@@ -829,6 +835,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6383, -11.247, 12.8778)
 stream = SubResource("AudioStreamRandomizer_a3g7j")
 volume_db = -80.0
 autoplay = true
+bus = &"SFX"
 
 [node name="WhaleManager" type="Node3D" parent="."]
 script = ExtResource("18_sxxw5")
@@ -839,3 +846,177 @@ bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="WhaleManager"]
 wait_time = 2.004
+
+[node name="Scuba" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 10.3, -1.24288)
+pixel_size = 0.001
+shaded = true
+text = "SCUBA"
+font = SubResource("SystemFont_x8cgc")
+font_size = 200
+outline_size = 0
+
+[node name="SleepingQuarters" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41.8232, 11.0627, -1.38745)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "SLEEPING
+QUARTERS"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="SleepingQuarters2" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -46.7305, 11.0627, 1.85045)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "SLEEPING
+QUARTERS"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="ControlRoom2" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -47.5991, 14.0511, 1.83559)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "CONTROL
+ROOM
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="MyRoom" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -38.9503, 14.0511, 1.83559)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "LAURIE
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="OtherRoom" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -27.988, 14.0511, 1.83559)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "BLUE"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="ControlRoom3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -45.9317, 1.73144, 2.12661)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "CONTROL
+ROOM"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="EngineRoom" type="Label3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 11.9764, 0.934744, 9.50447)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "ENGINE ROOM"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="BilgeRoom" type="Label3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 43.5038, -6.06842, -2.15304)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "BILGE PUMP"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="PipeRoom" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4631, 14.0511, -1.79502)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "PIPE
+MAINTENANCE"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="OtherRoom2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4829, 14.0511, -1.7967)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "ADKINS
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="OtherRoom3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.0575, 14.0511, -1.7967)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "EVANS
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="ControlRoom" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -42.8325, 11.0627, 1.80479)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "CONTROL
+ROOM
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="ControlRoom4" type="Label3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -42.1696, 11.0627, -5.52348)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "CONTROL
+ROOM
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 100
+outline_size = 0
+
+[node name="RecRoom" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41.8232, 11.0627, -5.50808)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "REC ROOM
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0
+
+[node name="RecRoom2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3239, 11.0627, -1.81189)
+pixel_size = 0.001
+shaded = true
+modulate = Color(0.405665, 0.275385, 1.92523e-07, 1)
+text = "REC ROOM
+"
+font = SubResource("SystemFont_x8cgc")
+font_size = 150
+outline_size = 0

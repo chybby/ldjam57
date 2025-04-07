@@ -1,12 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d1jycx0w6qc23"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://db8pk6dst5n61"]
 
-[ext_resource type="Texture2D" uid="uid://bvopquxso4wsy" path="res://level__albedo002.png" id="1_rxctn"]
+[ext_resource type="Texture2D" uid="uid://bngkmctlrj6uu" path="res://level_level_chain.png" id="1_rxctn"]
 
 [resource]
 resource_name = "Meshing"
 transparency = 1
-albedo_color = Color(0.72549, 0.854902, 1, 0.235294)
 albedo_texture = ExtResource("1_rxctn")
-uv1_scale = Vector3(0.2, 0.2, 0.5)
-uv1_offset = Vector3(0, 0.6, 0)
+uv1_scale = Vector3(5, 5, 5)
 uv1_triplanar = true

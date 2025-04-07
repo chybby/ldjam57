@@ -10,3 +10,6 @@ func _ready() -> void:
 
 func start_fade_cycle():
     fade_animator.play("fadeout")
+
+func start_fade_cycle_from_black():
+    fade_animator.play_section_with_markers("fadeout", "full_black")

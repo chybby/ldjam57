@@ -7,7 +7,7 @@ extends OmniLight3D
 var time = 0.0
 var panicmode = 2
 var in_intensity = 0.0
-var audio_player = null
+var audio_player: AudioStreamPlayer3D = null
 
 var alarm = preload("res://assets/sfx/alarm-no3-14864.mp3")
 
@@ -15,6 +15,7 @@ func _ready() -> void:
     GameEvents.connect("trigger_lights", Callable(self, "trigger_event"))
     in_intensity = 0.0
     audio_player = AudioStreamPlayer3D.new()
+    audio_player.bus = "SFX"
     add_child(audio_player)
 
 func _process(delta):

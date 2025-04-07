@@ -139,7 +139,7 @@ stream_4/stream = ExtResource("14_rl6uc")
 stream_5/stream = ExtResource("15_d2mjs")
 stream_6/stream = ExtResource("16_r1mhb")
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_k7pqn")
 
@@ -223,6 +223,7 @@ bus = &"SFX"
 [node name="ScubaBreathing" type="AudioStreamPlayer3D" parent="AudioManager"]
 stream = ExtResource("12_lyf0u")
 volume_db = -20.506
+bus = &"SFX"
 
 [node name="SwimmingAudioPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7mys8")

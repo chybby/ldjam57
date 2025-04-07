@@ -148,10 +148,10 @@ func _through_the_pipe(source: Node3D) -> void:
 
 
 func _on_bilge_manual_override(source: Node3D) -> void:
-    print('Bilge manual override enabled')
+    print('Bilge pump manual override enabled')
     GameEvents.emit_signal("trigger_lights", "deactivate")
     GameEvents.emit_signal("interact_console")
-    GameEvents.emit_signal("trigger_monologue", "Bilge manual override enabled!")
+    GameEvents.emit_signal("trigger_monologue", "Bilge pump manual override enabled!")
     GameEvents.emit_signal("trigger_monologue", "The sub should stabilise once the water is drained.")
     GameEvents.emit_signal("trigger_monologue", "Wow, that wasn't so bad...")
 

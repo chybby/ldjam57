@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ldjam 57"
 config/tags=PackedStringArray("ldjam")
-run/main_scene="uid://ef5dqqevmxcn"
+run/main_scene="uid://diwsec3wxj6y8"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
@@ -36,7 +36,6 @@ window/size/viewport_height=360
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
-window/size/always_on_top.editor=true
 
 [editor]
 
@@ -50,9 +49,14 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 
 import/blender/enabled=false
 
+[global_group]
+
+player=""
+
 [gui]
 
 theme/custom="res://resources/ui_theme.tres"
+theme/custom_font="uid://c58tkfpe6gq66"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqdghib36qcfw"]
+[gd_scene load_steps=3 format=3 uid="uid://dqdghib36qcfw"]
 
 [ext_resource type="Script" uid="uid://cec6juvyv8y5n" path="res://scenes/monologueSystem/monologue.gd" id="1_3var0"]
+[ext_resource type="FontFile" uid="uid://c58tkfpe6gq66" path="res://scenes/monologueSystem/SyneMono-Regular.ttf" id="2_6vddi"]
 
 [node name="MonologueSystem" type="Control"]
 layout_mode = 3
@@ -30,7 +31,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Textbox" type="Panel" parent="Monologue/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -48,6 +49,8 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_6vddi")
+theme_override_font_sizes/normal_font_size = 12
 text = "I am lost....."
 scroll_active = false
 

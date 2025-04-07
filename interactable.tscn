@@ -10,3 +10,4 @@ monitorable = false
 script = ExtResource("1_wh154")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"

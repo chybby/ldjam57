@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
 [ext_resource type="PackedScene" uid="uid://b8ic6wdu3t8ql" path="res://scenes/game_objects/level/level.tscn" id="3_k2fmo"]
-[ext_resource type="Script" uid="uid://dg5ti4ep33k6y" path="res://scenes/main/postprocessing.gd" id="4_6q06x"]
 [ext_resource type="Shader" uid="uid://cb0mfmpkehdnp" path="res://scenes/main/main.gdshader" id="4_l3cfh"]
 [ext_resource type="AudioStream" uid="uid://cfmvp6qtpnbrf" path="res://resources/bgmusic.mp3" id="4_ow5a4"]
 [ext_resource type="StyleBox" uid="uid://b84455x2yqgny" path="res://resources/hud_item_panel.tres" id="7_b1x3f"]
@@ -12,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bw0cbygxgthwr" path="res://assets/scuba.png" id="8_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://dqdghib36qcfw" path="res://scenes/monologueSystem/monologue.tscn" id="10_a8run"]
 [ext_resource type="Script" uid="uid://b3fxjr68xip05" path="res://scenes/main/fade_layer.gd" id="10_ouso4"]
+[ext_resource type="PackedScene" uid="uid://pnj8nkq265qi" path="res://scenes/ui/settings.tscn" id="13_th5th"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -69,6 +69,11 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_a8run"]
 resource_name = "fadeout"
 length = 5.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"full_black",
+"time": 1.56482
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,7 +97,7 @@ _data = {
 script = ExtResource("1_jcq7f")
 
 [node name="Player" parent="." instance=ExtResource("1_rrmv2")]
-transform = Transform3D(-0.0500002, 0, 0.998749, 0, 1, 0, -0.998749, 0, -0.0500002, 10.0561, 25.8482, 0.699233)
+transform = Transform3D(0.562083, 0, 0.82708, 0, 1, 0, -0.82708, 0, 0.562083, 10.0561, 25.8482, 0.699233)
 
 [node name="Level" parent="." instance=ExtResource("3_k2fmo")]
 unique_name_in_owner = true
@@ -103,13 +108,11 @@ camera_attributes = SubResource("CameraAttributesPractical_blune")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ow5a4")
-volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
 [node name="PostProcessing" type="CanvasLayer" parent="."]
 layer = 10
-script = ExtResource("4_6q06x")
 
 [node name="ColorRect" type="ColorRect" parent="PostProcessing"]
 material = SubResource("ShaderMaterial_l3cfh")
@@ -118,6 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="WaterLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -194,3 +198,7 @@ libraries = {
 [node name="Monologue" type="CanvasLayer" parent="."]
 
 [node name="MonologueSystem" parent="Monologue" instance=ExtResource("10_a8run")]
+
+[node name="Settings" parent="." instance=ExtResource("13_th5th")]
+unique_name_in_owner = true
+visible = false

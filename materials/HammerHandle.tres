@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cgl4tgwwu2wj0"]
+
+[resource]
+resource_name = "HammerHandle"
+cull_mode = 2
+albedo_color = Color(1, 0.401707, 0, 1)
