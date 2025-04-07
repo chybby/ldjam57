@@ -68,5 +68,5 @@ func _hide_text():
 
 func initialise():
     timer.timeout.disconnect(initialise)
-    show_text("Ah...another quiet day over")
+    show_text("Finally, the end of yet another uneventful shift.")
     show_text("Time to hit the hay...")

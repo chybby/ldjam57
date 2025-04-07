@@ -84,7 +84,7 @@ func _ready() -> void:
     wrongbed1.was_interacted_by.connect(_wrong_bed)
     wrongbed2.was_interacted_by.connect(_wrong_bed)
     wrongbed3.was_interacted_by.connect(_wrong_bed)
-    
+
 
     glass_breaker_interactable.disable()
     scuba_interactable.disable()
@@ -108,7 +108,7 @@ func _ready() -> void:
 
 func _on_bed_interacted(source: Node3D) -> void:
     print('Good night sleep tight')
-    
+
     pipe_cover.rotation_degrees.y = 180
     ladder_cover.rotation_degrees.z = 90
 
@@ -155,7 +155,6 @@ func _on_glass_breaker_interacted(source: Node3D) -> void:
     glass.visible = false
     hammer.visible = false
     GameEvents.emit_signal("trigger_monologue", "Break in case of emergencies... this counts, right?")
-    glass_breaker_interactable.get_node("AudioStreamPlayer3D").finished.connect(glass_breaker_interactable.queue_free)
     has_hammer = true
     top_glass_interactable.enable()
     command_glass_interactable.enable()
@@ -230,7 +229,7 @@ func _on_stop_spinning(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_lights", "deactivate")
     GameEvents.emit_signal("trigger_monologue", "Ok! Managed to hit the switch!")
     GameEvents.emit_signal("trigger_monologue", "Just gotta wait for these stabilisers to... stabilise.")
-    
+
     engine_manager.StartClunkyEngine()
 
     await rotation_upright
@@ -240,7 +239,7 @@ func _on_stop_spinning(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I need to get out of here, I can unlock the escape pod from the same terminal.")
     go_to_surface_interactable.enable()
 
-    
+
 
 
 func _on_go_to_surface(source: Node3D) -> void:
@@ -288,18 +287,18 @@ func _on_top_glass_interacted(source: Node3D) -> void:
     if(!has_hammer):
         return
     GameEvents.emit_signal("play_sound", "breakGlass")
-    top_glass_interactable.queue_free()    
-    
+    top_glass_interactable.queue_free()
+
 func _on_command_glass_interacted(source: Node3D) -> void:
     if(!has_hammer):
         return
     GameEvents.emit_signal("play_sound", "breakGlass")
     command_glass_interactable.queue_free()
-    
+
 func _on_engine_glass_interacted(source: Node3D) -> void:
     if(!has_hammer):
         return
-    
+
     GameEvents.emit_signal("play_sound", "breakGlass")
     engine_glass_interactable.queue_free()
 
@@ -322,7 +321,7 @@ func emit_rotation_upright() -> void:
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
     animation_player.play("raise_water")
-    
+
 func _wrong_bed(source: Node3D) -> void:
     print("wrong bed")
-    GameEvents.emit_signal("trigger_monologue", "Why'd I want to sleep here??")
+    GameEvents.emit_signal("trigger_monologue", "Looks comfy... but this isn't my bed.")
