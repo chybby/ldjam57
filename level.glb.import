@@ -134,6 +134,24 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://materials/Wall.tres"
 }
+},
+"meshes": {
+"level_Cube_181": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://ladderhatchmodel.res"
+},
+"level_Sphere_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://pipecovermodel.res"
+}
 }
 }
 gltf/naming_version=1
