@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ef5dqqevmxcn"]
+[gd_scene load_steps=28 format=3 uid="uid://ef5dqqevmxcn"]
 
 [ext_resource type="Script" uid="uid://b4w208eselw6d" path="res://scenes/main/main.gd" id="1_jcq7f"]
 [ext_resource type="PackedScene" uid="uid://cwav8ma78d78y" path="res://scenes/game_objects/player/player.tscn" id="1_rrmv2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b3fxjr68xip05" path="res://scenes/main/fade_layer.gd" id="10_ouso4"]
 [ext_resource type="PackedScene" uid="uid://pnj8nkq265qi" path="res://scenes/ui/settings.tscn" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://0nxybsqbuerp" path="res://scenes/ui/Tooltip.tscn" id="13_th6th"]
+[ext_resource type="Script" uid="uid://q0yf0tng06v3" path="res://scenes/main/end_screen.gd" id="14_7smn1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iuonh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -121,6 +122,43 @@ _data = {
 &"RESET": SubResource("Animation_ouso4"),
 &"end": SubResource("Animation_blune"),
 &"fadeout": SubResource("Animation_a8run")
+}
+
+[sub_resource type="Animation" id="Animation_raeie"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7smn1"]
+resource_name = "fadein"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxu8e"]
+_data = {
+&"RESET": SubResource("Animation_raeie"),
+&"fadein": SubResource("Animation_7smn1")
 }
 
 [node name="Main" type="Node3D"]
@@ -235,4 +273,63 @@ libraries = {
 unique_name_in_owner = true
 visible = false
 
-[node name="Timer" type="Timer" parent="."]
+[node name="EndScreen" type="CanvasLayer" parent="."]
+layer = 20
+visible = false
+script = ExtResource("14_7smn1")
+
+[node name="ColorRect" type="ColorRect" parent="EndScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TheEnd" type="Label" parent="EndScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -35.685
+offset_right = 44.0
+offset_bottom = -15.685
+grow_horizontal = 2
+grow_vertical = 2
+text = "The End..."
+
+[node name="TimeLabel" type="Label" parent="EndScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9999.999s"
+
+[node name="Button" type="Button" parent="EndScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 13.69
+offset_right = 48.0
+offset_bottom = 41.69
+grow_horizontal = 2
+grow_vertical = 2
+text = "Try Again?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EndScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_hxu8e")
+}
