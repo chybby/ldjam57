@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://diwsec3wxj6y8"]
+[gd_scene load_steps=9 format=3 uid="uid://diwsec3wxj6y8"]
 
 [ext_resource type="Script" uid="uid://w46dc6uxe0s2" path="res://scenes/ui/main_menu/main_menu.gd" id="1_bb83b"]
 [ext_resource type="PackedScene" uid="uid://bw4dqwda1g0gh" path="res://scenes/ui/sound_button/sound_button.tscn" id="2_3dq3e"]
 [ext_resource type="FontFile" uid="uid://0yoxsq8dig8i" path="res://scenes/ui/main_menu/RubikGlitch-Regular.ttf" id="2_cmwxi"]
 [ext_resource type="Shader" uid="uid://b511rp6pa6sos" path="res://scenes/main/underwater.gdshader" id="3_qt1dd"]
 [ext_resource type="Shader" uid="uid://cb0mfmpkehdnp" path="res://scenes/main/main.gdshader" id="4_r70wa"]
+[ext_resource type="AudioStream" uid="uid://da1j2e8ya2bve" path="res://assets/sfx/atmospheric-depth-sound-heard-by-a-diver-while-swimming.mp3" id="6_52x6y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52x6y"]
 shader = ExtResource("4_r70wa")
@@ -83,3 +84,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_52x6y")
+bus = &"SFX"

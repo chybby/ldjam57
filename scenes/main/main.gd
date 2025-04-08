@@ -11,7 +11,11 @@ extends Node3D
 @onready var glass_breaker_interactable: Interactable = $Level/GlassBreakerInteractable
 @onready var glass_breaker_icon: PanelContainer = %GlassBreakerIcon
 
+@onready var timer = $Timer
+
 var is_underwater = false
+var start_time = 0
+var end_time = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,9 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+    start_time = Time.get_ticks_msec()
     level.respawn_player.connect(_on_respawn_player)
     scuba_interactable.was_interacted_by.connect(_on_scuba_interacted)
     glass_breaker_interactable.was_interacted_by.connect(_on_glass_breaker_interacted)
+    GameEvents.connect("end", Callable(self, "on_end_time"))
 
     fade_layer.start_fade_cycle_from_black()
 
@@ -54,3 +60,8 @@ func _on_scuba_interacted(source: Node3D) -> void:
 
 func _on_glass_breaker_interacted(source: Node3D) -> void:
     glass_breaker_icon.visible = true
+    
+func on_end_time() -> void:
+    end_time = Time.get_ticks_msec()
+    print((end_time - start_time) / 1000.0)
+    

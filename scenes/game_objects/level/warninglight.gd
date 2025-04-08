@@ -27,7 +27,7 @@ func trigger_event(text):
         if(!exit_light):
             in_intensity = intensity
             audio_player.stream = alarm
-            audio_player.volume_db = -40.0
+            audio_player.volume_db = -30.0
             audio_player.play()
 
     elif(text == "deactivate"):
