@@ -146,7 +146,8 @@ func wakeup() -> void:
     await get_tree().create_timer(5).timeout
     GameEvents.emit_signal("trigger_monologue", "Whoa... Why's everything sideways???")
     GameEvents.emit_signal("trigger_monologue", "Better get to the command terminal to see what's going on...")    
-
+    
+    
 func _on_first_see_water(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Hmm...I think we may have a leak...")
 

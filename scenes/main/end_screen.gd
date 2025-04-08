@@ -18,5 +18,5 @@ func on_button_pressed() -> void:
 func show_end_screen(time: float) -> void:
     var minutes = int(time / 60)
     var seconds = time - (minutes*60)
-    time_label.text = str(minutes) + ":" + "%04.3f" %seconds
+    time_label.text = str(minutes) + ":" + "%06.3f" %seconds
     animation_player.play("fadein")
