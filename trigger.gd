@@ -21,5 +21,6 @@ func _on_body_entered(body: Node3D) -> void:
 func disable() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
 
+
 func enable() -> void:
     process_mode = Node.PROCESS_MODE_INHERIT

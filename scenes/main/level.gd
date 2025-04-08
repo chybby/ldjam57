@@ -240,8 +240,6 @@ func _on_stop_spinning(source: Node3D) -> void:
     go_to_surface_interactable.enable()
 
 
-
-
 func _on_go_to_surface(source: Node3D) -> void:
     print('Going to surface')
     GameEvents.emit_signal("interact_console")
@@ -278,9 +276,11 @@ func _on_escape(source: Node3D) -> void:
 func _on_scuba_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Ok got the gear.")
     GameEvents.emit_signal("trigger_monologue", "Time to head to the back of the sub...")
+    GameEvents.emit_signal("trigger_monologue", "(When in water, dive by holding CTRL)")
     scuba_interactable.get_node("AudioStreamPlayer3D").finished.connect(scuba_interactable.queue_free)
     GameEvents.emit_signal("get_scuba")
     has_scuba = true
+
 
 func _on_top_glass_interacted(source: Node3D) -> void:
     print("try")
@@ -289,11 +289,13 @@ func _on_top_glass_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("play_sound", "breakGlass")
     top_glass_interactable.queue_free()
 
+
 func _on_command_glass_interacted(source: Node3D) -> void:
     if(!has_hammer):
         return
     GameEvents.emit_signal("play_sound", "breakGlass")
     command_glass_interactable.queue_free()
+
 
 func _on_engine_glass_interacted(source: Node3D) -> void:
     if(!has_hammer):
@@ -302,12 +304,15 @@ func _on_engine_glass_interacted(source: Node3D) -> void:
     GameEvents.emit_signal("play_sound", "breakGlass")
     engine_glass_interactable.queue_free()
 
+
 func _on_enter_engine(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "The controls should be at the back of the engine room...")
+
 
 func _on_easter_egg_trigger(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
     GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
+
 
 func freedom() -> void:
     timer.timeout.disconnect(freedom)
@@ -321,6 +326,7 @@ func emit_rotation_upright() -> void:
 func fully_tilted() -> void:
     emergency_exit_interactable.enable()
     animation_player.play("raise_water")
+
 
 func _wrong_bed(source: Node3D) -> void:
     print("wrong bed")
