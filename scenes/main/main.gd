@@ -60,8 +60,7 @@ func _on_scuba_interacted(source: Node3D) -> void:
 
 func _on_glass_breaker_interacted(source: Node3D) -> void:
     glass_breaker_icon.visible = true
-    
+
 func on_end_time() -> void:
     end_time = Time.get_ticks_msec()
     print((end_time - start_time) / 1000.0)
-    

@@ -214,6 +214,9 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:Gangway": {
+"import/skip_import": true
+},
 "PATH:Hammer": {
 "mesh_instance/layers": 0
 },

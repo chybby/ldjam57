@@ -312,7 +312,7 @@ func _on_enter_engine(source: Node3D) -> void:
 
 func _on_easter_egg_trigger(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
-    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")    
+    GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
 
 
 func freedom() -> void:
