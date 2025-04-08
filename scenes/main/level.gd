@@ -146,7 +146,7 @@ func wakeup() -> void:
     await get_tree().create_timer(5).timeout
     GameEvents.emit_signal("trigger_monologue", "Whoa... Why's everything sideways???")
     GameEvents.emit_signal("trigger_monologue", "Better get to the command terminal to see what's going on...")
-
+    
 
 func _on_first_see_water(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "Hmm...I think we may have a leak...")
@@ -270,8 +270,6 @@ func _on_escape(source: Node3D) -> void:
     GameEvents.emit_signal("end")
 
     GameEvents.emit_signal("play_sound", "vaultOpen")
-    timer.timeout.connect(freedom)
-    timer.start(10)
 
 
 func _on_scuba_interacted(source: Node3D) -> void:
@@ -313,12 +311,6 @@ func _on_enter_engine(source: Node3D) -> void:
 func _on_easter_egg_trigger(source: Node3D) -> void:
     GameEvents.emit_signal("trigger_monologue", "I'm gonna miss these games the most...")
     GameEvents.emit_signal("trigger_monologue", "They were some hidden gems...")
-
-
-func freedom() -> void:
-    timer.timeout.disconnect(freedom)
-    get_tree().quit()
-
 
 func emit_rotation_upright() -> void:
     rotation_upright.emit()

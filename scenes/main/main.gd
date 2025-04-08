@@ -10,12 +10,14 @@ extends Node3D
 @onready var scuba_icon: PanelContainer = %ScubaIcon
 @onready var glass_breaker_interactable: Interactable = $Level/GlassBreakerInteractable
 @onready var glass_breaker_icon: PanelContainer = %GlassBreakerIcon
+@onready var endscreen = $EndScreen
 
 @onready var timer = $Timer
 
 var is_underwater = false
 var start_time = 0
 var end_time = 0
+var elapsed_time = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -63,4 +65,9 @@ func _on_glass_breaker_interacted(source: Node3D) -> void:
 
 func on_end_time() -> void:
     end_time = Time.get_ticks_msec()
-    print((end_time - start_time) / 1000.0)
+    elapsed_time = (end_time - start_time) / 1000.0
+    Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+    endscreen.visible = true
+    endscreen.show_end_screen(elapsed_time)
+    print(elapsed_time)
